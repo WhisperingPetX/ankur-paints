@@ -26,18 +26,15 @@ Ankur Paints is building a production-grade digital operations platform consisti
 
 ---
 
-## 3. Master Documentation Manifest (All Files in `docs/` and Their Purpose)
+## 3. Master Documentation Manifest (The 3 Single Source of Truth Files)
 
-| Document Name | Path | Exact Purpose & Content |
+The documentation has been consolidated into **3 lean, authoritative files**:
+
+| Document Name | File Path | Exact Purpose & Responsibilities |
 | :--- | :--- | :--- |
-| **`PROJECT_HANDOVER.md`** | `docs/PROJECT_HANDOVER.md` | Primary entry point for any incoming AI or engineer. Summarizes verified project state, repository paths, live database links, and strict instructions for continuity. |
-| **`PROJECT_STATUS.md`** | `docs/PROJECT_STATUS.md` | Real-time task tracker. Records completed milestones, verified commands/screenshots, current phase, and the single precise next action. |
-| **`DECISIONS_LOG.md`** | `docs/DECISIONS_LOG.md` | Immutable architectural record. Logs every major engineering choice (DEC-001 through DEC-021) with rationale and impact, preventing regression or re-debating closed topics. |
-| **`PROJECT_REQUIREMENTS.md`** | `docs/PROJECT_REQUIREMENTS.md` | Functional & business requirements baseline. Reconciles the Ankur Paints SOP, SKU definitions, static QR rules, price ceilings ($\text{Selling Price} \le \text{MRP}$), and zero negative stock rules. |
-| **`TECHNICAL_ARCHITECTURE.md`** | `docs/TECHNICAL_ARCHITECTURE.md` | Complete technical system design. Details system component diagrams, Supabase PostgreSQL ERD (12 tables), atomic SQL procedures, RLS policies, and technology matrices. |
-| **`DESIGN_SYSTEM.md`** | `docs/DESIGN_SYSTEM.md` | Visual design language specification. Calibrated directly from official Ankur Paints packaging (Cobalt Blue `#004B87`, Vermillion `#E8501E`, 5-color spectrum arc), glassmorphic layout, and ambient auroras. |
-| **`AI_CONTINUITY.md`** | `docs/AI_CONTINUITY.md` | Protocol guidelines for AI assistants. Specifies context boundary constraints, session-start verification sequences, and rules against guessing or hallucinating unverified code. |
-| **`OPEN_QUESTIONS.md`** | `docs/OPEN_QUESTIONS.md` | Registry of open operational policies and external dependencies (launch cutover dates, damage write-off accounting, offline policies) awaiting client confirmation. |
+| **1. `PROJECT_REQUIREMENTS.md`** | `docs/PROJECT_REQUIREMENTS.md` | **Rules & SOP:** Core business logic, Ankur Paints SOP reconciliation, SKU composite key, static QR per SKU, database-guarded price ceiling ($\text{Selling Price} \le \text{MRP}$), zero negative stock guarantee, and launch cutover rules. |
+| **2. `TECHNICAL_ARCHITECTURE.md`** | `docs/TECHNICAL_ARCHITECTURE.md` | **Tech & Database:** System architecture, live Supabase cloud database ERD (12 tables), atomic SQL procedures (`submit_retailer_sale`), RLS security matrix, technology matrix (Next.js 15, Tailwind, Framer Motion, CapacitorJS), and brand color tokens. |
+| **3. `PROJECT_HANDOVER.md`** | `docs/PROJECT_HANDOVER.md` | **Master Status & Handover:** Project summary, verified current status, links to live database/repos, and step-by-step guidance for future AI sessions or engineers. |
 
 ---
 
@@ -52,7 +49,10 @@ Ankur Paints is building a production-grade digital operations platform consisti
 
 When a user begins a new conversation with you to continue this project:
 
-1. **Read the handover and status documentation provided by the user:** Immediately review `docs/PROJECT_HANDOVER.md`, `docs/PROJECT_STATUS.md`, and `docs/DECISIONS_LOG.md` before taking any action.
+1. **Read the handover and status documentation provided by the user:** Immediately review `docs/PROJECT_HANDOVER.md`, `docs/PROJECT_REQUIREMENTS.md`, and `docs/TECHNICAL_ARCHITECTURE.md` before taking any action.
+2. **Inspect the actual available project files before assuming anything:** Check the physical directory (`C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`) and verify Git status. Never rely purely on conversation memory or assume files exist without checking.
+3. **Continue from the latest verified state rather than restarting completed work:** Phases 1 through 7 are fully completed. The cloud database is live with 12 tables and 9 official products.
+4. **Make one small, verifiable step at a time:** Do not jump ahead across multiple phases. Produce complete, working code, test thoroughly, update the handover document, and wait for verification.
 2. **Inspect the actual available project files before assuming anything:** Check the physical directory (`C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`) and verify Git status. Never rely purely on conversation memory or assume files exist without checking.
 3. **Continue from the latest verified state rather than restarting completed work:** Phases 1 through 7 are fully completed. Follow the active phase declared in `PROJECT_STATUS.md`.
 4. **Make one small, verifiable step at a time:** Do not jump ahead across multiple phases. Produce complete, working code, test thoroughly, update the status documents, and wait for verification.

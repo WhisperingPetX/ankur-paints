@@ -464,9 +464,34 @@ flowchart TD
 
 ---
 
-## 9. Next Steps in Sequential Roadmap
+## 9. Brand Identity, UI Design Tokens & Packaging Themes
 
-With Phase 2 Technical Architecture defined:
-1. **Phase 3:** Development Environment & Git Setup (Workspace setup, `.gitignore`, Git initialization, linting/formatting rules).
-2. **Phase 4:** UI/UX Design System (Design tokens, mobile components, web dashboard layouts).
-3. **Phase 5:** Database Schema and Migrations (Authoring executable Supabase SQL migrations from this architecture).
+The visual presentation is calibrated directly from official **Ankur Paints and Inks Private Limited** branding:
+
+### 9.1 Core Corporate Colors & Palettes
+- **Ankur Cobalt Blue (`#004B87`):** Primary brand authority. Used for navigation bars, primary headings, high-trust badges, and dark backdrops.
+- **Paints Vermillion Orange (`#E8501E`):** Vibrant energetic accent. Used for primary CTAs, scan triggers, active badges, and conversion buttons.
+- **Paintbrush Spectrum Arc:** Cyan (`#00B2E3`), Green (`#00A859`), Yellow (`#FFD100`), Orange (`#F37021`), Red (`#ED1C24`).
+- **Luxury Dark Glassmorphic Canvas:** Deep Navy (`#030712`), Slate Navy (`#0F172A`), Surface Glass (`rgba(15, 23, 42, 0.75)` with `backdrop-blur-xl`).
+
+### 9.2 Verified Product Line Themes (Physical Packaging Lineup)
+| Product Line | Category | Packaging Theme Color | Warranty |
+| :--- | :--- | :--- | :---: |
+| **Epic Coat** | Exterior Emulsion (Flagship) | Royal Indigo (`#312E81`) | 5 Years |
+| **Rang Ritu** | Interior Emulsion | Vibrant Magenta (`#BE185D`) | 7 Years |
+| **Gleam Coat** | Exterior Emulsion | Sea Teal (`#0F766E`) | 3 Years |
+| **Rose Gold** | Exterior Emulsion | Crimson Rust (`#991B1B`) | 2 Years |
+| **Colour Crest** | Exterior Emulsion | Warm Amber (`#9A3412`) | 2 Years |
+| **Damp Proof** | Interior & Exterior Waterproofing | Ochre Gold (`#854D0E`) | 10 Years |
+| **Acrylic Distemper** | Washable Distemper | Fresh Leaf Green (`#166534`) | — |
+| **Premium Wall Primer**| Undercoat / Primer | Emerald Mint (`#065F46`) | — |
+| **Acrylic Wall Putty** | Surface Preparation / Putty | Golden Amber (`#A16207`) | — |
+
+---
+
+## 10. Sequential Implementation Roadmap
+
+1. **Phase 1-7 (Completed):** Requirements, Technical ERD, Live Supabase Cloud Database (12 tables), Auth triggers, QR generator, Bulk Excel importer.
+2. **Phase 8 (Active):** Next.js 15 Luxury Web Platform (Hero stage, interactive room visualizer, 9-bucket showcase, Google One-Tap authentication, Store KYC).
+3. **Phase 9:** Barcode QR Scanner, Point-of-Sale cart ($\text{Selling Price} \le \text{MRP}$), Green Tick animated receipt, and Sales History Ledger.
+4. **Phase 10:** CapacitorJS Android packaging for Google Play Store APK/AAB distribution.
