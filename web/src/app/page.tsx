@@ -10,11 +10,9 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
 import { StoreAuthModal } from "@/components/StoreAuthModal";
-import { VideoModal } from "@/components/VideoModal";
 
 export default function Home() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
   const handleExploreClick = () => {
@@ -36,10 +34,9 @@ export default function Home() {
         cartCount={cartCount}
       />
 
-      {/* 2. Hero Section */}
+      {/* 2. 4K Animated Hero Carousel */}
       <HeroSection
         onExploreClick={handleExploreClick}
-        onWatchVideoClick={() => setVideoModalOpen(true)}
       />
 
       {/* 3. 5-Pillar Trust & Feature Badges */}
@@ -60,15 +57,10 @@ export default function Home() {
       {/* 8. Footer */}
       <Footer />
 
-      {/* Interactive Modals */}
+      {/* Interactive Retailer Google One-Tap & Store KYC Modal */}
       <StoreAuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
-      />
-
-      <VideoModal
-        isOpen={videoModalOpen}
-        onClose={() => setVideoModalOpen(false)}
       />
     </main>
   );

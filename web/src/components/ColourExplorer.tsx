@@ -135,9 +135,10 @@ export const ColourExplorer: React.FC = () => {
               >
                 <div className="relative w-full h-full drop-shadow-2xl">
                   <Image
-                    src="/branding/swatch_fan.png"
+                    src="/branding/swatch_fan_hd.png"
                     alt="Ankur Paints Swatch Deck"
                     fill
+                    quality={95}
                     className="object-contain"
                   />
                   {/* Floating Interactive Plus Button */}

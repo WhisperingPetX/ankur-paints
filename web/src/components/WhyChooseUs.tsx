@@ -55,12 +55,13 @@ export const WhyChooseUs: React.FC = () => {
           
           {/* Left Column: Modern Villa Image & Company Pillars */}
           <div className="lg:col-span-7 space-y-8">
-            {/* Modern Villa Image */}
+            {/* Modern Villa Image - 4K High Resolution */}
             <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-xl border border-slate-200">
               <Image
-                src="/branding/modern_villa.png"
+                src="/branding/modern_villa_hd.png"
                 alt="Modern Architectural Villa Painted with Ankur Paints"
                 fill
+                quality={95}
                 className="object-cover"
               />
             </div>

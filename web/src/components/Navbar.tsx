@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { Search, User, ShoppingBag, Menu, X, ShieldCheck } from "lucide-react";
+import { AnkurLogo } from "./AnkurLogo";
 
 interface NavbarProps {
   onOpenAuth: () => void;
@@ -29,16 +29,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-50 w-full glass-nav transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Brand Logo - 100% Sharp 4K Vector SVG */}
         <a href="#hero" className="flex items-center gap-3 group">
-          <div className="relative h-10 w-40 sm:h-11 sm:w-44 transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src="/branding/ankur_logo_transparent.png"
-              alt="Ankur Paints & Inks"
-              fill
-              className="object-contain object-left"
-              priority
-            />
+          <div className="transition-transform duration-300 group-hover:scale-105">
+            <AnkurLogo className="h-10 sm:h-12 w-auto" />
           </div>
         </a>
 

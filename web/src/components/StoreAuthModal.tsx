@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { X, ShieldCheck, CheckCircle2, ArrowRight, Store, Phone, User, FileText } from "lucide-react";
 import confetti from "canvas-confetti";
+import { AnkurLogo } from "./AnkurLogo";
 
 interface StoreAuthModalProps {
   isOpen: boolean;
@@ -70,13 +70,8 @@ export const StoreAuthModal: React.FC<StoreAuthModalProps> = ({
 
         {/* Modal Header */}
         <div className="text-center space-y-2 mb-6">
-          <div className="relative h-10 w-44 mx-auto">
-            <Image
-              src="/branding/ankur_logo_master.png"
-              alt="Ankur Paints"
-              fill
-              className="object-contain"
-            />
+          <div className="h-10 w-auto flex justify-center">
+            <AnkurLogo className="h-10 w-auto" />
           </div>
           <p className="text-xs text-slate-400">
             Official B2B Retailer & Distributor Portal

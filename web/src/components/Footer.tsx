@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { ArrowRight, Facebook, Instagram, Youtube, Linkedin, Check } from "lucide-react";
+import { AnkurLogo } from "./AnkurLogo";
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -26,13 +26,8 @@ export const Footer: React.FC = () => {
           
           {/* Column 1: Brand & Tagline */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="relative h-12 w-52">
-              <Image
-                src="/branding/ankur_logo_master.png"
-                alt="Ankur Paints & Inks"
-                fill
-                className="object-contain object-left"
-              />
+            <div className="h-12 w-auto">
+              <AnkurLogo className="h-11 w-auto" />
             </div>
             <p className="text-sm text-slate-400 font-medium">
               Colouring a brighter tomorrow.
