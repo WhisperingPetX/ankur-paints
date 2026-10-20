@@ -31,9 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <a href="#hero" className="flex items-center gap-3 group">
-          <div className="relative h-12 w-48 sm:w-56 transition-transform duration-300 group-hover:scale-105">
+          <div className="relative h-10 w-40 sm:h-11 sm:w-44 transition-transform duration-300 group-hover:scale-105">
             <Image
-              src="/branding/ankur_logo_master.png"
+              src="/branding/ankur_logo_transparent.png"
               alt="Ankur Paints & Inks"
               fill
               className="object-contain object-left"
