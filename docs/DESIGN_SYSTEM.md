@@ -1,107 +1,112 @@
 # Ankur Paints — UI/UX Design System Specification
 
-**Document Version:** 1.0.0  
+**Document Version:** 1.1.0  
 **Phase:** Phase 4 — UI/UX Design System & Mobile Tokens  
 **Date:** 2026-10-20  
-**Status:** Approved Design Baseline  
-**Inspiration & Benchmark:** Flipkart / Amazon India Tier-1 Consumer E-Commerce Polish
+**Status:** Calibrated with Official Ankur Paints & Inks Brand Identity  
+**Benchmark:** Flipkart / Myntra / Amazon India Tier-1 Consumer E-Commerce Polish
 
 ---
 
-## 1. Design Philosophy: "Consumer-Grade B2B"
+## 1. Official Brand Identity & Color Calibration
 
-Traditional enterprise dealer apps look sterile, grey, and difficult to use. Ankur Paints rejects that paradigm. The retailer Android app is designed with the **vibrant energy, smooth micro-animations, and visual polish of top Indian consumer applications** (Flipkart Big Billion Days / Amazon Great Indian Festival).
+The visual identity is directly calibrated from the official **Ankur Paints and Inks Private Limited** corporate identity and physical packaging lineup:
 
-### Core Pillars
-1. **High Visual Excitement (Festive Motivation):** Use bold metallic gold accents, energetic paint corals, and celebratory progress animations to turn sales logging into a rewarding game.
-2. **Glanceable Retail Legibility:** In crowded, brightly lit paint shops, text, numbers, and stock states must be instantly readable at arm's length.
-3. **Instant Error Prevention (Zero Friction):** Instant visual cues prevent mistakes before they happen:
-   - Green badge: $\text{Selling Price} \le \text{MRP}$ (Valid)
-   - Red alert badge: $\text{Selling Price} > \text{MRP}$ (Checkout button dynamically locks)
-   - Real-time stock badge: Green for available; Crimson red for insufficient stock.
+### 1.1 Primary Brand Colors
+- **Ankur Cobalt Blue (`#004B87`):** The primary brand authority color extracted from the *"Ankur"* wordmark and stylized paint drop "A". Used for top navigation bars, primary headings, and high-trust badges.
+- **Paints Vermillion Orange (`#E8501E`):** The signature vibrant energetic accent extracted from the *"Paints"* wordmark. Used for primary call-to-actions, scanner buttons, cart badges, and checkout flows.
+- **Paintbrush Spectrum Arc:** The multi-colored spectrum arc above the wordmark provides accent highlights across the app:
+  - Cyan: `#00B2E3`
+  - Green: `#00A859`
+  - Yellow: `#FFD100`
+  - Orange: `#F37021`
+  - Red: `#ED1C24`
 
----
+### 1.2 Verified Product Line Themes (From Official Lineup)
+The app dynamically themes product cards and category pills according to the real bucket packaging:
 
-## 2. Color Palette & Semantic Tokens
-
-### 2.1 Brand Identity Colors
-- **Royal Midnight Navy (`#0B192C` / `#1E3E62`):** Primary brand authority, headers, dark surfaces, and text contrast.
-- **Paint Energy Coral (`#FF5722`):** Primary action buttons, scan trigger CTAs, and interactive highlights.
-- **Festive Incentive Gold (`#FFD700` $\rightarrow$ `#FF8C00`):** Target milestones, reward percentages, Big Billion Days style banners.
-
-### 2.2 Functional & Validation Colors
-| State | Hex Code | Background Tint | Usage |
-| :--- | :--- | :--- | :--- |
-| **Success / In-Stock** | `#10B981` | `#DCFCE7` | Available stock counter, valid price confirmation, completed sales |
-| **Error / Blocked** | `#EF4444` | `#FEE2E2` | Price exceeding MRP, zero stock blocker, scan failure |
-| **Warning / Near Target** | `#F59E0B` | `#FEF3C7` | Stock running low ($\le 3$ cans), approaching target threshold |
-| **Surface Neutral** | `#F8FAFC` | `#FFFFFF` | Mobile screen background, card containers, subtle divider borders |
-
----
-
-## 3. Flipkart Big Billion Days Style Gamification System
-
-### 3.1 Promotional Hero Carousel
-- **Component:** `FestiveSchemeBanner`
-- **Visual Style:** Full-width swipeable cards with rich festive gradients (Gold Festival, Electric Blue, Ruby Offer), celebratory badges, and dynamic scheme titles configured by Admin.
-- **Example Card:**
-  ```
-  ┌────────────────────────────────────────────────────────┐
-  │ 🌟 DIWALI DHAMAKA SCHEME                  [ACTIVE NOW] │
-  │                                                        │
-  │  FLAT 10% EXTRA DISCOUNT ON ₹1,00,000 SALES           │
-  │  Earn instant rewards on all Exterior & Interior Lines │
-  │                                                        │
-  │  [ Tap to View Slabs & Rewards → ]                    │
-  └────────────────────────────────────────────────────────┘
-  ```
-
-### 3.2 Reactive Target Progress Meter
-- **Component:** `TargetProgressCard`
-- **Dynamic Feedback:** A multi-tier animated progress bar displays the retailer's monthly or scheme sales progress in real time.
-- **Progress Nodes:**
-  - Milestone 1: ₹25,000 (Bronze - 3% Bonus)
-  - Milestone 2: ₹50,000 (Silver - 6% Bonus)
-  - Milestone 3: ₹1,00,000 (Gold - 10% Bonus)
-- **Live Copy:** *"₹78,400 achieved! Just ₹21,600 away from unlocking 10% Gold Bonus!"*
-- **Celebration Trigger:** Hitting a target triggers a celebratory gold particle burst (using React Native Reanimated / Canvas Confetti) and unlocks a glowing trophy badge.
+| Product Line | Category | Packaging Theme | Warranty |
+| :--- | :--- | :--- | :---: |
+| **Epic Coat** | Exterior Emulsion (Flagship) | Royal Indigo (`#312E81`) | 5 Years |
+| **Rang Ritu** | Interior Emulsion | Vibrant Magenta (`#BE185D`) | 7 Years |
+| **Gleam Coat** | Exterior Emulsion | Sea Teal (`#0F766E`) | 3 Years |
+| **Rose Gold** | Exterior Emulsion | Crimson Rust (`#991B1B`) | 2 Years |
+| **Colour Crest** | Exterior Emulsion | Warm Amber (`#9A3412`) | 2 Years |
+| **Damp Proof** | Interior & Exterior Waterproofing | Ochre Gold (`#854D0E`) | 10 Years |
+| **Acrylic Distemper** | Washable Distemper | Fresh Leaf Green (`#166534`) | — |
+| **Premium Wall Primer**| Undercoat / Primer | Emerald Mint (`#065F46`) | — |
+| **Acrylic Wall Putty** | Surface Preparation / Putty | Golden Amber (`#A16207`) | — |
 
 ---
 
-## 4. Point-of-Sale Cart & Camera Scanner UI
+## 2. Consumer E-Commerce (Flipkart / Myntra Style) Mobile Layout Architecture
 
-### 4.1 Modern Camera Scanner Overlay
-- **Viewfinder:** 280x280dp center target with glowing coral corner brackets (`#FF5722`).
-- **Scanning Beam:** Smooth vertical laser scan line with soft gradient glow.
-- **Audio & Haptic Feedback:** Successful QR recognition triggers an instant subtle haptic tap (`Haptics.notificationAsync(Success)`) and auto-navigates to the active cart with item count incremented.
+The retailer app interface provides the familiar, high-conversion feel of **Flipkart / Myntra / Amazon India**:
 
-### 4.2 Cart Line Item Card
-- **Product Title & Shade:** Large bold title with visual shade color swatch pill.
-- **Pack Size:** Container badge (e.g. `[ 20 Litre Bucket ]` or `[ 4 Litre Can ]`).
-- **Stock Guard:** Real-time stock badge:
-  - `🟢 12 in stock` (If stock is sufficient)
-  - `🔴 Insufficient stock (Only 2 available)` (Blocks submission)
-- **MRP vs. Selling Price Inputs:**
-  - Printed MRP: Displayed clearly with strike-through or reference label: `MRP: ₹3,450`.
-  - Selling Price Input: Bold numerical text input. If entered price > ₹3,450, input border turns glowing crimson with label: `⚠️ Cannot exceed MRP of ₹3,450`.
-- **Quantity Stepper:** Big thumb-friendly `[-]` and `[+]` counter buttons with manual numeric entry.
+```
+┌────────────────────────────────────────────────────────┐
+│  🎨 Ankur Paints                   [Store: Gupta Paints]│
+│  🔍 Search by product, shade code (e.g. SH-104)...     │
+├────────────────────────────────────────────────────────┤
+│  [CATEGORIES]                                          │
+│  (★ All) (🏡 Exterior) (🛋️ Interior) (💧 Damp Proof) ...│
+├────────────────────────────────────────────────────────┤
+│  🌟 HERO PROMOTIONAL CAROUSEL (Flipkart Style)         │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │ ⚡ DIWALI DHAMAKA SCHEME              [LIVE NOW] │  │
+│  │ FLAT 10% EXTRA ON ₹1,00,000 MONTHLY SALES        │  │
+│  │ Earn instant rewards on Epic Coat & Rang Ritu    │  │
+│  └──────────────────────────────────────────────────┘  │
+├────────────────────────────────────────────────────────┤
+│  🏆 LIVE TARGET MILESTONE METER                        │
+│  Achieved: ₹75,000 / ₹1,00,000 (Silver 6% Active)      │
+│  [===========================>..........] 75%          │
+│  🎉 Just ₹25,000 to unlock 10% Gold Tier Bonus!        │
+├────────────────────────────────────────────────────────┤
+│  📦 RECENT FAST-SELLING BUCKETS                        │
+│  ┌─────────────────────────┐  ┌─────────────────────┐  │
+│  │ [Epic Coat 20L]         │  │ [Rang Ritu 20L]     │  │
+│  │ 5 Yrs Warranty • Indigo │  │ 7 Yrs • Magenta     │  │
+│  │ MRP: ₹4,200             │  │ MRP: ₹3,850         │  │
+│  │ 🟢 18 in stock          │  │ 🟢 12 in stock      │  │
+│  │ [+ Add to Cart]         │  │ [+ Add to Cart]     │  │
+│  └─────────────────────────┘  └─────────────────────┘  │
+├────────────────────────────────────────────────────────┤
+│  [📷 QUICK QR SCAN] (Floating High-Contrast CTA)        │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 5. Web Admin Dashboard Design Language
+## 3. Flipkart Big Billion Days Gamification Engine
 
-- **Layout Structure:** Collapsible Royal Navy sidebar with high-contrast active icons, modern breadcrumb navigation, and global search bar.
-- **Data Tables:** Dense, filterable data grids (zebra striping, sticky headers, inline status badges, export to Excel/PDF buttons).
-- **KPI Summary Cards:** Large numeric statistics (Today's Sales, Dispatches In-Transit, Active Retailers, Accrued Incentives) with micro-trend sparklines.
-- **Excel Bulk Catalog Importer:** Drag-and-drop dropzone with animated progress bar, real-time column mapping preview, and instant validation highlighting for invalid MRP or missing shade codes.
+### 3.1 Festive Scheme Cards
+- Full-bleed gradient cards with glowing borders (`festiveGlow` shadow).
+- Micro-badges: `"LIVE NOW"`, `"7 DAYS LEFT"`, `"10% BONUS"`.
+- Admin configurable via Web Dashboard.
+
+### 3.2 Target Progress Meter
+- Reactive multi-node progress track:
+  - `₹0` $\rightarrow$ `₹25,000 (Bronze 3%)` $\rightarrow$ `₹50,000 (Silver 6%)` $\rightarrow$ `₹1,00,000 (Gold 10%)`.
+- Reaching a milestone triggers celebratory golden confetti animation and trophy unlocking.
 
 ---
 
-## 6. Implementation Reference Tokens
+## 4. Point-of-Sale Cart with Selling Price $\le$ MRP Guard
 
-All design tokens are implemented and exported in the mobile application directory:
-- Colors & Gradients: `mobile/src/constants/colors.ts`
+- **Visual Feedback:**
+  - $\text{Selling Price} \le \text{MRP}$: Emerald green badge with calculated retailer discount.
+  - $\text{Selling Price} > \text{MRP}$: Crimson red glow alert `⚠️ BLOCKED: Selling price cannot exceed MRP!`; checkout CTA is locked.
+- **Stock Guard:**
+  - `🟢 In Stock (X available)` vs `🔴 Insufficient Stock` (checkout blocked).
+
+---
+
+## 5. Token Reference Files in Codebase
+
+- Brand Colors & Palette: `mobile/src/constants/colors.ts`
 - Typography Scale: `mobile/src/constants/typography.ts`
 - Spacing & Elevation: `mobile/src/constants/spacing.ts`
 - Unified Theme: `mobile/src/constants/theme.ts`
-- TypeScript Interfaces: `mobile/src/types/design.ts`
+- Component Types: `mobile/src/types/design.ts`
+- Brand Asset: `mobile/assets/branding/ankur_paints_lineup.jpg`
