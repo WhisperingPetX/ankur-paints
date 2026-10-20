@@ -59,14 +59,15 @@ export async function ingestCatalogBatch(rows: ParsedSKURow[]): Promise<{
   // 1. Fetch existing products to map IDs
   const { data: existingProducts, error: prodErr } = await supabase
     .from('products')
-    .select('id, name');
+    .select('id, name')
+    .returns<{ id: string; name: string }[]>();
 
   if (prodErr) {
     throw new Error(`Error fetching existing products: ${prodErr.message}`);
   }
 
   const productMap = new Map<string, string>();
-  (existingProducts || []).forEach((p) => {
+  ((existingProducts as { id: string; name: string }[]) || []).forEach((p) => {
     productMap.set(p.name.trim().toLowerCase(), p.id);
   });
 
@@ -88,12 +89,13 @@ export async function ingestCatalogBatch(rows: ParsedSKURow[]): Promise<{
       return {
         name: origName,
         category: category || 'General Coatings',
+        warranty_years: 0,
         is_active: true,
       };
     });
 
-    const { data: created, error: createErr } = await supabase
-      .from('products')
+    const { data: created, error: createErr } = await (supabase
+      .from('products') as any)
       .insert(toInsert)
       .select('id, name');
 
@@ -101,7 +103,7 @@ export async function ingestCatalogBatch(rows: ParsedSKURow[]): Promise<{
       throw new Error(`Failed to create missing products: ${createErr.message}`);
     }
 
-    (created || []).forEach((p) => {
+    ((created as { id: string; name: string }[]) || []).forEach((p) => {
       productMap.set(p.name.trim().toLowerCase(), p.id);
       productsCreated++;
     });
@@ -128,8 +130,8 @@ export async function ingestCatalogBatch(rows: ParsedSKURow[]): Promise<{
   });
 
   // 4. Batch Upsert to skus table on conflict (qr_code_payload)
-  const { data: upserted, error: skuErr } = await supabase
-    .from('skus')
+  const { data: upserted, error: skuErr } = await (supabase
+    .from('skus') as any)
     .upsert(skuPayloads, {
       onConflict: 'qr_code_payload',
       ignoreDuplicates: false,

@@ -4,18 +4,18 @@ import {
   fetchSKUs,
   ingestCatalogBatch,
   ProductWithStats,
-} from '../services/catalogService';
+} from '../../services/catalogService';
 import {
   validateCatalogRows,
   generateSampleCatalogCSV,
   ImportValidationResult,
-} from '../services/excelImporter';
+} from '../../services/excelImporter';
 import {
   generatePrintableBucketLabelSVG,
   getQRCodePNGUrl,
   QRLabelData,
-} from '../services/qrGenerator';
-import type { Sku } from '../types/database';
+} from '../../services/qrGenerator';
+import type { Sku } from '../../types/database';
 
 export const CatalogManagement: React.FC = () => {
   const [products, setProducts] = useState<ProductWithStats[]>([]);

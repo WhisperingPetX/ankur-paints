@@ -7,14 +7,14 @@ import type { Database } from '../types/database';
  */
 
 const supabaseUrl =
-  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SUPABASE_URL) ||
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
   process.env.VITE_SUPABASE_URL ||
-  'https://placeholder.supabase.co';
+  'https://wpiztkjuojirzsxvzqfv.supabase.co';
 
 const supabaseAnonKey =
-  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SUPABASE_ANON_KEY) ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
   process.env.VITE_SUPABASE_ANON_KEY ||
-  'placeholder-anon-key';
+  'sb_publishable_Q6HJga6oLAtAVKMnhKWYyg_PIpljA-W';
 
 if (supabaseUrl.includes('placeholder') && process.env.NODE_ENV !== 'test') {
   console.info(
