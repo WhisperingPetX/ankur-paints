@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ankur Paints — Official Retailer App</title>
+  <title>Ankur Paints — Luxury App</title>
   <style>
     :root {
       --ankur-blue: #004B87;
-      --ankur-blue-dark: #002D54;
+      --ankur-blue-dark: #001E3D;
       --paints-orange: #E8501E;
-      --paints-orange-light: #FF6F3D;
-      --google-blue: #1D4ED8;
-      --success-green: #10B981;
-      --error-red: #EF4444;
-      --bg: #F8FAFC;
-      --card-bg: #FFFFFF;
-      --text-dark: #0F172A;
-      --text-secondary: #64748B;
-      --border-color: #E2E8F0;
+      --paints-orange-light: #FF6B3D;
+      --gold: #FFB703;
+      --teal: #00A896;
+      --text-light: #FFFFFF;
+      --text-muted: #94A3B8;
     }
 
     * {
@@ -29,100 +25,94 @@
     }
 
     body {
-      background: #0B192C;
+      background: #060D17;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 0;
-      padding: 10px 0 30px 0;
+      padding: 12px 0 30px 0;
       overflow-x: hidden;
-      color: var(--text-dark);
+      color: #FFFFFF;
     }
 
-    /* -------------------------------------------------------------------------
-       TOP SCREEN SWITCHER BAR (For Easy Review)
-       ------------------------------------------------------------------------- */
-    .top-control-bar {
+    /* Top Control Bar for Review */
+    .review-top-bar {
       width: 100%;
-      max-width: 960px;
-      background: #001A33;
+      max-width: 820px;
+      background: #0B192C;
       padding: 10px 16px;
       border-radius: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      color: #FFFFFF;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
       z-index: 1000;
     }
 
-    .top-brand-label {
+    .brand-title {
       display: flex;
       align-items: center;
       gap: 8px;
       font-weight: 800;
       font-size: 13px;
-      letter-spacing: 0.5px;
+      color: #FFFFFF;
     }
 
-    .screen-jump-group {
+    .btn-group {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .screen-jump-btn {
+    .top-nav-btn {
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .screen-jump-btn:hover {
+    .top-nav-btn:hover {
       background: rgba(255, 255, 255, 0.25);
     }
 
-    .screen-jump-btn.active {
+    .top-nav-btn.active {
       background: var(--paints-orange);
       border-color: var(--paints-orange);
-      box-shadow: 0 2px 8px rgba(232, 80, 30, 0.4);
+      box-shadow: 0 2px 10px rgba(232, 80, 30, 0.5);
     }
 
-    .view-mode-toggle {
+    .view-mode-btn {
       background: #004B87;
       color: #FFFFFF;
       border: 1px solid #38BDF8;
       padding: 6px 14px;
       border-radius: 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
     }
 
-    /* -------------------------------------------------------------------------
-       SMARTPHONE FRAME (iPhone Dimensions Matching Reference)
-       ------------------------------------------------------------------------- */
+    /* Smartphone Frame */
     .phone-container {
       width: 100%;
       max-width: 412px;
       height: 860px;
-      background: #FFFFFF;
-      border-radius: 44px;
+      background: #000000;
+      border-radius: 46px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 12px #1E293B, 0 0 0 14px #475569;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 12px #1E293B, 0 0 0 14px #334155;
       transition: max-width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
     }
 
@@ -135,7 +125,7 @@
 
     @media (max-width: 480px) {
       body { padding: 0; }
-      .top-control-bar { display: none; }
+      .review-top-bar { display: none; }
       .phone-container {
         height: 100vh;
         border-radius: 0;
@@ -143,7 +133,7 @@
       }
     }
 
-    /* iPhone Notch & Status Bar */
+    /* Dynamic Island */
     .phone-island {
       width: 115px;
       height: 28px;
@@ -157,6 +147,7 @@
       pointer-events: none;
     }
 
+    /* System Status Bar */
     .status-bar {
       height: 44px;
       display: flex;
@@ -165,28 +156,25 @@
       padding: 0 24px;
       font-size: 13px;
       font-weight: 700;
-      color: #0F172A;
+      color: #FFFFFF;
       z-index: 500;
-      position: relative;
-      background: #FFFFFF;
-    }
-
-    /* -------------------------------------------------------------------------
-       CRITICAL: STRICT SCREEN ISOLATION (NEVER STACK SCREENS)
-       ------------------------------------------------------------------------- */
-    .app-screen {
       position: absolute;
-      top: 44px;
+      top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
+      pointer-events: none;
+    }
+
+    /* Strict Screen Isolation */
+    .app-screen {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: calc(100% - 44px);
+      height: 100%;
       display: none !important;
       flex-direction: column;
       overflow-y: auto;
       overflow-x: hidden;
-      background: #FFFFFF;
       z-index: 10;
     }
 
@@ -195,87 +183,79 @@
       z-index: 20;
     }
 
-    /* -------------------------------------------------------------------------
-       1. SPLASH SCREEN (Exact Animation Sequence 0.0s to 2.0s)
-       ------------------------------------------------------------------------- */
+    /* =========================================================================
+       1. SCREEN 1: SPLASH SCREEN (Radiant Luxury White Canvas + Rainbow Wave)
+       ========================================================================= */
     #screenSplash {
-      background: #FFFFFF;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 60%, #EFF6FF 100%);
       align-items: center;
       justify-content: center;
-      position: absolute;
-      inset: 0;
-      top: 44px;
-      overflow: hidden;
+      text-align: center;
+      position: relative;
     }
 
-    /* Stage 1: Clean Centered Logo (0.0s - 0.7s) */
-    .splash-initial-stage {
+    .splash-hero-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 20px;
-      z-index: 5;
-      animation: splashLogoEntry 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      z-index: 25;
+      padding: 24px;
+      animation: splashFadeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    @keyframes splashLogoEntry {
-      0% { opacity: 0; transform: scale(0.85); }
+    @keyframes splashFadeIn {
+      0% { opacity: 0; transform: scale(0.88); }
       100% { opacity: 1; transform: scale(1); }
     }
 
-    .splash-logo-card {
-      background: #FFFFFF;
-      padding: 16px 24px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 75, 135, 0.12);
-      margin-bottom: 12px;
-    }
-
-    .splash-logo-card img {
-      width: 220px;
+    .splash-logo-clean {
+      width: 250px;
       height: auto;
       display: block;
+      margin: 0 auto 16px auto;
+      filter: drop-shadow(0 6px 14px rgba(0, 75, 135, 0.12));
     }
 
-    .splash-tagline-text {
-      font-size: 18px;
-      font-weight: 800;
+    .splash-tagline {
+      font-size: 20px;
+      font-weight: 900;
       color: var(--ankur-blue);
-      letter-spacing: 0.8px;
-      margin-top: 4px;
+      letter-spacing: 1.5px;
+      text-transform: capitalize;
+      margin-bottom: 6px;
     }
 
-    .splash-sub-text {
+    .splash-corp-sub {
       font-size: 11px;
       color: var(--paints-orange);
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-top: 4px;
     }
 
-    /* Stage 2: Rainbow Paint Brush Stroke Layer (Sweeps across from 0.6s to 1.8s) */
-    .splash-rainbow-layer {
+    /* Rainbow Paint Wave Sweeping From Bottom-Left to Center-Right */
+    .splash-paint-wave {
       position: absolute;
-      inset: 0;
+      bottom: 0;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 62%;
       object-fit: cover;
-      z-index: 10;
-      opacity: 0;
+      object-position: bottom left;
       pointer-events: none;
-      animation: rainbowSweepAcross 1.4s ease-in-out 0.5s forwards;
+      z-index: 15;
+      animation: waveEntrance 1.5s ease-out 0.4s forwards;
+      opacity: 0;
     }
 
-    @keyframes rainbowSweepAcross {
+    @keyframes waveEntrance {
       0% {
         opacity: 0;
-        transform: translateY(50px) scale(0.96);
+        transform: translateY(60px) scale(0.95);
       }
-      30% {
-        opacity: 0.85;
+      40% {
+        opacity: 0.8;
       }
       100% {
         opacity: 1;
@@ -283,843 +263,265 @@
       }
     }
 
-    .splash-timeline-bar {
+    .splash-progress-pill {
       position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
+      bottom: 28px;
+      background: rgba(0, 45, 84, 0.85);
       color: #FFFFFF;
-      padding: 6px 16px;
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      z-index: 30;
+      letter-spacing: 0.8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      z-index: 30;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
     }
 
-    /* -------------------------------------------------------------------------
-       2. SIGN IN SCREEN (Exact Reference Phone 2)
-       ------------------------------------------------------------------------- */
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--paints-orange);
+      animation: pulseAnim 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseAnim {
+      0% { transform: scale(0.8); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.6; }
+    }
+
+    /* =========================================================================
+       2. SCREEN 2: LOGIN SCREEN (Full-Screen Colorful Luxury Paint Aurora)
+       ========================================================================= */
     #screenSignIn {
-      background: #FFFFFF;
-      padding: 24px;
+      position: relative;
+      /* Full-Screen Rich Paint Aurora Mesh Background */
+      background: 
+        radial-gradient(circle at 85% 15%, rgba(232, 80, 30, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(0, 168, 150, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 75, 135, 0.5) 0%, transparent 60%),
+        radial-gradient(circle at 10% 20%, rgba(255, 183, 3, 0.3) 0%, transparent 40%),
+        linear-gradient(160deg, #001A33 0%, #002D54 50%, #0B192C 100%);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: absolute;
-      inset: 0;
-      top: 44px;
-      overflow-y: auto;
-    }
-
-    /* Corner Paint Stroke Accents */
-    .signin-corner-top {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 140px;
-      height: 120px;
-      object-fit: cover;
-      pointer-events: none;
-      opacity: 0.9;
-    }
-
-    .signin-corner-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 130px;
-      height: 110px;
-      object-fit: cover;
-      pointer-events: none;
-      opacity: 0.9;
-      transform: rotate(180deg);
-    }
-
-    .signin-logo-wrap {
-      margin-bottom: 28px;
-      z-index: 10;
-    }
-
-    .signin-logo-wrap img {
-      width: 210px;
-      height: auto;
-    }
-
-    .signin-title-text {
-      font-size: 26px;
-      font-weight: 900;
-      color: #0F172A;
-      margin-bottom: 8px;
-      z-index: 10;
-    }
-
-    .signin-sub-text {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      max-width: 280px;
-      margin-bottom: 32px;
-      z-index: 10;
-    }
-
-    .btn-google-pill {
-      width: 100%;
-      background: var(--google-blue);
+      justify-content: space-between;
+      padding: 58px 24px 30px 24px;
       color: #FFFFFF;
-      border: none;
-      padding: 16px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.35);
-      margin-bottom: 18px;
-      z-index: 10;
-      transition: all 0.2s ease;
     }
 
-    .btn-google-pill:hover {
-      background: #1E40AF;
-      transform: translateY(-2px);
-    }
-
-    .signin-or-divider {
-      width: 100%;
-      text-align: center;
-      position: relative;
-      margin: 12px 0 20px 0;
-      z-index: 10;
-    }
-
-    .signin-or-divider::before {
-      content: '';
+    /* Ambient Paint Light Waves (Pure CSS Smooth Glow, Zero Square Stickers!) */
+    .ambient-glow-circle-1 {
       position: absolute;
-      left: 0;
-      top: 50%;
-      right: 0;
-      height: 1px;
-      background: #E2E8F0;
-    }
-
-    .signin-or-divider span {
-      background: #FFFFFF;
-      position: relative;
-      padding: 0 14px;
-      font-size: 12px;
-      color: #94A3B8;
-      font-weight: 800;
-    }
-
-    .btn-phone-email-pill {
-      width: 100%;
-      background: #FFFFFF;
-      border: 1.5px solid #CBD5E1;
-      color: #1E293B;
-      padding: 15px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
-      z-index: 10;
-      transition: all 0.2s ease;
-    }
-
-    .btn-phone-email-pill:hover {
-      border-color: var(--ankur-blue);
-      color: var(--ankur-blue);
-    }
-
-    .signin-legal-text {
-      font-size: 11px;
-      color: #94A3B8;
-      line-height: 1.5;
-      z-index: 10;
-    }
-
-    .signin-legal-text a {
-      color: var(--ankur-blue);
-      text-decoration: underline;
-    }
-
-    /* -------------------------------------------------------------------------
-       3. STORE KYC POP-UP MODAL (Appears on Dashboard)
-       ------------------------------------------------------------------------- */
-    .kyc-modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 26, 51, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      animation: modalFadeIn 0.3s ease;
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .kyc-card {
-      background: #FFFFFF;
-      border-radius: 24px;
-      padding: 24px;
-      width: 100%;
-      max-width: 360px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-      position: relative;
-    }
-
-    .kyc-header-icon {
-      width: 52px;
-      height: 52px;
-      background: #EFF6FF;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(232, 80, 30, 0.35) 0%, transparent 70%);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      margin: 0 auto 12px auto;
-      border: 1px solid #DBEAFE;
+      filter: blur(40px);
+      pointer-events: none;
     }
 
-    .kyc-title {
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--ankur-blue);
+    .ambient-glow-circle-2 {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(0, 168, 150, 0.35) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(45px);
+      pointer-events: none;
+    }
+
+    /* Top Brand Center */
+    .login-top-section {
       text-align: center;
-      margin-bottom: 4px;
+      z-index: 20;
+      margin-top: 10px;
     }
 
-    .kyc-sub {
-      font-size: 12px;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: 20px;
+    .login-logo-card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 22px;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 255, 255, 0.15);
+      margin-bottom: 24px;
+      cursor: pointer;
     }
 
-    .field-group {
-      margin-bottom: 14px;
-    }
-
-    .field-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--ankur-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
+    .login-logo-card img {
+      width: 190px;
+      height: auto;
       display: block;
     }
 
-    .field-input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #0F172A;
-      outline: none;
-      background: #F8FAFC;
-    }
-
-    .field-input:focus {
-      border-color: var(--paints-orange);
-      background: #FFFFFF;
-    }
-
-    .btn-orange-pill {
-      width: 100%;
-      background: linear-gradient(135deg, var(--paints-orange) 0%, #C43A0C 100%);
+    .login-headline {
+      font-size: 28px;
+      font-weight: 900;
       color: #FFFFFF;
-      border: none;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(232, 80, 30, 0.4);
-      margin-top: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-orange-pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(232, 80, 30, 0.5);
-    }
-
-    /* -------------------------------------------------------------------------
-       4. MAIN DASHBOARD: GREETING + QUICK SCAN + CATALOG
-       ------------------------------------------------------------------------- */
-    #screenDashboard {
-      background: #F8FAFC;
-      padding-bottom: 75px;
-    }
-
-    .dash-top-bar {
-      background: #FFFFFF;
-      padding: 14px 18px;
-      border-bottom: 1px solid #E2E8F0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dash-store-title {
-      font-size: 17px;
-      font-weight: 900;
-      color: #0F172A;
-    }
-
-    .dash-store-gst {
-      font-size: 11px;
-      color: var(--text-secondary);
-      font-weight: 600;
-    }
-
-    .badge-gst-verified {
-      background: #ECFDF5;
-      color: #065F46;
-      border: 1px solid #A7F3D0;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    /* Prominent Quick Scan & Sell Hero Card */
-    .quick-scan-hero-card {
-      margin: 14px 16px;
-      background: linear-gradient(135deg, var(--ankur-blue) 0%, #002D54 60%, #C43A0C 100%);
-      border-radius: 20px;
-      padding: 18px;
-      color: #FFFFFF;
-      box-shadow: 0 8px 24px rgba(0, 75, 135, 0.3);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .scan-hero-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .scan-hero-title {
-      font-size: 19px;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-
-    .scan-hero-sub {
-      font-size: 12px;
-      color: #FEF08A;
-      font-weight: 600;
-    }
-
-    .btn-hero-scan {
-      background: #FFFFFF;
-      color: var(--ankur-blue);
-      border: none;
-      padding: 14px 20px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      transition: all 0.2s ease;
-    }
-
-    .btn-hero-scan:hover {
-      background: #F1F5F9;
-      transform: translateY(-2px);
-    }
-
-    /* Catalog Section */
-    .dash-section-header {
-      padding: 10px 16px 8px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dash-section-title {
-      font-size: 15px;
-      font-weight: 900;
-      color: #0F172A;
-    }
-
-    .dash-catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 0 16px 16px 16px;
-    }
-
-    .catalog-item-card {
-      background: #FFFFFF;
-      border-radius: 16px;
-      padding: 12px;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .catalog-img-wrap {
-      width: 100%;
-      height: 105px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      letter-spacing: -0.5px;
       margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .catalog-img-wrap img {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-    }
-
-    .catalog-item-name {
+    .login-subhead {
       font-size: 13px;
-      font-weight: 800;
-      color: #0F172A;
-      line-height: 1.25;
-      margin-bottom: 2px;
+      color: #CBD5E1;
+      line-height: 1.5;
+      max-width: 300px;
+      margin: 0 auto;
     }
 
-    .catalog-item-pack {
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-    }
-
-    .catalog-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .catalog-mrp {
-      font-size: 14px;
-      font-weight: 900;
-      color: var(--ankur-blue);
-    }
-
-    .catalog-stock-tag {
-      font-size: 10px;
-      font-weight: 700;
-      color: #0284C7;
-      margin-bottom: 8px;
-    }
-
-    .btn-quick-sell {
-      background: #FFFFFF;
-      border: 1.5px solid var(--paints-orange);
-      color: var(--paints-orange);
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      text-align: center;
-      margin-top: auto;
-      transition: all 0.2s ease;
-    }
-
-    .btn-quick-sell:hover {
-      background: var(--paints-orange);
-      color: #FFFFFF;
-    }
-
-    /* -------------------------------------------------------------------------
-       5. QR SCAN & BILLING MODAL
-       ------------------------------------------------------------------------- */
-    .billing-modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 26, 51, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 1100;
-      display: none;
-      align-items: flex-end;
-    }
-
-    .billing-drawer {
-      background: #FFFFFF;
-      width: 100%;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-      padding: 20px;
-      max-height: 85vh;
-      overflow-y: auto;
-      animation: drawerSlideUp 0.3s ease;
-    }
-
-    @keyframes drawerSlideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
-
-    .drawer-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .drawer-close-btn {
-      background: #F1F5F9;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 15px;
-      font-weight: 900;
-      color: #64748B;
-      cursor: pointer;
-    }
-
-    .scanner-viewfinder {
-      width: 100%;
-      height: 150px;
-      background: #0F172A;
-      border-radius: 14px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .laser-line {
-      width: 100%;
-      height: 2px;
-      background: #EF4444;
-      position: absolute;
-      animation: laserSweep 1.8s infinite ease-in-out;
-      box-shadow: 0 0 8px #EF4444;
-    }
-
-    @keyframes laserSweep {
-      0% { top: 15%; opacity: 0.3; }
-      50% { top: 85%; opacity: 1; }
-      100% { top: 15%; opacity: 0.3; }
-    }
-
-    .scanned-product-card {
-      background: #F8FAFC;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 16px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .scanned-img-thumb {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-    }
-
-    .scanned-meta-title {
-      font-size: 14px;
-      font-weight: 900;
-      color: #0F172A;
-    }
-
-    .scanned-meta-mrp {
-      font-size: 12px;
-      color: #64748B;
-      margin-top: 2px;
-    }
-
-    .scanned-meta-mrp strong {
-      color: var(--ankur-blue);
-      font-size: 13px;
-    }
-
-    .selling-price-box {
-      margin-bottom: 16px;
-    }
-
-    .price-rule-warning {
-      display: none;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--error-red);
-      margin-top: 4px;
-    }
-
-    /* -------------------------------------------------------------------------
-       6. BIG GREEN TICK ANIMATION MODAL (✓ Sale Successful!)
-       ------------------------------------------------------------------------- */
-    .green-tick-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(6px);
-      z-index: 1500;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .green-tick-card {
-      background: #FFFFFF;
-      border-radius: 28px;
-      padding: 30px 24px;
-      width: 100%;
-      max-width: 340px;
-      text-align: center;
-      animation: popBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @keyframes popBounce {
-      0% { opacity: 0; transform: scale(0.6); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    .green-circle-icon {
-      width: 80px;
-      height: 80px;
-      background: #10B981;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px auto;
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
-      animation: pulseGreen 1.2s infinite ease-in-out;
-    }
-
-    @keyframes pulseGreen {
-      0% { transform: scale(0.95); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(0.95); }
-    }
-
-    .green-tick-svg {
-      width: 44px;
-      height: 44px;
-      fill: none;
-      stroke: #FFFFFF;
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 50;
-      stroke-dashoffset: 50;
-      animation: drawCheck 0.6s ease forwards 0.2s;
-    }
-
-    @keyframes drawCheck {
-      to { stroke-dashoffset: 0; }
-    }
-
-    .tick-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: #065F46;
-      margin-bottom: 6px;
-    }
-
-    .tick-sub {
-      font-size: 13px;
-      color: #047857;
-      line-height: 1.4;
+    /* Glassmorphic Form Card */
+    .login-interactive-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 26px;
+      padding: 24px 20px;
+      z-index: 20;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       margin-bottom: 20px;
     }
 
-    .tick-receipt-details {
-      background: #F0FDF4;
-      border: 1px solid #BBF7D0;
+    /* Region Selector */
+    .region-chip {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 10px 14px;
       border-radius: 12px;
-      padding: 12px;
-      font-size: 12px;
-      color: #14532D;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    /* -------------------------------------------------------------------------
-       7. SALES HISTORY SCREEN ("Bikri Ka Hisaab")
-       ------------------------------------------------------------------------- */
-    #screenHistory {
-      background: #F8FAFC;
-      padding-bottom: 75px;
-    }
-
-    .history-header {
-      background: #FFFFFF;
-      padding: 14px 18px;
-      border-bottom: 1px solid #E2E8F0;
-    }
-
-    .history-title {
-      font-size: 18px;
-      font-weight: 900;
-      color: #0F172A;
-    }
-
-    .history-sub {
-      font-size: 11px;
-      color: var(--text-secondary);
-    }
-
-    .history-summary-box {
-      margin: 14px 16px;
-      background: linear-gradient(135deg, #004B87 0%, #002D54 100%);
-      border-radius: 18px;
-      padding: 18px;
-      color: #FFFFFF;
-      display: flex;
-      justify-content: space-between;
-      box-shadow: 0 8px 20px rgba(0, 75, 135, 0.25);
-    }
-
-    .summary-stat-label {
-      font-size: 11px;
-      color: #93C5FD;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .summary-stat-value {
-      font-size: 22px;
-      font-weight: 900;
-      color: #FFFFFF;
-    }
-
-    .history-list-wrap {
-      padding: 0 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .history-card-item {
-      background: #FFFFFF;
-      border-radius: 14px;
-      padding: 14px;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 16px;
     }
 
-    .history-item-left {
+    /* Big White Google Button with Multicolor Icon */
+    .btn-google-luxury {
+      width: 100%;
+      background: #FFFFFF;
+      color: #1E293B;
+      border: none;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+      margin-bottom: 14px;
+    }
+
+    .btn-google-luxury:hover {
+      background: #F8FAFC;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .google-svg-icon {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .or-divider-row {
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .history-icon-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #ECFDF5;
-      color: #10B981;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      border: 1px solid #A7F3D0;
-    }
-
-    /* Bottom Navigation Bar */
-    .app-bottom-nav {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 62px;
-      background: #FFFFFF;
-      border-top: 1px solid #E2E8F0;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      z-index: 100;
-    }
-
-    .nav-tab-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 700;
+      margin: 14px 0;
       color: #94A3B8;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .or-divider-row::before,
+    .or-divider-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Secondary Phone/Email Glass Button */
+    .btn-glass-phone {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      padding: 15px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 800;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
     }
 
-    .nav-tab-btn.active {
-      color: var(--ankur-blue);
+    .btn-glass-phone:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
-    .nav-tab-icon {
-      font-size: 18px;
+    /* Footer Legal & Trust */
+    .login-footer {
+      text-align: center;
+      font-size: 11px;
+      color: #94A3B8;
+      line-height: 1.5;
+      z-index: 20;
+    }
+
+    .login-footer a {
+      color: #38BDF8;
+      text-decoration: underline;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #FEF08A;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Controller Bar for Easy Testing -->
-  <div class="top-control-bar">
-    <div class="top-brand-label">
+  <!-- Top Controller Bar for Review -->
+  <div class="review-top-bar">
+    <div class="brand-title">
       <span>🎨</span>
-      <span>ANKUR PAINTS RETAILER PLATFORM</span>
+      <span>ANKUR PAINTS — 2 MAIN SCREENS REVIEW</span>
     </div>
 
-    <!-- Quick Jump to Any Phase -->
-    <div class="screen-jump-group">
-      <button class="screen-jump-btn active" id="jumpSplash" onclick="playSplashAgain()">1. Replay Splash</button>
-      <button class="screen-jump-btn" id="jumpSignIn" onclick="goToScreen('screenSignIn')">2. Sign In</button>
-      <button class="screen-jump-btn" id="jumpKyc" onclick="openKycModal()">3. KYC Pop-up</button>
-      <button class="screen-jump-btn" id="jumpDash" onclick="goToScreen('screenDashboard')">4. Dashboard & Catalog</button>
-      <button class="screen-jump-btn" id="jumpScan" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">5. Scan & Sell</button>
-      <button class="screen-jump-btn" id="jumpHistory" onclick="goToScreen('screenHistory')">6. Sales History</button>
+    <div class="btn-group">
+      <button class="top-nav-btn active" id="btnPlaySplash" onclick="playSplashOnly()">1. Play Splash Screen</button>
+      <button class="top-nav-btn" id="btnShowLogin" onclick="showLoginOnly()">2. Login Screen</button>
     </div>
 
-    <button class="view-mode-toggle" id="btnModeToggle" onclick="toggleViewMode()">📱 Phone Frame</button>
+    <button class="view-mode-btn" id="btnViewToggle" onclick="toggleScreenMode()">📱 Phone Frame</button>
   </div>
 
   <!-- The Smartphone Viewport -->
@@ -1128,7 +530,7 @@
     <div class="phone-island"></div>
 
     <!-- Status Bar -->
-    <div class="status-bar">
+    <div class="status-bar" id="statusBar">
       <span>9:41</span>
       <div style="display: flex; gap: 6px; align-items: center;">
         <span>5G</span>
@@ -1137,452 +539,86 @@
     </div>
 
     <!-- =======================================================================
-         PHASE 1: SPLASH SCREEN (Exact Animation: 0.0s to 2.0s)
+         SCREEN 1: SPLASH SCREEN (Radiant Luxury Canvas + Rainbow Wave)
          ======================================================================= -->
     <div class="app-screen active" id="screenSplash">
-      <!-- Stage 1: Clean Logo & Tagline (0.0s - 0.7s) -->
-      <div class="splash-initial-stage">
-        <div class="splash-logo-card">
-          <img src="ankur_logo_clean.png" alt="Ankur Paints">
-        </div>
-        <div class="splash-tagline-text">Colour Your World</div>
-        <div class="splash-sub-text">Colors of Trust • ISO 9001:2015</div>
+      <!-- Centered Clean Logo & Typography -->
+      <div class="splash-hero-wrap">
+        <img src="ankur_logo_clean.png" alt="Ankur Paints Logo" class="splash-logo-clean">
+        <div class="splash-tagline">Colour Your World</div>
+        <div class="splash-corp-sub">Colors of Trust • ISO 9001:2015</div>
       </div>
 
-      <!-- Stage 2: Rainbow Paint Brush Stroke Layer (Sweeps across from 0.5s to 1.8s) -->
-      <img src="splash_hires.png" alt="Rainbow Paint Sweep" class="splash-rainbow-layer" id="splashRainbowImg">
+      <!-- Rainbow Paint Stroke Artwork (Sweeps organically across the bottom) -->
+      <img src="splash_hires.png" alt="Rainbow Paint Sweep" class="splash-paint-wave" id="splashWaveElement">
 
-      <div class="splash-timeline-bar" id="splashTimerBadge">
-        <span>🎨</span>
+      <!-- Timing Indicator Pill -->
+      <div class="splash-progress-pill">
+        <div class="pulse-dot"></div>
         <span id="splashTimerText">Animating Rainbow Sweep (0.0s / 2.0s)...</span>
       </div>
     </div>
 
     <!-- =======================================================================
-         PHASE 2: SIGN IN SCREEN (Welcome Back + Google Login)
+         SCREEN 2: LOGIN SCREEN (Full-Screen Colorful Luxury Paint Aurora)
          ======================================================================= -->
     <div class="app-screen" id="screenSignIn">
-      <!-- Corner brush flourishes from reference image -->
-      <img src="rainbow_wave.png" alt="Corner Accent Top" class="signin-corner-top">
-      <img src="rainbow_wave.png" alt="Corner Accent Bottom" class="signin-corner-bottom">
+      <!-- Ambient Fluid Color Auras (No Cutoff Stickers!) -->
+      <div class="ambient-glow-circle-1"></div>
+      <div class="ambient-glow-circle-2"></div>
 
-      <div class="signin-logo-wrap">
-        <img src="ankur_logo_clean.png" alt="Ankur Paints">
+      <!-- Top Section -->
+      <div class="login-top-section">
+        <div class="login-logo-card">
+          <img src="ankur_logo_clean.png" alt="Ankur Paints">
+        </div>
+        <h1 class="login-headline">Welcome Back</h1>
+        <p class="login-subhead">Sign in to explore luxury colours, official retailer pricing and schemes.</p>
       </div>
 
-      <h1 class="signin-title-text">Welcome Back</h1>
-      <p class="signin-sub-text">Sign in to explore beautiful colours, products and more.</p>
-
-      <!-- Google Sign In Button (Matching Image) -->
-      <button class="btn-google-pill" onclick="handleGoogleSignIn()">
-        <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24">
-          <path fill="#FFFFFF" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
-          <path fill="#FFFFFF" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
-          <path fill="#FFFFFF" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
-          <path fill="#FFFFFF" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
-        </svg>
-        Continue with Google
-      </button>
-
-      <div class="signin-or-divider">
-        <span>OR</span>
-      </div>
-
-      <!-- Phone / Email Sign In Button -->
-      <button class="btn-phone-email-pill" onclick="handleGoogleSignIn()">
-        <span style="font-size: 16px;">📱</span>
-        Sign in with Phone / Email
-      </button>
-
-      <div class="signin-legal-text">
-        By continuing, you agree to our<br>
-        <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         PHASE 2: STORE KYC POP-UP MODAL (Appears on Dashboard)
-         ======================================================================= -->
-    <div class="kyc-modal-overlay" id="kycModal">
-      <div class="kyc-card">
-        <div class="kyc-header-icon">🏪</div>
-        <h3 class="kyc-title">Register Your Store</h3>
-        <p class="kyc-sub">Dukan ka naam, GSTIN aur mobile number confirm karein:</p>
-
-        <div class="field-group">
-          <label class="field-label">Store / Shop Name *</label>
-          <input type="text" class="field-input" id="inpStoreName" value="Shree Ganesh Paints & Hardware">
+      <!-- Glassmorphic Interaction Card -->
+      <div class="login-interactive-card">
+        <!-- Region Selector -->
+        <div class="region-chip">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 16px;">🇮🇳</span>
+            <span>India (+91)</span>
+          </div>
+          <span style="color: #94A3B8; font-size: 10px;">VERIFIED ✓</span>
         </div>
 
-        <div class="field-group">
-          <label class="field-label">GSTIN (15 Digits) *</label>
-          <input type="text" class="field-input" id="inpGstin" value="20AAACG1234F1Z8">
-        </div>
-
-        <div class="field-group">
-          <label class="field-label">Mobile Number *</label>
-          <input type="tel" class="field-input" id="inpMobile" value="+91 98765 43210">
-        </div>
-
-        <button class="btn-orange-pill" onclick="saveStoreKyc()">
-          Save & Enter Dashboard ➔
-        </button>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         PHASE 3: DASHBOARD & OFFICIAL PRODUCT CATALOG
-         ======================================================================= -->
-    <div class="app-screen" id="screenDashboard">
-      <!-- Top Bar Greeting -->
-      <div class="dash-top-bar">
-        <div>
-          <div class="dash-store-title" id="lblGreetingStore">Namaste, Shree Ganesh Paints! 🙏</div>
-          <div class="dash-store-gst" id="lblGstStore">GSTIN: 20AAACG1234F1Z8 • Ranchi</div>
-        </div>
-        <span class="badge-gst-verified">GST Verified ✓</span>
-      </div>
-
-      <!-- Prominent Quick QR Scan & Sell Hero Bar -->
-      <div class="quick-scan-hero-card">
-        <div class="scan-hero-content">
-          <div>
-            <div class="scan-hero-title">Instant QR Billing</div>
-            <div class="scan-hero-sub">Dabbe ka barcode scan karein aur turant bechein</div>
-          </div>
-          <div style="font-size: 38px;">📷</div>
-        </div>
-        <button class="btn-hero-scan" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
-          <span>⚡ Tap to Scan Paint Bucket</span>
-        </button>
-      </div>
-
-      <!-- Catalog Header -->
-      <div class="dash-section-header">
-        <span class="dash-section-title">Official Product Catalog (8 Products)</span>
-        <span style="font-size: 11px; color: var(--ankur-blue); font-weight: 700;">Swipe & Sell</span>
-      </div>
-
-      <!-- 8 Core Products Grid -->
-      <div class="dash-catalog-grid">
-
-        <!-- 1. Epic Coat -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_1.png" alt="Epic Coat">
-          </div>
-          <div class="catalog-item-name">Epic Coat Luxury Emulsion</div>
-          <div class="catalog-item-pack">Exterior • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹9,850</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 12 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 2. Rang Ritu -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_2.png" alt="Rang Ritu">
-          </div>
-          <div class="catalog-item-name">Rang Ritu 100% Acrylic</div>
-          <div class="catalog-item-pack">Exterior • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹6,400</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 18 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Rang Ritu 20L', 6400, 6150, 'bucket_2.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 3. Gleam Coat -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_3.png" alt="Gleam Coat">
-          </div>
-          <div class="catalog-item-name">Gleam Coat Luxury Interior</div>
-          <div class="catalog-item-pack">Interior • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹8,900</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 8 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Gleam Coat 20L', 8900, 8600, 'bucket_3.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 4. Rose Gold -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_4.png" alt="Rose Gold">
-          </div>
-          <div class="catalog-item-name">Rose Gold Silk Interior</div>
-          <div class="catalog-item-pack">Interior • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹7,200</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 15 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Rose Gold 20L', 7200, 6900, 'bucket_4.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 5. Damp Proof -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_5.png" alt="Damp Proof">
-          </div>
-          <div class="catalog-item-name">Damp Proof Waterproofing</div>
-          <div class="catalog-item-pack">Waterproofing • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹8,200</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 22 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Damp Proof 20L', 8200, 7850, 'bucket_5.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 6. Wall Putty -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_7.png" alt="Wall Putty">
-          </div>
-          <div class="catalog-item-name">Polymer Modified Wall Putty</div>
-          <div class="catalog-item-pack">Base Coat • 40kg</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹1,150</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 50 Bags in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Wall Putty 40kg', 1150, 1080, 'bucket_7.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 7. Primer -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_8.png" alt="Wall Primer">
-          </div>
-          <div class="catalog-item-name">Acrylic Wall Primer</div>
-          <div class="catalog-item-pack">Undercoat • 20L</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹3,800</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 14 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Wall Primer 20L', 3800, 3600, 'bucket_8.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-        <!-- 8. Distemper -->
-        <div class="catalog-item-card">
-          <div class="catalog-img-wrap">
-            <img src="bucket_6.png" alt="Distemper">
-          </div>
-          <div class="catalog-item-name">Acrylic Distemper Smooth</div>
-          <div class="catalog-item-pack">Economy • 20kg</div>
-          <div class="catalog-price-row">
-            <span class="catalog-mrp">MRP ₹1,650</span>
-          </div>
-          <div class="catalog-stock-tag">✓ 40 Buckets in Stock</div>
-          <button class="btn-quick-sell" onclick="openBillingModal('Distemper 20kg', 1650, 1550, 'bucket_6.png')">
-            ⚡ Scan & Sell
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Bottom Navigation -->
-      <div class="app-bottom-nav">
-        <button class="nav-tab-btn active" onclick="goToScreen('screenDashboard')">
-          <span class="nav-tab-icon">🏠</span>
-          <span>Catalog</span>
-        </button>
-        <button class="nav-tab-btn" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
-          <span class="nav-tab-icon">📷</span>
-          <span>Scan & Sell</span>
-        </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenHistory')">
-          <span class="nav-tab-icon">📊</span>
-          <span>Sales History</span>
-        </button>
-        <button class="nav-tab-btn" onclick="openKycModal()">
-          <span class="nav-tab-icon">⚙️</span>
-          <span>Store KYC</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         PHASE 4: QR SCAN & BILLING MODAL
-         ======================================================================= -->
-    <div class="billing-modal-overlay" id="billingModal">
-      <div class="billing-drawer">
-        <div class="drawer-top-row">
-          <h3 style="font-size: 17px; font-weight: 900; color: var(--ankur-blue);">📷 Barcode / QR Billing</h3>
-          <button class="drawer-close-btn" onclick="closeBillingModal()">✕</button>
-        </div>
-
-        <!-- Camera Viewfinder -->
-        <div class="scanner-viewfinder">
-          <div class="laser-line"></div>
-          <div style="font-size: 36px; z-index: 5;">📦</div>
-          <div style="position: absolute; bottom: 8px; font-size: 11px; color: #94A3B8; font-weight: 600;">
-            Static SKU QR code aligned ✓
-          </div>
-        </div>
-
-        <!-- Scanned Product Card -->
-        <div class="scanned-product-card">
-          <img src="bucket_1.png" alt="Scanned" class="scanned-img-thumb" id="billProdImg">
-          <div>
-            <div class="scanned-meta-title" id="billProdName">Epic Coat Luxury Exterior Emulsion (20L)</div>
-            <div class="scanned-meta-mrp">Printed MRP: <strong id="billProdMrp">₹9,850</strong></div>
-            <div style="font-size: 11px; color: #0284C7; font-weight: 700; margin-top: 2px;">
-              Shelf Stock Available: <span id="billProdStock">12 Buckets</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Retailer Price Input -->
-        <div class="selling-price-box">
-          <label class="field-label">Retailer Selling Price (₹) *</label>
-          <input type="number" class="field-input" id="inpSellPrice" value="9500" oninput="validatePriceCeiling()">
-          <div class="price-rule-warning" id="priceWarning">
-            ❌ Strictly Blocked: Selling price cannot exceed printed MRP!
-          </div>
-          <div style="font-size: 11px; color: #059669; font-weight: 700; margin-top: 4px;">
-            ✓ Rule: Selling Price ≤ Printed MRP (Enforced)
-          </div>
-        </div>
-
-        <button class="btn-orange-pill" id="btnConfirmSell" onclick="executeRetailerSale()">
-          ⚡ Confirm & Record Sale ➔
-        </button>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         PHASE 4: BIG GREEN TICK ANIMATION MODAL (✓ Sale Successful!)
-         ======================================================================= -->
-    <div class="green-tick-overlay" id="greenTickModal">
-      <div class="green-tick-card">
-        <div class="green-circle-icon">
-          <svg class="green-tick-svg" viewBox="0 0 24 24">
-            <polyline points="20 6 9 17 4 12"></polyline>
+        <!-- Luxury Google Sign In Button -->
+        <button class="btn-google-luxury" onclick="handleLoginSuccess('Google')">
+          <svg class="google-svg-icon" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
           </svg>
+          Continue with Google
+        </button>
+
+        <div class="or-divider-row">
+          <span>OR</span>
         </div>
 
-        <div class="tick-title">Sale Recorded!</div>
-        <div class="tick-sub">Customer receipt generated and stock deducted atomically in database.</div>
-
-        <div class="tick-receipt-details" id="tickReceiptDetails">
-          • Item: Epic Coat 20L<br>
-          • Printed MRP: ₹9,850<br>
-          • Sold Amount: ₹9,500<br>
-          • Status: Paid & Logged
-        </div>
-
-        <button class="btn-orange-pill" style="margin-top: 0;" onclick="dismissGreenTick()">
-          Done & View Sales History ➔
+        <!-- Phone / Email Sign In Button -->
+        <button class="btn-glass-phone" onclick="handleLoginSuccess('Phone/Email')">
+          <span style="font-size: 16px;">📱</span>
+          <span>Sign in with Phone / Email</span>
         </button>
       </div>
-    </div>
 
-    <!-- =======================================================================
-         PHASE 5: SALES HISTORY SCREEN ("Bikri Ka Hisaab")
-         ======================================================================= -->
-    <div class="app-screen" id="screenHistory">
-      <div class="history-header">
-        <div class="history-title">📊 Sales History & Hisaab</div>
-        <div class="history-sub">Track all recorded sales and store revenue</div>
-      </div>
-
-      <!-- Top Summary Stat Box -->
-      <div class="history-summary-box">
+      <!-- Footer Trust & Legal -->
+      <div class="login-footer">
+        <div class="trust-pill">
+          <span>🛡️</span>
+          <span>Official Ankur Paints Enterprise Network</span>
+        </div>
         <div>
-          <div class="summary-stat-label">Kul Bikri (Total Revenue)</div>
-          <div class="summary-stat-value" id="lblTotalRevenue">₹1,45,000</div>
+          By continuing, you agree to our<br>
+          <a href="#terms">Terms of Service</a> & <a href="#privacy">Privacy Policy</a>
         </div>
-        <div style="text-align: right;">
-          <div class="summary-stat-label">Kul Dabbe (Sold)</div>
-          <div class="summary-stat-value" id="lblTotalBuckets">18 Buckets</div>
-        </div>
-      </div>
-
-      <!-- Itemized Ledger List -->
-      <div class="dash-section-header">
-        <span class="dash-section-title">Recent Transactions</span>
-        <span style="font-size: 11px; color: #10B981; font-weight: 800;">Real-Time Sync ✓</span>
-      </div>
-
-      <div class="history-list-wrap" id="historyListContainer">
-        <!-- Default sample transactions -->
-        <div class="history-card-item">
-          <div class="history-item-left">
-            <div class="history-icon-circle">✓</div>
-            <div>
-              <strong style="font-size: 13px; color: #0F172A;">Epic Coat 20L</strong><br>
-              <span style="font-size: 11px; color: #64748B;">Today, 11:30 PM • Bill #AP-8842</span>
-            </div>
-          </div>
-          <div style="text-align: right;">
-            <strong style="color: var(--ankur-blue); font-size: 14px;">₹9,500</strong><br>
-            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
-          </div>
-        </div>
-
-        <div class="history-card-item">
-          <div class="history-item-left">
-            <div class="history-icon-circle">✓</div>
-            <div>
-              <strong style="font-size: 13px; color: #0F172A;">Rang Ritu 20L</strong><br>
-              <span style="font-size: 11px; color: #64748B;">Today, 09:15 PM • Bill #AP-8841</span>
-            </div>
-          </div>
-          <div style="text-align: right;">
-            <strong style="color: var(--ankur-blue); font-size: 14px;">₹6,150</strong><br>
-            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
-          </div>
-        </div>
-
-        <div class="history-card-item">
-          <div class="history-item-left">
-            <div class="history-icon-circle">✓</div>
-            <div>
-              <strong style="font-size: 13px; color: #0F172A;">Damp Proof 20L</strong><br>
-              <span style="font-size: 11px; color: #64748B;">Yesterday, 04:20 PM • Bill #AP-8840</span>
-            </div>
-          </div>
-          <div style="text-align: right;">
-            <strong style="color: var(--ankur-blue); font-size: 14px;">₹7,850</strong><br>
-            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Nav -->
-      <div class="app-bottom-nav">
-        <button class="nav-tab-btn" onclick="goToScreen('screenDashboard')">
-          <span class="nav-tab-icon">🏠</span>
-          <span>Catalog</span>
-        </button>
-        <button class="nav-tab-btn" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
-          <span class="nav-tab-icon">📷</span>
-          <span>Scan & Sell</span>
-        </button>
-        <button class="nav-tab-btn active" onclick="goToScreen('screenHistory')">
-          <span class="nav-tab-icon">📊</span>
-          <span>Sales History</span>
-        </button>
-        <button class="nav-tab-btn" onclick="openKycModal()">
-          <span class="nav-tab-icon">⚙️</span>
-          <span>Store KYC</span>
-        </button>
       </div>
     </div>
 
@@ -1590,37 +626,69 @@
 
   <script>
     // -------------------------------------------------------------------------
-    // 1. STRICT SCREEN NAVIGATION (Zero Overlap Guaranteed)
+    // STRICT SCREEN CONTROLLER (Zero Overlap Guaranteed)
     // -------------------------------------------------------------------------
-    const allScreenIds = ['screenSplash', 'screenSignIn', 'screenDashboard', 'screenHistory'];
+    let splashTimeout = null;
 
-    function goToScreen(screenId) {
-      allScreenIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove('active');
-      });
+    function playSplashOnly() {
+      if (splashTimeout) clearTimeout(splashTimeout);
 
-      const target = document.getElementById(screenId);
-      if (target) {
-        target.classList.add('active');
-        target.scrollTop = 0;
-      }
+      // Status Bar Text for Splash
+      document.getElementById('statusBar').style.color = '#0F172A';
+
+      // Switch screen
+      document.getElementById('screenSplash').classList.add('active');
+      document.getElementById('screenSignIn').classList.remove('active');
 
       // Update control bar
-      document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
-      if (screenId === 'screenSplash') document.getElementById('jumpSplash')?.classList.add('active');
-      if (screenId === 'screenSignIn') document.getElementById('jumpSignIn')?.classList.add('active');
-      if (screenId === 'screenDashboard') document.getElementById('jumpDash')?.classList.add('active');
-      if (screenId === 'screenHistory') document.getElementById('jumpHistory')?.classList.add('active');
+      document.getElementById('btnPlaySplash').classList.add('active');
+      document.getElementById('btnShowLogin').classList.remove('active');
+
+      // Reset animation
+      const wave = document.getElementById('splashWaveElement');
+      wave.style.animation = 'none';
+      wave.offsetHeight; // trigger reflow
+      wave.style.animation = 'waveEntrance 1.5s ease-out 0.4s forwards';
+
+      const timerText = document.getElementById('splashTimerText');
+      timerText.innerText = '0.0s: Ankur Paints Logo appearing...';
+
+      setTimeout(() => {
+        timerText.innerText = '0.6s: Rainbow wave sweeping...';
+      }, 600);
+
+      setTimeout(() => {
+        timerText.innerText = '1.4s: Animation complete!';
+      }, 1400);
+
+      // Auto-transition to Login at exactly 2.0s
+      splashTimeout = setTimeout(() => {
+        showLoginOnly();
+      }, 2100);
     }
 
-    // Toggle Desktop Viewport
-    let isFullMode = false;
-    function toggleViewMode() {
+    function showLoginOnly() {
+      if (splashTimeout) clearTimeout(splashTimeout);
+
+      // Status Bar Text for Dark Colorful Background
+      document.getElementById('statusBar').style.color = '#FFFFFF';
+
+      // Switch screen
+      document.getElementById('screenSplash').classList.remove('active');
+      document.getElementById('screenSignIn').classList.add('active');
+
+      // Update control bar
+      document.getElementById('btnPlaySplash').classList.remove('active');
+      document.getElementById('btnShowLogin').classList.add('active');
+    }
+
+    // Toggle Desktop View
+    let isFull = false;
+    function toggleScreenMode() {
       const container = document.getElementById('phoneContainer');
-      const btn = document.getElementById('btnModeToggle');
-      isFullMode = !isFullMode;
-      if (isFullMode) {
+      const btn = document.getElementById('btnViewToggle');
+      isFull = !isFull;
+      if (isFull) {
         container.classList.add('full-mode');
         btn.innerText = '🖥️ Full Screen';
         btn.style.background = 'var(--paints-orange)';
@@ -1631,191 +699,14 @@
       }
     }
 
-    // -------------------------------------------------------------------------
-    // 2. TIMED SPLASH ANIMATION (0.0s -> 2.0s -> Sign In ONLY)
-    // -------------------------------------------------------------------------
-    let splashTimer = null;
-
-    function playSplashSequence() {
-      // Clear any previous timer
-      if (splashTimer) clearTimeout(splashTimer);
-
-      // Force ONLY splash to be active
-      goToScreen('screenSplash');
-
-      // Reset rainbow layer
-      const rainbow = document.getElementById('splashRainbowImg');
-      rainbow.style.animation = 'none';
-      rainbow.offsetHeight; // trigger reflow
-      rainbow.style.animation = 'rainbowSweepAcross 1.4s ease-in-out 0.5s forwards';
-
-      const timerText = document.getElementById('splashTimerText');
-      timerText.innerText = '0.0s: Ankur Paints Logo appearing...';
-
-      setTimeout(() => {
-        timerText.innerText = '0.6s: Rainbow brush sweep in progress...';
-      }, 600);
-
-      setTimeout(() => {
-        timerText.innerText = '1.4s: Full colour sweep complete!';
-      }, 1400);
-
-      // At exactly 2.0s, transition to Sign-In
-      splashTimer = setTimeout(() => {
-        timerText.innerText = '2.0s: Transitioning to Sign-In...';
-        goToScreen('screenSignIn');
-      }, 2100);
+    function handleLoginSuccess(method) {
+      alert(`✓ ${method} Sign-In Clicked!\nVerified with Ankur Paints Enterprise Network.`);
     }
 
-    function playSplashAgain() {
-      playSplashSequence();
-    }
-
-    // Auto-run on page load
+    // Auto-run splash on page load
     window.addEventListener('load', () => {
-      playSplashSequence();
+      playSplashOnly();
     });
-
-    // -------------------------------------------------------------------------
-    // 3. GOOGLE LOGIN -> DASHBOARD & KYC POP-UP
-    // -------------------------------------------------------------------------
-    function handleGoogleSignIn() {
-      // Direct jump to Dashboard + Pop-up KYC
-      goToScreen('screenDashboard');
-      setTimeout(() => {
-        openKycModal();
-      }, 300);
-    }
-
-    function openKycModal() {
-      document.getElementById('kycModal').style.display = 'flex';
-      document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('jumpKyc')?.classList.add('active');
-    }
-
-    function closeKycModal() {
-      document.getElementById('kycModal').style.display = 'none';
-    }
-
-    function saveStoreKyc() {
-      const storeName = document.getElementById('inpStoreName').value.trim();
-      const gstin = document.getElementById('inpGstin').value.trim();
-
-      if (!storeName) {
-        alert('Please enter your Store Name');
-        return;
-      }
-
-      document.getElementById('lblGreetingStore').innerText = `Namaste, ${storeName}! 🙏`;
-      document.getElementById('lblGstStore').innerText = `GSTIN: ${gstin || '20AAACG1234F1Z8'} • Verified`;
-      closeKycModal();
-      goToScreen('screenDashboard');
-    }
-
-    // -------------------------------------------------------------------------
-    // 4. SCAN & BILLING FLOW
-    // -------------------------------------------------------------------------
-    let currentItem = {
-      name: 'Epic Coat Luxury Exterior Emulsion (20L)',
-      mrp: 9850,
-      sellPrice: 9500,
-      img: 'bucket_1.png'
-    };
-
-    function openBillingModal(name, mrp, sellPrice, img) {
-      currentItem = { name, mrp, sellPrice, img };
-      document.getElementById('billProdName').innerText = name;
-      document.getElementById('billProdMrp').innerText = `₹${mrp.toLocaleString('en-IN')}`;
-      document.getElementById('inpSellPrice').value = sellPrice;
-      document.getElementById('billProdImg').src = img;
-      document.getElementById('priceWarning').style.display = 'none';
-      document.getElementById('btnConfirmSell').disabled = false;
-      document.getElementById('btnConfirmSell').style.opacity = '1';
-
-      document.getElementById('billingModal').style.display = 'flex';
-      document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('jumpScan')?.classList.add('active');
-    }
-
-    function closeBillingModal() {
-      document.getElementById('billingModal').style.display = 'none';
-    }
-
-    function validatePriceCeiling() {
-      const enteredPrice = parseFloat(document.getElementById('inpSellPrice').value) || 0;
-      const warning = document.getElementById('priceWarning');
-      const btn = document.getElementById('btnConfirmSell');
-
-      if (enteredPrice > currentItem.mrp) {
-        warning.style.display = 'block';
-        warning.innerText = `❌ Strictly Blocked: Selling price (₹${enteredPrice}) cannot exceed printed MRP (₹${currentItem.mrp})!`;
-        btn.disabled = true;
-        btn.style.opacity = '0.5';
-      } else {
-        warning.style.display = 'none';
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }
-    }
-
-    // -------------------------------------------------------------------------
-    // 5. SALE EXECUTION & GREEN TICK ANIMATION
-    // -------------------------------------------------------------------------
-    let totalRevenue = 145000;
-    let totalBuckets = 18;
-
-    function executeRetailerSale() {
-      const enteredPrice = parseFloat(document.getElementById('inpSellPrice').value) || currentItem.sellPrice;
-      
-      if (enteredPrice > currentItem.mrp) {
-        alert('Selling price cannot exceed printed MRP!');
-        return;
-      }
-
-      closeBillingModal();
-
-      // Update receipts
-      document.getElementById('tickReceiptDetails').innerHTML = `
-        • Item: ${currentItem.name}<br>
-        • Printed MRP: ₹${currentItem.mrp.toLocaleString('en-IN')}<br>
-        • Sold Amount: <strong>₹${enteredPrice.toLocaleString('en-IN')}</strong><br>
-        • Stock Deducted: 1 Bucket (Remaining: 11)<br>
-        • Timestamp: Just now
-      `;
-
-      // Trigger Big Green Tick Modal
-      document.getElementById('greenTickModal').style.display = 'flex';
-
-      // Update Ledger & Counters
-      totalRevenue += enteredPrice;
-      totalBuckets += 1;
-      document.getElementById('lblTotalRevenue').innerText = `₹${totalRevenue.toLocaleString('en-IN')}`;
-      document.getElementById('lblTotalBuckets').innerText = `${totalBuckets} Buckets`;
-
-      // Append to sales history list
-      const container = document.getElementById('historyListContainer');
-      const newCard = document.createElement('div');
-      newCard.className = 'history-card-item';
-      newCard.innerHTML = `
-        <div class="history-item-left">
-          <div class="history-icon-circle">✓</div>
-          <div>
-            <strong style="font-size: 13px; color: #0F172A;">${currentItem.name}</strong><br>
-            <span style="font-size: 11px; color: #64748B;">Just now • Bill #AP-${Math.floor(1000 + Math.random() * 9000)}</span>
-          </div>
-        </div>
-        <div style="text-align: right;">
-          <strong style="color: var(--ankur-blue); font-size: 14px;">₹${enteredPrice.toLocaleString('en-IN')}</strong><br>
-          <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
-        </div>
-      `;
-      container.insertBefore(newCard, container.firstChild);
-    }
-
-    function dismissGreenTick() {
-      document.getElementById('greenTickModal').style.display = 'none';
-      goToScreen('screenHistory');
-    }
   </script>
 </body>
 </html>
