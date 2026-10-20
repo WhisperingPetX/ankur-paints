@@ -163,6 +163,14 @@
 - **Evidence & Rationale:** User reviewed requirements and authorized transition on 2026-10-20.
 - **Impact on Future Work:** Commences authoring of `docs/TECHNICAL_ARCHITECTURE.md` (System Architecture, Supabase Database ERD, RLS matrices, State Machines, API Specifications).
 
+### DEC-017: GitHub Remote Repository Linked & Synced
+- **Date:** 2026-10-20
+- **Category:** DevOps & Version Control
+- **Status:** CONFIRMED
+- **Decision:** Project repository is linked to official GitHub remote: `https://github.com/WhisperingPetX/ankur-paints.git`. Branch `main` is published and tracked.
+- **Evidence & Rationale:** Verified successful git push on 2026-10-20.
+- **Impact on Future Work:** Continuous cloud backup and version control for all subsequent phases.
+
 ---
 
 ## 4. Unresolved Architectural & Business Items (Requiring Clarification)

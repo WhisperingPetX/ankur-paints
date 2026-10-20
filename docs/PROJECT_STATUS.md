@@ -12,6 +12,8 @@
 - **Phase 2 Formally Concluded (`TECHNICAL_ARCHITECTURE.md`):** Complete system architecture, Supabase PostgreSQL ERD (11 tables), atomic sales stored procedure (`submit_retailer_sale`), RLS matrix, and gamified scheme engine specified.
 - **Phase 3 Active Progress:**
   - Git repository initialized on branch `main` at `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`.
+  - Linked to remote repository: `https://github.com/WhisperingPetX/ankur-paints.git`.
+  - Successfully published and pushed `main` branch to GitHub.
   - Comprehensive `.gitignore` created covering dependencies, environment secrets, native build artifacts, and OS files.
   - Project root `README.md` authored with system overview and 15-phase roadmap.
   - Clean modular directory scaffolding created:

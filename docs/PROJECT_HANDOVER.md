@@ -22,6 +22,7 @@ Ankur Paints is building a production-grade digital operational platform consist
 - **Phase 2 Status:** **COMPLETED & APPROVED (`TECHNICAL_ARCHITECTURE.md`).**
 - **Current Active Phase:** **Phase 3 — Development Environment & Git Setup.**
 - **Workspace Location:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`
+- **GitHub Repository:** `https://github.com/WhisperingPetX/ankur-paints.git` (Tracked & Synced on `main`)
 - **Git Repository Status:** Initialized on branch `main` with `.gitignore`, root `README.md`, and modular directory scaffolding (`mobile/`, `web/`, `supabase/`, `docs/`).
 - **Confirmed Key Technical Decisions:**
   - Retailer Mobile: React Native + Expo + TypeScript (`DEC-004`).
