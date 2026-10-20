@@ -168,62 +168,72 @@
       color: #0F172A;
       z-index: 500;
       position: relative;
-    }
-
-    /* Base Screen */
-    .app-screen {
-      flex: 1;
-      display: none;
-      flex-direction: column;
-      overflow-y: auto;
-      overflow-x: hidden;
-      position: relative;
-      animation: screenFadeIn 0.3s ease;
-    }
-
-    .app-screen.active {
-      display: flex;
-    }
-
-    @keyframes screenFadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      background: #FFFFFF;
     }
 
     /* -------------------------------------------------------------------------
-       1. SPLASH SCREEN (Exact Animation: 0.0s to 2.0s)
+       CRITICAL: STRICT SCREEN ISOLATION (NEVER STACK SCREENS)
+       ------------------------------------------------------------------------- */
+    .app-screen {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(100% - 44px);
+      display: none !important;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #FFFFFF;
+      z-index: 10;
+    }
+
+    .app-screen.active {
+      display: flex !important;
+      z-index: 20;
+    }
+
+    /* -------------------------------------------------------------------------
+       1. SPLASH SCREEN (Exact Animation Sequence 0.0s to 2.0s)
        ------------------------------------------------------------------------- */
     #screenSplash {
       background: #FFFFFF;
       align-items: center;
       justify-content: center;
-      position: relative;
+      position: absolute;
+      inset: 0;
+      top: 44px;
       overflow: hidden;
     }
 
-    .splash-content {
-      position: relative;
-      z-index: 10;
+    /* Stage 1: Clean Centered Logo (0.0s - 0.7s) */
+    .splash-initial-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 20px;
-      animation: logoReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      z-index: 5;
+      animation: splashLogoEntry 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    @keyframes logoReveal {
+    @keyframes splashLogoEntry {
       0% { opacity: 0; transform: scale(0.85); }
       100% { opacity: 1; transform: scale(1); }
     }
 
-    .splash-logo-box {
+    .splash-logo-card {
       background: #FFFFFF;
       padding: 16px 24px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 75, 135, 0.12);
-      display: inline-block;
       margin-bottom: 12px;
     }
 
-    .splash-logo-box img {
+    .splash-logo-card img {
       width: 220px;
       height: auto;
       display: block;
@@ -246,26 +256,26 @@
       margin-top: 4px;
     }
 
-    /* Paint Brush Sweep Artwork from User's Image */
-    .splash-brush-canvas {
+    /* Stage 2: Rainbow Paint Brush Stroke Layer (Sweeps across from 0.6s to 1.8s) */
+    .splash-rainbow-layer {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: 10;
+      opacity: 0;
       pointer-events: none;
-      z-index: 2;
-      animation: paintSweepAnimation 1.6s ease-in-out forwards;
+      animation: rainbowSweepAcross 1.4s ease-in-out 0.5s forwards;
     }
 
-    @keyframes paintSweepAnimation {
+    @keyframes rainbowSweepAcross {
       0% {
         opacity: 0;
-        transform: translateY(60px) scale(0.95);
+        transform: translateY(50px) scale(0.96);
       }
-      50% {
-        opacity: 0.7;
-        transform: translateY(10px) scale(1);
+      30% {
+        opacity: 0.85;
       }
       100% {
         opacity: 1;
@@ -273,28 +283,39 @@
       }
     }
 
-    .splash-timer-badge {
+    .splash-timeline-bar {
       position: absolute;
       bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: #FFFFFF;
+      padding: 6px 16px;
+      border-radius: 999px;
       font-size: 11px;
       font-weight: 800;
-      color: #94A3B8;
-      letter-spacing: 1px;
-      z-index: 20;
+      letter-spacing: 0.5px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* -------------------------------------------------------------------------
-       2. SIGN IN SCREEN (Exact Match from User Reference Image)
+       2. SIGN IN SCREEN (Exact Reference Phone 2)
        ------------------------------------------------------------------------- */
     #screenSignIn {
       background: #FFFFFF;
-      padding: 20px 24px;
-      position: relative;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      position: absolute;
+      inset: 0;
+      top: 44px;
+      overflow-y: auto;
     }
 
     /* Corner Paint Stroke Accents */
@@ -306,7 +327,7 @@
       height: 120px;
       object-fit: cover;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .signin-corner-bottom {
@@ -317,7 +338,7 @@
       height: 110px;
       object-fit: cover;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.9;
       transform: rotate(180deg);
     }
 
@@ -327,7 +348,7 @@
     }
 
     .signin-logo-wrap img {
-      width: 200px;
+      width: 210px;
       height: auto;
     }
 
@@ -437,7 +458,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       3. STORE KYC POP-UP MODAL (Appears Immediately After Login)
+       3. STORE KYC POP-UP MODAL (Appears on Dashboard)
        ------------------------------------------------------------------------- */
     .kyc-modal-overlay {
       position: absolute;
@@ -740,7 +761,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       5. QR SCAN & BILLING MODAL (Scan -> Product & MRP -> Enter Price -> Sell)
+       5. QR SCAN & BILLING MODAL
        ------------------------------------------------------------------------- */
     .billing-modal-overlay {
       position: absolute;
@@ -1040,7 +1061,7 @@
       border: 1px solid #A7F3D0;
     }
 
-    /* Bottom System Tabs */
+    /* Bottom Navigation Bar */
     .app-bottom-nav {
       position: absolute;
       bottom: 0;
@@ -1090,7 +1111,7 @@
 
     <!-- Quick Jump to Any Phase -->
     <div class="screen-jump-group">
-      <button class="screen-jump-btn active" id="jumpSplash" onclick="goToScreen('screenSplash')">1. Splash Animation</button>
+      <button class="screen-jump-btn active" id="jumpSplash" onclick="playSplashAgain()">1. Replay Splash</button>
       <button class="screen-jump-btn" id="jumpSignIn" onclick="goToScreen('screenSignIn')">2. Sign In</button>
       <button class="screen-jump-btn" id="jumpKyc" onclick="openKycModal()">3. KYC Pop-up</button>
       <button class="screen-jump-btn" id="jumpDash" onclick="goToScreen('screenDashboard')">4. Dashboard & Catalog</button>
@@ -1119,24 +1140,26 @@
          PHASE 1: SPLASH SCREEN (Exact Animation: 0.0s to 2.0s)
          ======================================================================= -->
     <div class="app-screen active" id="screenSplash">
-      <!-- Background paint sweep artwork from uploaded image -->
-      <img src="splash_screen_art.png" alt="Splash Paint Artwork" class="splash-brush-canvas">
-
-      <div class="splash-content">
-        <div class="splash-logo-box">
+      <!-- Stage 1: Clean Logo & Tagline (0.0s - 0.7s) -->
+      <div class="splash-initial-stage">
+        <div class="splash-logo-card">
           <img src="ankur_logo_clean.png" alt="Ankur Paints">
         </div>
         <div class="splash-tagline-text">Colour Your World</div>
         <div class="splash-sub-text">Colors of Trust • ISO 9001:2015</div>
       </div>
 
-      <div class="splash-timer-badge" id="splashTimerBadge">
-        Opening Sign-In (2.0s)...
+      <!-- Stage 2: Rainbow Paint Brush Stroke Layer (Sweeps across from 0.5s to 1.8s) -->
+      <img src="splash_hires.png" alt="Rainbow Paint Sweep" class="splash-rainbow-layer" id="splashRainbowImg">
+
+      <div class="splash-timeline-bar" id="splashTimerBadge">
+        <span>🎨</span>
+        <span id="splashTimerText">Animating Rainbow Sweep (0.0s / 2.0s)...</span>
       </div>
     </div>
 
     <!-- =======================================================================
-         PHASE 1 & 2: SIGN IN SCREEN (Welcome Back + Google Login)
+         PHASE 2: SIGN IN SCREEN (Welcome Back + Google Login)
          ======================================================================= -->
     <div class="app-screen" id="screenSignIn">
       <!-- Corner brush flourishes from reference image -->
@@ -1395,7 +1418,7 @@
     </div>
 
     <!-- =======================================================================
-         PHASE 4: QR SCAN & BILLING MODAL (Scan -> Product & MRP -> Rate -> Sell)
+         PHASE 4: QR SCAN & BILLING MODAL
          ======================================================================= -->
     <div class="billing-modal-overlay" id="billingModal">
       <div class="billing-drawer">
@@ -1567,45 +1590,28 @@
 
   <script>
     // -------------------------------------------------------------------------
-    // 1. SPLASH SCREEN (0.0s to 2.0s Auto Transition)
+    // 1. STRICT SCREEN NAVIGATION (Zero Overlap Guaranteed)
     // -------------------------------------------------------------------------
-    window.addEventListener('load', () => {
-      let secondsLeft = 2;
-      const timerBadge = document.getElementById('splashTimerBadge');
-      
-      const interval = setInterval(() => {
-        secondsLeft -= 1;
-        if (secondsLeft > 0) {
-          timerBadge.innerText = `Opening Sign-In (${secondsLeft}s)...`;
-        } else {
-          clearInterval(interval);
-          goToScreen('screenSignIn');
-        }
-      }, 1000);
-    });
-
-    // -------------------------------------------------------------------------
-    // SCREEN NAVIGATION LOGIC
-    // -------------------------------------------------------------------------
-    const screens = ['screenSplash', 'screenSignIn', 'screenDashboard', 'screenHistory'];
+    const allScreenIds = ['screenSplash', 'screenSignIn', 'screenDashboard', 'screenHistory'];
 
     function goToScreen(screenId) {
-      screens.forEach(id => {
+      allScreenIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.remove('active');
       });
 
       const target = document.getElementById(screenId);
-      if (target) target.classList.add('active');
+      if (target) {
+        target.classList.add('active');
+        target.scrollTop = 0;
+      }
 
-      // Top control bar active highlights
+      // Update control bar
       document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
       if (screenId === 'screenSplash') document.getElementById('jumpSplash')?.classList.add('active');
       if (screenId === 'screenSignIn') document.getElementById('jumpSignIn')?.classList.add('active');
       if (screenId === 'screenDashboard') document.getElementById('jumpDash')?.classList.add('active');
       if (screenId === 'screenHistory') document.getElementById('jumpHistory')?.classList.add('active');
-
-      if (target) target.scrollTop = 0;
     }
 
     // Toggle Desktop Viewport
@@ -1626,7 +1632,52 @@
     }
 
     // -------------------------------------------------------------------------
-    // 2. GOOGLE LOGIN -> DASHBOARD & KYC POP-UP
+    // 2. TIMED SPLASH ANIMATION (0.0s -> 2.0s -> Sign In ONLY)
+    // -------------------------------------------------------------------------
+    let splashTimer = null;
+
+    function playSplashSequence() {
+      // Clear any previous timer
+      if (splashTimer) clearTimeout(splashTimer);
+
+      // Force ONLY splash to be active
+      goToScreen('screenSplash');
+
+      // Reset rainbow layer
+      const rainbow = document.getElementById('splashRainbowImg');
+      rainbow.style.animation = 'none';
+      rainbow.offsetHeight; // trigger reflow
+      rainbow.style.animation = 'rainbowSweepAcross 1.4s ease-in-out 0.5s forwards';
+
+      const timerText = document.getElementById('splashTimerText');
+      timerText.innerText = '0.0s: Ankur Paints Logo appearing...';
+
+      setTimeout(() => {
+        timerText.innerText = '0.6s: Rainbow brush sweep in progress...';
+      }, 600);
+
+      setTimeout(() => {
+        timerText.innerText = '1.4s: Full colour sweep complete!';
+      }, 1400);
+
+      // At exactly 2.0s, transition to Sign-In
+      splashTimer = setTimeout(() => {
+        timerText.innerText = '2.0s: Transitioning to Sign-In...';
+        goToScreen('screenSignIn');
+      }, 2100);
+    }
+
+    function playSplashAgain() {
+      playSplashSequence();
+    }
+
+    // Auto-run on page load
+    window.addEventListener('load', () => {
+      playSplashSequence();
+    });
+
+    // -------------------------------------------------------------------------
+    // 3. GOOGLE LOGIN -> DASHBOARD & KYC POP-UP
     // -------------------------------------------------------------------------
     function handleGoogleSignIn() {
       // Direct jump to Dashboard + Pop-up KYC
@@ -1662,7 +1713,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // 3. SCAN & BILLING FLOW
+    // 4. SCAN & BILLING FLOW
     // -------------------------------------------------------------------------
     let currentItem = {
       name: 'Epic Coat Luxury Exterior Emulsion (20L)',
@@ -1708,7 +1759,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // 4. SALE EXECUTION & GREEN TICK ANIMATION
+    // 5. SALE EXECUTION & GREEN TICK ANIMATION
     // -------------------------------------------------------------------------
     let totalRevenue = 145000;
     let totalBuckets = 18;
@@ -1745,7 +1796,6 @@
       const container = document.getElementById('historyListContainer');
       const newCard = document.createElement('div');
       newCard.className = 'history-card-item';
-      newCard.style.animation = 'screenFadeIn 0.3s ease';
       newCard.innerHTML = `
         <div class="history-item-left">
           <div class="history-icon-circle">✓</div>
