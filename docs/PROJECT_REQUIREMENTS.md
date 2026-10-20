@@ -22,13 +22,29 @@
 The purpose of the Ankur Paints digital platform is to streamline inventory tracking, sales recording, and incentive tracking for paint products manufactured and distributed by Ankur Paints. The platform connects factory/warehouse administration with authorized retail partners via static QR identification, real-time transaction logging, and automated reporting.
 
 ### 2.2 Selected Technology Direction
-The following technical stack direction has been formally selected by the user for development:
-- **Retailer Mobile Application:** React Native + Expo + TypeScript (targeting Android).
-- **Administrative Portal:** Web Admin Dashboard (framework to be detailed in Phase 2 Architecture).
-- **Backend Infrastructure & Database:** Supabase (PostgreSQL with Row Level Security and Auth).
-- **Explicit Platform Decision:** **Zoho Creator will NOT be used.**
+The following technical stack direction has been formally selected by the user for development (`DEC-021`):
+- **Unified Modern Web Platform & Retailer Portal:** Next.js 15 + React 19 + TypeScript + Tailwind CSS + Framer Motion (responsive luxury web application serving desktop, tablet, and smartphone form factors).
+- **Google Play Store Mobile App Export:** CapacitorJS / Google Trusted Web Activities (TWA) compiling the web platform into an installable Android `.apk` / `.aab` package with native camera access for QR scanning.
+- **Backend Infrastructure & Database:** Supabase (PostgreSQL with Row Level Security, ACID Check Constraints, and Google OAuth Auth).
+- **Explicit Platform Decisions:**
+  - **Zoho Creator will NOT be used.**
+  - **Separate React Native / Expo codebase discarded (`DEC-021`)** in favor of a single unified responsive web codebase exportable to Play Store.
 
-*(Note: In accordance with Phase 1 governance, no application scaffolding, package installations, or Supabase project provisioning will occur until Phase 3).*
+### 2.3 Comprehensive Technology Matrix & Role in the Project
+The selected technologies and their exact roles are defined below:
+
+| Technology / Library | Version / Scope | Primary Role & Responsibility |
+| :--- | :--- | :--- |
+| **Next.js 15 (React 19)** | Framework | Core application framework providing App Router, SSR for high-speed landing page rendering, client components for interactive POS, and zero-latency routing. |
+| **TypeScript** | Language | End-to-end type safety across database schemas, API responses, cart state, and business logic. Eliminates runtime crashes. |
+| **Tailwind CSS** | Styling | Utility-first responsive CSS styling with custom brand tokens (Ankur Cobalt Blue `#004B87`, Paints Vermillion `#E8501E`, glassmorphic backdrops, ambient mesh auroras). |
+| **Framer Motion & GSAP** | Animation | International-grade fluid animations, luxury scroll-triggered reveals, smooth product card transitions, and interactive visualizer transitions. |
+| **Supabase (PostgreSQL)** | Cloud Database | Live cloud database (`wpiztkjuojirzsxvzqfv.supabase.co`) with 12 relational tables, RLS data isolation, ACID checks (`Selling Price <= MRP`, `Stock >= 0`), and atomic RPC stored procedures. |
+| **Supabase Auth & Google OAuth** | Authentication | Frictionless Google One-Tap sign-in and session management for retailers and admins, triggering instant KYC profile initialization. |
+| **Html5-Qrcode** | Hardware Scanner | Cross-platform camera-based barcode/QR code reader operating directly in mobile/desktop browsers and Android WebViews. |
+| **Canvas Confetti** | Gamification | High-performance celebratory particle effects when retailers hit incentive slabs and complete transactions. |
+| **Lucide React** | Icons | Modern, clean vector icon set for crisp interface representation on high-DPI displays. |
+| **CapacitorJS / Google TWA** | Android Export | Bridges the responsive web application into a native Android APK/AAB package for Google Play Store distribution with zero codebase duplication. |
 
 ### 2.3 Scope Boundaries & External System Relationships
 - **Tally Billing Workflow Independence:** Tally billing continues unchanged within Ankur Paints' existing accounting operations. There is **no Tally integration** and no Zoho Creator integration. The new platform operates independently of the Tally billing system; no Tally connectors, synchronization scripts, or middleware will be developed.
@@ -61,7 +77,7 @@ The following technical stack direction has been formally selected by the user f
   - Manual numeric quantity adjustment on the dispatch cart line is permitted.
 - **[REQ-DSP-02] Retailer Stock Increment:** Submitting the dispatch transaction immediately increases the selected retailer's available stock balance in the system.
 
-### 3.3 Retailer Sales Workflow (Android App)
+### 3.3 Retailer Sales Workflow (Web & Android App)
 - **[REQ-SAL-01] Multi-SKU Cart Scanning:** Retailers can scan multiple different SKU QR codes within a single customer sales transaction.
 - **[REQ-SAL-02] Customer Information Capture:** The mobile app must capture the end-customer's **Customer Name** and **Customer Mobile Number** once per sale transaction.
 - **[REQ-SAL-03] Strict Stock Validation & Blocking:** Prior to sale submission, the platform must validate that the retailer has sufficient available stock for all line items. **Sales exceeding available retailer stock must be strictly blocked** (negative inventory balances are strictly prohibited).

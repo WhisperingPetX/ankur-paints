@@ -212,6 +212,19 @@
 - **Evidence & Rationale:** Implements core company catalog ingestion and static QR generation workflows mandated in Phase 1 & 2.
 - **Impact on Future Work:** Unlocks Phase 8 (Inventory and Stock Dispatch scanning).
 
+### DEC-021: Transition to Unified International-Grade Web Platform with Play Store Export
+- **Date:** 2026-10-21
+- **Category:** Platform Architecture & Deployment Strategy
+- **Status:** CONFIRMED (User Mandate)
+- **Decision:**
+  1. Consolidate client-side engineering around a **Unified Modern Web Platform** (`web/`) built with Next.js 15, Tailwind CSS, Framer Motion, and GSAP.
+  2. Remove legacy standalone mobile directory (`mobile/`) to prevent code divergence, tooling overhead, and dual-maintenance drag.
+  3. Support Google Play Store distribution by compiling the responsive web application into an installable Android package (`.apk` / `.aab`) via CapacitorJS / Google Trusted Web Activities (TWA).
+  4. Integrate frictionless One-Tap Google OAuth and Store KYC (Store Name, GSTIN, Mobile Number) directly into the primary landing surface.
+  5. Preserve all live Supabase database tables, ACID check constraints, and RLS policies (`supabase/`) as the single source of truth.
+- **Evidence & Rationale:** Provides 10x faster development velocity, international-grade luxury animation fidelity, and seamless Play Store distribution without native platform friction.
+- **Impact on Future Work:** Directs all client-side feature implementation into the unified responsive web application.
+
 ---
 
 ## 4. Unresolved Architectural & Business Items (Requiring Clarification)

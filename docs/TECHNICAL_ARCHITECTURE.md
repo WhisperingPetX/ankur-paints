@@ -1,63 +1,61 @@
 # Ankur Paints — Technical Architecture & System Design Specification
 
-**Document Version:** 1.0.0  
-**Phase:** Phase 2 — Technical Architecture & System Design  
-**Date:** 2026-10-20  
+**Document Version:** 2.0.0  
+**Phase:** Modern Responsive Web Platform & Hybrid Android App Architecture (`DEC-017`)  
+**Date:** 2026-10-21  
 **Status:** Approved Architecture Blueprint  
 **Authors:** Senior Software Architect  
-**Approved Baseline:** Reconciled Requirements Specification v1.4.0 (`DEC-016`)
+**Approved Baseline:** International-Grade Web Platform with Google Play Store APK/AAB Export
 
 ---
 
 ## 1. Executive Summary & Architectural Principles
 
-The Ankur Paints platform is designed as a secure, real-time, resilient B2B digital operations platform connecting central manufacturing/warehouse management with independent retail partners.
+The Ankur Paints platform is designed as an international-grade, high-performance, real-time B2B digital operations platform connecting central manufacturing/warehouse management with independent retail partners.
+
+Built using a **unified responsive web architecture** (Next.js 15, Tailwind CSS, Framer Motion, GSAP, Supabase PostgreSQL), it provides a consumer-grade desktop and mobile browser experience that seamlessly compiles into an installable Android APK/AAB for Google Play Store distribution via CapacitorJS / Google Trusted Web Activities (TWA).
 
 ### Core Architectural Tenets
-1. **Zero Negative Stock Guarantee:** All inventory movements are strictly checked against physical availability. Retail sales exceeding live stock are atomically blocked at the database engine level.
-2. **Double-Entry Ledger Accounting:** Inventory and incentive calculations do not mutate loose counter columns; every movement is recorded as an immutable debit/credit in an audit ledger (`stock_transactions`).
-3. **Database-Enforced Price Ceilings:** The business rule $\text{Selling Price} \le \text{MRP}$ is enforced as an invariant both client-side in the mobile app and server-side via PostgreSQL database check constraints.
-4. **Strict Multi-Tenant Isolation:** PostgreSQL Row Level Security (RLS) ensures that retail stores operate in total data isolation; no retailer can view or query competitor stock, sales, or incentive earnings.
-5. **Dynamic Commercial Flexibility:** Target thresholds and incentive percentages are decoupled from application code and managed through an Admin-configurable slab rule engine, rendered in the mobile app via an engaging, gamified promotional interface.
+1. **Unified International Web Platform:** A single modern codebase serving desktop, tablet, and smartphone form factors with fluid luxury animations, zero device fragmentation, and instant over-the-air updates.
+2. **Seamless Play Store Export:** Exportable directly to Google Play Store using CapacitorJS / Google TWA (`.apk` / `.aab`), giving retailers a 100% native mobile app feel with camera barcode scanning, offline caching, and push notifications.
+3. **Zero Negative Stock Guarantee:** All inventory movements are strictly checked against physical availability. Retail sales exceeding live stock are atomically blocked at the database engine level.
+4. **Double-Entry Ledger Accounting:** Inventory and incentive calculations do not mutate loose counter columns; every movement is recorded as an immutable debit/credit in an audit ledger (`stock_transactions`).
+5. **Database-Enforced Price Ceilings:** The business rule $\text{Selling Price} \le \text{MRP}$ is enforced as an invariant both client-side and server-side via PostgreSQL database check constraints.
+6. **Strict Multi-Tenant Isolation:** PostgreSQL Row Level Security (RLS) ensures that retail stores operate in total data isolation; no retailer can view or query competitor stock, sales, or incentive earnings.
+7. **One-Tap Google Authentication & Instant KYC:** Frictionless onboarding using Supabase Auth (Google One-Tap OAuth), immediately capturing retailer Store Name, GSTIN, and Mobile Number.
 
 ---
 
 ## 2. System Architecture & Component Diagram
 
-The platform utilizes a cloud-native, three-tier architecture:
+The platform utilizes a modern, unified cloud architecture:
 
 ```mermaid
 graph TD
-    subgraph Client Tier
-        MA["Retailer Android Mobile App<br/>(React Native + Expo + TypeScript)"]
-        WA["Management Web Dashboard<br/>(React + Vite / Tailwind CSS)"]
+    subgraph Client Experience Layer
+        WEB["International Luxury Web App<br/>(Next.js 15 + React + Tailwind CSS + Framer Motion)"]
+        APK["Google Play Store Android App<br/>(CapacitorJS / Google TWA Package)"]
     end
 
-    subgraph Factory & Hardware
-        EXCEL["Company Master Catalog (Excel)<br/>(SKUs, Shades, Sizes, MRP)"]
-        PRINTER["Factory QR Sticker Printer<br/>(Static QR per SKU)"]
+    subgraph Store Operations Hardware
+        CAM["Mobile / Tablet Camera<br/>(HTML5-QRCode SKU Barcode Scanner)"]
+        PRINTER["Factory Packaging Printer<br/>(Static QR Code on Buckets)"]
     end
 
     subgraph Cloud Backend - Supabase / PostgreSQL
-        AUTH["Supabase Auth<br/>(JWT, RBAC)"]
-        STORAGE["Supabase Storage<br/>(Catalog Images, Scheme Banners)"]
+        AUTH["Supabase Auth<br/>(Google OAuth 2.0, JWT, RBAC)"]
+        STORAGE["Supabase Storage CDN<br/>(Official Packaging & Brand Assets)"]
         API["PostgREST & Edge Functions<br/>(Atomic RPC Procedures)"]
-        DB[(PostgreSQL Database<br/>RLS, ACID Triggers, Audit Ledgers)]
+        DB[(PostgreSQL Cloud Database<br/>RLS, ACID Triggers, Audit Ledgers)]
     end
 
-    subgraph Accounting Boundary
-        TALLY["Tally ERP<br/>(Independent Billing Workflow - No Sync)"]
-    end
-
-    EXCEL -->|Bulk Upload| WA
-    WA -->|Generate Static Vector QR| PRINTER
-    WA -->|Admin Dispatches & Target Slabs| API
-    MA -->|Scan QR / Submit Sales| API
-    AUTH -->|JWT Tokens| MA
-    AUTH -->|JWT Tokens| WA
+    WEB -.->|Compiled via CapacitorJS| APK
+    CAM -->|Scan Static SKU QR| WEB
+    WEB -->|One-Tap Sign-In| AUTH
+    WEB -->|Atomic Sales & Dispatches| API
+    AUTH -->|JWT Tokens| WEB
     API --> DB
-    STORAGE --> MA
-    STORAGE --> WA
+    STORAGE --> WEB
 ```
 
 ---
@@ -407,18 +405,39 @@ Every table has RLS enabled (`ALTER TABLE ... ENABLE ROW LEVEL SECURITY;`).
 
 ---
 
-## 7. Mobile UI Architecture: Gamified Flipkart-Style Scheme Engine
+## 7. International-Grade Luxury Web & Retailer UI Architecture
 
-To meet the requirement for an engaging, animated promotional display:
-1. **Dynamic Promotional Banners:**
+To meet the requirement for an engaging, luxury visual presentation with gamified retailer incentives:
+1. **Fluid Micro-Interactions & Luxury Motion:**
+   - Framer Motion and GSAP power fluid entrance choreographies, subtle floating elements, and smooth category transitions across all viewport sizes.
+   - Zero square-cropped image borders in ambient backgrounds: lighting is driven by pure CSS radial gradient mesh auroras matching Ankur Cobalt Blue (`#004B87`) and Vermillion Orange (`#E8501E`).
+2. **Dynamic Promotional Banners:**
    - Active schemes fetched from `incentive_schemes` render as hero carousel cards at the top of the Retailer dashboard.
    - Themes, gradient backgrounds, and festive badges (e.g. *"Diwali Dhamaka"*, *"Super Painter Fest"*) are driven dynamically from the database.
-2. **Animated Progress Meters:**
+3. **Animated Target Progress Meters & Celebratory Confetti:**
    - A reactive progress bar calculates the retailer's current month/period sales volume against the active `scheme_slabs`.
    - **Example:** `"Achieved ₹75,000 / ₹1,00,000 — Just ₹25,000 away from unlocking 10% Extra Bonus!"`
-   - Unlocked milestones trigger animated celebration confetti / badges using React Native Reanimated.
-3. **Cart-Level Incentive Simulator:**
-   - As the retailer adds paint buckets to the cart and enters selling prices, a live mini-counter calculates the estimated incentive earned on checkout.
+   - Unlocked milestones trigger celebratory golden confetti particle animations using `canvas-confetti`.
+4. **Cart-Level Incentive Simulator & MRP Ceilings:**
+   - As the retailer scans paint buckets and enters selling prices, a live mini-counter calculates the estimated incentive earned on checkout.
+   - Selling price is strictly guarded: entering a price higher than printed MRP locks checkout with a real-time crimson warning banner.
+
+---
+
+## 8. Technology Stack Specification & Architectural Role
+
+| Technology / Library | Target Version | Architectural Role & Justification |
+| :--- | :--- | :--- |
+| **Next.js 15 (React 19)** | `15.x` | Core application framework. Server-Side Rendering (SSR) guarantees sub-second landing page delivery; App Router provides instant client-side routing between portal tabs. |
+| **TypeScript** | `5.x` | Eliminates runtime errors and guarantees end-to-end schema consistency across database models, RPC inputs, and cart calculations. |
+| **Tailwind CSS** | `3.4+ / 4.x` | Atomic, highly maintainable CSS styling engine. Configured with Ankur brand tokens, glassmorphic backdrops (`backdrop-blur-xl`), and ambient glow auroras. |
+| **Framer Motion & GSAP** | Latest | Powers high-fidelity animations: floating bucket hero showcases, interactive shade visualizer swaps, and sleek modal reveals. |
+| **Supabase Client (`@supabase/supabase-js`)** | `v2.x` | Direct, secure connection to PostgreSQL Cloud database (`wpiztkjuojirzsxvzqfv.supabase.co`) with WebSocket subscriptions and token lifecycle handling. |
+| **Supabase Auth & Google OAuth** | `v2.x` | Frictionless Google One-Tap sign-in, JWT token generation, and automated `profiles` table synchronization via PostgreSQL trigger. |
+| **Html5-Qrcode** | `2.3+` | High-accuracy in-browser and WebView camera scanner for standard UPC/EAN barcodes and custom Ankur QR codes (`ANKUR_{PROD}_{SHADE}_{SIZE}`). |
+| **Canvas Confetti** | `1.9+` | Ultra-lightweight particle physics engine for celebrating retailer sales milestone completions and Diwali festive bonus unlocks. |
+| **Lucide React** | `0.4+` | Clean, minimalist, high-DPI vector iconography for mobile and desktop interfaces. |
+| **CapacitorJS / Google TWA** | `@capacitor/core` | Wraps the compiled responsive web application into an installable Android `.apk` / `.aab` for direct Google Play Store release. |
 
 ---
 

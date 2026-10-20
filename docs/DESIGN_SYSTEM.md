@@ -39,41 +39,40 @@ The app dynamically themes product cards and category pills according to the rea
 
 ---
 
-## 2. Consumer E-Commerce (Flipkart / Myntra Style) Mobile Layout Architecture
+## 2. International-Grade Luxury Responsive Web & Retailer Portal Layout Architecture
 
-The retailer app interface provides the familiar, high-conversion feel of **Flipkart / Myntra / Amazon India**:
+The platform interface delivers an **Apple-meets-Flipkart luxury aesthetic**: high-trust corporate prestige for public visitors, and frictionless high-speed operations for authorized retailers across desktop, tablet, and mobile screens:
 
 ```
-┌────────────────────────────────────────────────────────┐
-│  🎨 Ankur Paints                   [Store: Gupta Paints]│
-│  🔍 Search by product, shade code (e.g. SH-104)...     │
-├────────────────────────────────────────────────────────┤
-│  [CATEGORIES]                                          │
-│  (★ All) (🏡 Exterior) (🛋️ Interior) (💧 Damp Proof) ...│
-├────────────────────────────────────────────────────────┤
-│  🌟 HERO PROMOTIONAL CAROUSEL (Flipkart Style)         │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │ ⚡ DIWALI DHAMAKA SCHEME              [LIVE NOW] │  │
-│  │ FLAT 10% EXTRA ON ₹1,00,000 MONTHLY SALES        │  │
-│  │ Earn instant rewards on Epic Coat & Rang Ritu    │  │
-│  └──────────────────────────────────────────────────┘  │
-├────────────────────────────────────────────────────────┤
-│  🏆 LIVE TARGET MILESTONE METER                        │
-│  Achieved: ₹75,000 / ₹1,00,000 (Silver 6% Active)      │
-│  [===========================>..........] 75%          │
-│  🎉 Just ₹25,000 to unlock 10% Gold Tier Bonus!        │
-├────────────────────────────────────────────────────────┤
-│  📦 RECENT FAST-SELLING BUCKETS                        │
-│  ┌─────────────────────────┐  ┌─────────────────────┐  │
-│  │ [Epic Coat 20L]         │  │ [Rang Ritu 20L]     │  │
-│  │ 5 Yrs Warranty • Indigo │  │ 7 Yrs • Magenta     │  │
-│  │ MRP: ₹4,200             │  │ MRP: ₹3,850         │  │
-│  │ 🟢 18 in stock          │  │ 🟢 12 in stock      │  │
-│  │ [+ Add to Cart]         │  │ [+ Add to Cart]     │  │
-│  └─────────────────────────┘  └─────────────────────┘  │
-├────────────────────────────────────────────────────────┤
-│  [📷 QUICK QR SCAN] (Floating High-Contrast CTA)        │
-└────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│  🎨 ANKUR PAINTS   [Products] [Visualizer] [About] [Store Portal] (Login)│  <- Floating Glass Navbar
+├────────────────────────────────────────────────────────────────────────┤
+│  🌟 HERO LUXURY STAGE (Ambient CSS Mesh Aurora Glow)                   │
+│  ┌─────────────────────────────────┐  ┌─────────────────────────────┐  │
+│  │ "Transform Spaces with          │  │ [3D Glossy Bucket Lineup]   │  │
+│  │  Royal Luxury & German Polymers"│  │  Epic Coat, Rang Ritu,      │  │
+│  │  ✓ Up to 10 Yrs Warranty        │  │  Gleam Coat Mirror Stage    │  │
+│  │  [Explore Shades] [Store Login] │  │                             │  │
+│  └─────────────────────────────────┘  └─────────────────────────────┘  │
+├────────────────────────────────────────────────────────────────────────┤
+│  🛋️ INTERACTIVE ROOM SHADE VISUALIZER                                 │
+│  [Royal Indigo] [Vibrant Magenta] [Sea Teal] [Crimson Rust] [Warm Amber]│
+│  (Real-time live wall color rendering with sample swatch swatches)      │
+├────────────────────────────────────────────────────────────────────────┤
+│  📦 9-BUCKET MASTER PACKAGING EXHIBITION                                │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐│
+│  │ Epic Coat    │  │ Rang Ritu    │  │ Gleam Coat   │  │ Damp Proof   ││
+│  │ 5 Yrs Indigo │  │ 7 Yrs Magenta│  │ 3 Yrs Teal   │  │ 10 Yrs Gold  ││
+│  │ MRP: ₹4,200  │  │ MRP: ₹3,850  │  │ MRP: ₹2,950  │  │ MRP: ₹5,100  ││
+│  │ [Quick Scan] │  │ [Quick Scan] │  │ [Quick Scan] │  │ [Quick Scan] ││
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘│
+├────────────────────────────────────────────────────────────────────────┤
+│  🏆 RETAILER GAMIFIED OPERATIONS DOCK (Authenticated Portal)            │
+│  Achieved: ₹75,000 / ₹1,00,000 (Silver 6% Active)                      │
+│  [===========================================>...............] 75%     │
+│  🎉 Just ₹25,000 to unlock 10% Gold Tier Festive Dhamaka!              │
+│  [📷 Quick Barcode/QR Camera Scan]   [🧾 Generate Customer Bill]       │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -104,9 +103,12 @@ The retailer app interface provides the familiar, high-conversion feel of **Flip
 
 ## 5. Token Reference Files in Codebase
 
-- Brand Colors & Palette: `mobile/src/constants/colors.ts`
-- Typography Scale: `mobile/src/constants/typography.ts`
-- Spacing & Elevation: `mobile/src/constants/spacing.ts`
-- Unified Theme: `mobile/src/constants/theme.ts`
-- Component Types: `mobile/src/types/design.ts`
-- Brand Asset: `mobile/assets/branding/ankur_paints_lineup.jpg`
+- Brand Colors & Palette: `web/src/constants/colors.ts` and `web/tailwind.config.js`
+- Design Tokens & Glassmorphism: `web/src/styles/globals.css`
+- Official Packaging & Branding Assets: `web/public/branding/`
+  - Master Logo: `web/public/branding/ankur_logo_master.png`
+  - 9-Bucket Reflection Lineup: `web/public/branding/ankur_lineup_master.png`
+  - Individual Buckets: `web/public/branding/bucket_1.png` through `bucket_9.png`
+  - Living Room Backdrop: `web/public/branding/living_room_hero.png`
+  - Swatch Fan: `web/public/branding/swatch_fan.png`
+- Master Production Landing Page: `web/public/index.html` (Prototype) & Next.js App Router (`web/src/app/page.tsx`)

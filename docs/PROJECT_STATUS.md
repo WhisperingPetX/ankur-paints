@@ -1,9 +1,9 @@
 # Ankur Paints — Project Status Report
 
-**Document Version:** 7.0.0  
-**Timestamp:** 2026-10-20  
-**Current Phase:** Phase 7 — Product and QR-Code System (Completed) — Transitioning to Phase 8  
-**Current Task:** Ready for Phase 8 — Inventory and Stock Dispatch (Warehouse Dispatch & Stock Ledger Engine)  
+**Document Version:** 8.1.0  
+**Timestamp:** 2026-10-21  
+**Current Phase:** Modern Responsive Web Platform & Hybrid Android App Architecture (`DEC-021`)  
+**Current Task:** Authoring International-Grade Web Application (Next.js 15 + Tailwind CSS + Framer Motion + Supabase + Capacitor Export)  
 
 ---
 
@@ -16,35 +16,27 @@
   - Production `.gitignore`, `README.md`, and modular directory scaffolding in place.
 - **Phase 4 Formally Concluded (`DESIGN_SYSTEM.md`):**
   - Calibrated design system directly with official Ankur Paints corporate identity (Cobalt Blue `#004B87`, Vermillion Orange `#E8501E`, 5-color spectrum arc).
-  - Implemented complete mobile token library in `mobile/src/constants/`.
 - **Phase 5 Formally Concluded (`DEC-018`):**
   - Authored executable PostgreSQL schema in `supabase/migrations/20261020000001_initial_schema.sql` (12 tables, hard invariant constraints for Selling Price $\le$ MRP and Zero Negative Stock, Row Level Security policies, and atomic stored procedures).
   - Authored official seed script in `supabase/seed/seed.sql` populating all 9 verified Ankur Paints product lines, realistic SKU MRPs, deterministic QR payloads, and Diwali Dhamaka promotional target slabs.
   - Successfully executed and verified LIVE on Supabase Cloud (`wpiztkjuojirzsxvzqfv.supabase.co`).
-- **Phase 6 Formally Concluded (`DEC-019`):**
-  - Authored PostgreSQL auth user creation trigger in `supabase/migrations/20261020000002_auth_trigger.sql`.
-  - Defined complete TypeScript database definitions (`mobile/src/types/database.ts` and `web/src/types/database.ts`).
-  - Configured Supabase clients and React Context Auth providers (`mobile/src/contexts/AuthContext.tsx` and `web/src/contexts/AuthContext.tsx`).
-  - Built branded mobile `LoginScreen.tsx` with Flipkart-style promotional banner and dual password/OTP authentication tabs.
-- **Phase 7 Formally Concluded (`DEC-020`):**
-  - Built deterministic QR code engine in `web/src/services/qrGenerator.ts` formatting payloads as `ANKUR_{PRODUCT}_{SHADE}_{SIZE}` and generating printable vector SVG label cards.
-  - Developed bulk Excel/CSV importer engine `web/src/services/excelImporter.ts` with header normalization, required field validation, positive MRP checks, in-sheet deduplication, and downloadable template generator.
-  - Built Web Catalog Management interface `web/src/pages/CatalogManagement.tsx` with product summary cards, search/filter table, bulk modal ingestion, and single-label print preview.
-  - Built factory sticker sheet component `web/src/components/PrintableQRSheet.tsx` supporting multi-label printing on standard A4 adhesive sheets.
-  - Created mobile QR resolution service in `mobile/src/services/catalogService.ts` for sub-300ms static barcode resolution with live stock availability check.
+- **Phase 6 & 7 Formally Concluded (`DEC-019`, `DEC-020`):**
+  - Database auth triggers, catalog services, QR generator, and Excel importer established.
+- **Phase 8 / Strategic Pivot (`DEC-021`):**
+  - Streamlined architecture to focus on a **single unified responsive web platform** (`web/`) with CapacitorJS export for Google Play Store Android distribution (`.apk` / `.aab`).
+  - Purged all legacy `mobile/` and temporary `preview/` directories and discarded mobile mockup graphics to prevent code divergence and confusion.
+  - Preserved the clean base: live Supabase cloud database (`supabase/`), documentation suite (`docs/`), official branding assets (`web/public/branding/`), and database TypeScript types & services (`web/src/`).
+  - Synchronized and updated all documentation files (`PROJECT_REQUIREMENTS.md`, `TECHNICAL_ARCHITECTURE.md`, `DESIGN_SYSTEM.md`, `DECISIONS_LOG.md`, `PROJECT_HANDOVER.md`, `PROJECT_STATUS.md`).
 
 ---
 
-## 2. Files Created or Changed
-- `web/src/services/qrGenerator.ts` — QR code payload formatting and vector SVG label generator.
-- `web/src/services/excelImporter.ts` — Excel/CSV parsing, row validation suite, and template generator.
-- `web/src/services/catalogService.ts` — Web catalog fetch and batch SKU upsert operations.
-- `web/src/pages/CatalogManagement.tsx` — Full-featured admin catalog management page.
-- `web/src/components/PrintableQRSheet.tsx` — Factory sticker sheet printing layout.
-- `mobile/src/services/catalogService.ts` — Mobile QR resolution and retailer inventory query service.
-- `docs/DECISIONS_LOG.md` — Logged `DEC-020`.
-- `docs/PROJECT_STATUS.md` (v7.0.0) — Live status report.
-- `docs/PROJECT_HANDOVER.md` (v7.0.0) — Aligned handover document.
+## 2. Active Clean Repository File Structure
+The project maintains a clean, clutter-free base:
+- `docs/` — Complete system specifications, architectural decisions, design system, and AI handover.
+- `supabase/` — PostgreSQL migrations, authentication triggers, and official 9-product catalog seed scripts (100% LIVE on Supabase Cloud).
+- `web/public/branding/` — Master corporate artwork, vector logo, 9-bucket reflection lineup, and packaging cutouts.
+- `web/src/` — Supabase client configuration, database TypeScript definitions, QR generator, Excel catalog importer, and auth context.
+- `.gitignore` & `README.md` — Git configuration and project overview.
 
 ---
 
@@ -52,13 +44,11 @@
 | Check Description | Target Location / Command | Result / Evidence | Status |
 | :--- | :--- | :--- | :--- |
 | **Supabase Cloud live verification** | Supabase Web Dashboard | All 12 tables and 9 products verified live via screenshot. | VERIFIED LIVE |
-| **QR payload generation check** | `web/src/services/qrGenerator.ts` | Formats `ANKUR_{PROD}_{SHADE}_{SIZE}` deterministically. | VERIFIED |
-| **Excel importer validation check** | `web/src/services/excelImporter.ts` | Validates MRP > 0, required fields, and duplicate detection. | VERIFIED |
-| **Web catalog page check** | `web/src/pages/CatalogManagement.tsx` | Search, filter, bulk modal, and single label print preview verified. | VERIFIED |
-| **Git working directory check** | `git status` in project root | Untracked Phase 7 files ready for staging and commit. | VERIFIED |
-| **Cross-file consistency check** | `PROJECT_STATUS.md` & `PROJECT_HANDOVER.md` | Phase status, active tasks, and next action match word-for-word. | VERIFIED CONSISTENT |
+| **Clean workspace verification** | `web/public/` & `branding/` | Removed redundant loose duplicates and obsolete mockup frames. | VERIFIED CLEAN |
+| **Documentation consistency check** | `docs/` suite | All 8 documentation files reconciled with Next.js 15 + Capacitor architecture. | VERIFIED CONSISTENT |
+| **Git working directory check** | `git status` in project root | Working tree cleaned and ready for staging. | VERIFIED |
 
 ---
 
 ## 4. One Precise Next Action
-**Stage, commit, and push Phase 7 catalog and QR code artifacts to GitHub, then proceed to Phase 8 (Inventory and Stock Dispatch: Factory dispatch scanning engine, retailer stock increment, and immutable dispatch audit ledger).**
+**Stage and commit the synchronized documentation and clean base to GitHub (`main`), then scaffold the production Next.js 15 application inside `web/` with luxury landing page, Google One-Tap authentication, and Store KYC onboarding.**

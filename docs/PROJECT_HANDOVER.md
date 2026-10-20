@@ -1,50 +1,50 @@
 # Ankur Paints — Project Handover Document
 
-**Document Version:** 7.0.0  
+**Document Version:** 8.1.0  
 **Created:** 2026-10-20  
-**Last Updated:** 2026-10-20  
-**Phases Completed:** Phase 1 (Requirements), Phase 2 (Architecture), Phase 3 (Git & Scaffolding), Phase 4 (UI/UX Design System), Phase 5 (Database Schema & Seed Data), Phase 6 (Authentication & Security), Phase 7 (Product & QR-Code System)  
-**Current Phase:** Phase 8 — Inventory and Stock Dispatch  
+**Last Updated:** 2026-10-21  
+**Phases Completed:** Phase 1 (Requirements), Phase 2 (Architecture), Phase 3 (Git & Scaffolding), Phase 4 (UI/UX Design System), Phase 5 (Database Schema & Seed Data), Phase 6 (Authentication & Security), Phase 7 (Product & QR-Code System), Strategic Pivot (`DEC-021`)  
+**Current Phase:** International-Grade Web Platform & Capacitor Play Store Export  
 **Target Audience:** Future AI assistants (ChatGPT / Antigravity), incoming software engineers, and stakeholders.
 
 ---
 
 ## 1. Project Purpose & Summary
-Ankur Paints is building a production-grade digital operational platform consisting of:
-1. An **Android mobile application** for authorized paint retailers to scan product QR codes, build customer order carts, enter customer details, enter selling prices ($\le$ printed MRP), validate stock, submit sales, view Flipkart-style animated target schemes, and track incentive earnings.
-2. A **Web-based Admin Dashboard** for company management to configure products and SKUs, import catalogs and MRP from company Excel sheets, configure dynamic slab-based incentive schemes, generate static QR codes, dispatch stock to retail partners, monitor live sales, oversee retailer accounts, audit incentive calculations, and view business analytics.
-3. A **Central Cloud Backend & Database** providing secure, transactional, and audit-compliant inventory and sales operations.
+Ankur Paints is building a production-grade digital operations platform consisting of:
+1. An **International-Grade Responsive Web Application** (`web/`) built with Next.js 15, Tailwind CSS, Framer Motion, and GSAP, providing high-converting marketing, interactive color visualizer, and retailer operations.
+2. An **Android Mobile Package** compiled directly from the web application via CapacitorJS / Google Trusted Web Activities (TWA) for Google Play Store distribution (`.apk` / `.aab`).
+3. A **Central Cloud Backend & Database** on Supabase PostgreSQL (12 tables live on cloud, RLS security, immutable audit ledgers, and atomic stored procedures).
 
 ---
 
 ## 2. Document Provenance & Verified Current State
-- **Phases 1 to 7 Status:** **COMPLETED & VERIFIED.**
-- **Current Active Phase:** **Phase 8 — Inventory and Stock Dispatch.**
+- **Architecture Status:** Single unified responsive web platform with Capacitor Play Store export (`DEC-021`).
 - **Workspace Location:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`
 - **GitHub Repository:** `https://github.com/WhisperingPetX/ankur-paints.git` (Tracked & Synced on `main`)
 - **Live Cloud Database:** Supabase project `wpiztkjuojirzsxvzqfv.supabase.co` is online with all 12 tables and official product seed data verified active.
-- **Product & QR Baseline:** Deterministic QR payload formatting (`ANKUR_{PROD}_{SHADE}_{SIZE}`), vector SVG label generation, bulk spreadsheet importer, and factory sticker sheet layouts authored in Phase 7.
-- **Authentication & Security Baseline:** Auth trigger, TypeScript DB types, Supabase client services, React Context Auth providers (`mobile/src/contexts/AuthContext.tsx` and `web/src/contexts/AuthContext.tsx`), and branded `LoginScreen.tsx` authored in Phase 6.
+- **Branding Assets:** Preserved in `web/public/branding/` including high-resolution master hero packaging, clean vector logo, 9-bucket lineup, and individual product packaging.
 
 ---
 
-## 3. Important File Paths
-- **Project Root Directory:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints`
-- **Catalog Management Page (Web):** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\web\src\pages\CatalogManagement.tsx`
-- **Excel Importer Engine (Web):** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\web\src\services\excelImporter.ts`
-- **QR Code & Label Generator (Web):** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\web\src\services\qrGenerator.ts`
-- **Printable Sticker Sheet (Web):** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\web\src\components\PrintableQRSheet.tsx`
-- **Mobile QR Lookup Service:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\mobile\src\services\catalogService.ts`
-- **Mobile Login Screen:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\mobile\src\screens\LoginScreen.tsx`
-- **Database Migrations:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\supabase\migrations/`
-- **Current Project Status:** `C:\Users\acer\.gemini\antigravity\scratch\ankur_paints\docs\PROJECT_STATUS.md`
+## 3. Master Documentation Manifest (All Files in `docs/` and Their Purpose)
+
+| Document Name | Path | Exact Purpose & Content |
+| :--- | :--- | :--- |
+| **`PROJECT_HANDOVER.md`** | `docs/PROJECT_HANDOVER.md` | Primary entry point for any incoming AI or engineer. Summarizes verified project state, repository paths, live database links, and strict instructions for continuity. |
+| **`PROJECT_STATUS.md`** | `docs/PROJECT_STATUS.md` | Real-time task tracker. Records completed milestones, verified commands/screenshots, current phase, and the single precise next action. |
+| **`DECISIONS_LOG.md`** | `docs/DECISIONS_LOG.md` | Immutable architectural record. Logs every major engineering choice (DEC-001 through DEC-021) with rationale and impact, preventing regression or re-debating closed topics. |
+| **`PROJECT_REQUIREMENTS.md`** | `docs/PROJECT_REQUIREMENTS.md` | Functional & business requirements baseline. Reconciles the Ankur Paints SOP, SKU definitions, static QR rules, price ceilings ($\text{Selling Price} \le \text{MRP}$), and zero negative stock rules. |
+| **`TECHNICAL_ARCHITECTURE.md`** | `docs/TECHNICAL_ARCHITECTURE.md` | Complete technical system design. Details system component diagrams, Supabase PostgreSQL ERD (12 tables), atomic SQL procedures, RLS policies, and technology matrices. |
+| **`DESIGN_SYSTEM.md`** | `docs/DESIGN_SYSTEM.md` | Visual design language specification. Calibrated directly from official Ankur Paints packaging (Cobalt Blue `#004B87`, Vermillion `#E8501E`, 5-color spectrum arc), glassmorphic layout, and ambient auroras. |
+| **`AI_CONTINUITY.md`** | `docs/AI_CONTINUITY.md` | Protocol guidelines for AI assistants. Specifies context boundary constraints, session-start verification sequences, and rules against guessing or hallucinating unverified code. |
+| **`OPEN_QUESTIONS.md`** | `docs/OPEN_QUESTIONS.md` | Registry of open operational policies and external dependencies (launch cutover dates, damage write-off accounting, offline policies) awaiting client confirmation. |
 
 ---
 
 ## 4. Current Phase and Exact Next Action
-- **Current Phase:** Phase 8 — Inventory and Stock Dispatch.
+- **Current Phase:** Building the modern Next.js 15 + Tailwind CSS web application with integrated Google One-Tap Sign-In, Store KYC, and QR scanner.
 - **Exact Next Action:**
-  > **Stage, commit, and push Phase 7 catalog and QR code artifacts to GitHub, then proceed to Phase 8 (Inventory and Stock Dispatch: Factory dispatch scanning engine, retailer stock increment, and immutable dispatch audit ledger).**
+  > **Implement production Next.js 15 pages and components inside `web/`, wire Supabase client services, and configure CapacitorJS for one-click Android APK export.**
 
 ---
 
