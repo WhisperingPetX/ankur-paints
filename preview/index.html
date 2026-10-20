@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ankur Paints — Luxury Retailer Platform</title>
+  <title>Ankur Paints — Official Retailer App</title>
   <style>
     :root {
       --ankur-blue: #004B87;
       --ankur-blue-dark: #002D54;
-      --ankur-blue-light: #0066B2;
       --paints-orange: #E8501E;
       --paints-orange-light: #FF6F3D;
-      --teal-accent: #008080;
-      --aqua-breeze: #26A69A;
-      --gold: #F59E0B;
+      --google-blue: #1D4ED8;
+      --success-green: #10B981;
+      --error-red: #EF4444;
       --bg: #F8FAFC;
       --card-bg: #FFFFFF;
-      --text-dark: #1E293B;
+      --text-dark: #0F172A;
       --text-secondary: #64748B;
       --border-color: #E2E8F0;
     }
@@ -42,11 +41,11 @@
     }
 
     /* -------------------------------------------------------------------------
-       TOP INTERACTIVE NAVIGATION & SCREEN SWITCHER BAR
+       TOP SCREEN SWITCHER BAR (For Easy Review)
        ------------------------------------------------------------------------- */
     .top-control-bar {
       width: 100%;
-      max-width: 1080px;
+      max-width: 960px;
       background: #001A33;
       padding: 10px 16px;
       border-radius: 14px;
@@ -67,7 +66,7 @@
       align-items: center;
       gap: 8px;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.5px;
     }
 
@@ -111,7 +110,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       IPHONE / SMARTPHONE FRAME CONTAINER
+       SMARTPHONE FRAME (iPhone Dimensions Matching Reference)
        ------------------------------------------------------------------------- */
     .phone-container {
       width: 100%;
@@ -135,12 +134,8 @@
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 0;
-      }
-      .top-control-bar {
-        display: none;
-      }
+      body { padding: 0; }
+      .top-control-bar { display: none; }
       .phone-container {
         height: 100vh;
         border-radius: 0;
@@ -148,7 +143,7 @@
       }
     }
 
-    /* Dynamic Island / iPhone Notch Header */
+    /* iPhone Notch & Status Bar */
     .phone-island {
       width: 115px;
       height: 28px;
@@ -162,7 +157,6 @@
       pointer-events: none;
     }
 
-    /* System Status Bar */
     .status-bar {
       height: 44px;
       display: flex;
@@ -176,15 +170,7 @@
       position: relative;
     }
 
-    .status-bar.dark-text {
-      color: #0F172A;
-    }
-
-    .status-bar.light-text {
-      color: #FFFFFF;
-    }
-
-    /* Base Screen Container */
+    /* Base Screen */
     .app-screen {
       flex: 1;
       display: none;
@@ -205,168 +191,166 @@
     }
 
     /* -------------------------------------------------------------------------
-       SCREEN 1: SPLASH SCREEN (Reference Screen 1)
+       1. SPLASH SCREEN (Exact Animation: 0.0s to 2.0s)
        ------------------------------------------------------------------------- */
     #screenSplash {
       background: #FFFFFF;
       align-items: center;
       justify-content: center;
-      text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
-    .splash-brush-wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60%;
-      object-fit: cover;
-      object-position: bottom left;
-      pointer-events: none;
-      opacity: 0.95;
-    }
-
-    .splash-center-content {
+    .splash-content {
       position: relative;
       z-index: 10;
-      padding: 24px;
-      animation: pulseIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: center;
+      padding: 20px;
+      animation: logoReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    @keyframes pulseIn {
+    @keyframes logoReveal {
       0% { opacity: 0; transform: scale(0.85); }
       100% { opacity: 1; transform: scale(1); }
     }
 
-    .splash-logo-card {
+    .splash-logo-box {
       background: #FFFFFF;
       padding: 16px 24px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 75, 135, 0.12);
       display: inline-block;
       margin-bottom: 12px;
-      cursor: pointer;
     }
 
-    .splash-logo-card img {
+    .splash-logo-box img {
       width: 220px;
       height: auto;
       display: block;
     }
 
-    .splash-tagline {
-      font-size: 17px;
+    .splash-tagline-text {
+      font-size: 18px;
       font-weight: 800;
       color: var(--ankur-blue);
       letter-spacing: 0.8px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
-    .splash-sub {
+    .splash-sub-text {
       font-size: 11px;
       color: var(--paints-orange);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       margin-top: 4px;
     }
 
-    .splash-enter-btn {
-      margin-top: 36px;
-      background: var(--ankur-blue);
-      color: #FFFFFF;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0, 75, 135, 0.3);
-      transition: all 0.2s ease;
-    }
-
-    .splash-enter-btn:hover {
-      background: #003662;
-      transform: translateY(-2px);
-    }
-
-    /* -------------------------------------------------------------------------
-       SCREEN 2: WELCOME / ONBOARDING (Reference Screen 2)
-       ------------------------------------------------------------------------- */
-    #screenOnboarding {
-      background: #FFFFFF;
-      padding: 10px 24px 30px 24px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .onboard-top-logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
-      cursor: pointer;
-    }
-
-    .onboard-top-logo img {
-      width: 140px;
-      height: auto;
-    }
-
-    .onboard-hero-card {
-      width: 100%;
-      height: 320px;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .onboard-hero-card img {
+    /* Paint Brush Sweep Artwork from User's Image */
+    .splash-brush-canvas {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
+      z-index: 2;
+      animation: paintSweepAnimation 1.6s ease-in-out forwards;
     }
 
-    .carousel-dots {
+    @keyframes paintSweepAnimation {
+      0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+      }
+      50% {
+        opacity: 0.7;
+        transform: translateY(10px) scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .splash-timer-badge {
+      position: absolute;
+      bottom: 24px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #94A3B8;
+      letter-spacing: 1px;
+      z-index: 20;
+    }
+
+    /* -------------------------------------------------------------------------
+       2. SIGN IN SCREEN (Exact Match from User Reference Image)
+       ------------------------------------------------------------------------- */
+    #screenSignIn {
+      background: #FFFFFF;
+      padding: 20px 24px;
+      position: relative;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      gap: 6px;
-      margin-bottom: 24px;
+      text-align: center;
     }
 
-    .dot {
-      width: 6px;
-      height: 6px;
-      background: #CBD5E1;
-      border-radius: 50%;
+    /* Corner Paint Stroke Accents */
+    .signin-corner-top {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 140px;
+      height: 120px;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0.85;
     }
 
-    .dot.active {
-      width: 22px;
-      background: var(--paints-orange);
-      border-radius: 999px;
+    .signin-corner-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 130px;
+      height: 110px;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0.85;
+      transform: rotate(180deg);
     }
 
-    .onboard-heading {
+    .signin-logo-wrap {
+      margin-bottom: 28px;
+      z-index: 10;
+    }
+
+    .signin-logo-wrap img {
+      width: 200px;
+      height: auto;
+    }
+
+    .signin-title-text {
       font-size: 26px;
       font-weight: 900;
       color: #0F172A;
-      line-height: 1.2;
       margin-bottom: 8px;
+      z-index: 10;
     }
 
-    .onboard-sub {
+    .signin-sub-text {
       font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 28px;
+      line-height: 1.45;
+      max-width: 280px;
+      margin-bottom: 32px;
+      z-index: 10;
     }
 
-    .btn-orange-pill {
+    .btn-google-pill {
       width: 100%;
-      background: linear-gradient(135deg, var(--paints-orange) 0%, #D43E0F 100%);
+      background: var(--google-blue);
       color: #FFFFFF;
       border: none;
       padding: 16px;
@@ -377,127 +361,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 6px 18px rgba(232, 80, 30, 0.35);
-      margin-bottom: 12px;
+      gap: 12px;
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.35);
+      margin-bottom: 18px;
+      z-index: 10;
       transition: all 0.2s ease;
     }
 
-    .btn-orange-pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(232, 80, 30, 0.45);
-    }
-
-    .btn-outline-pill {
-      width: 100%;
-      background: #FFFFFF;
-      border: 1.5px solid #CBD5E1;
-      color: #334155;
-      padding: 15px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .btn-outline-pill:hover {
-      border-color: var(--ankur-blue);
-      color: var(--ankur-blue);
-    }
-
-    /* -------------------------------------------------------------------------
-       SCREEN 3: SIGN IN & RETAILER KYC (Reference Screen 3)
-       ------------------------------------------------------------------------- */
-    #screenSignIn {
-      background: #FFFFFF;
-      padding: 20px 24px;
-      position: relative;
-    }
-
-    .signin-brush-flourish {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 130px;
-      height: 100px;
-      object-fit: cover;
-      pointer-events: none;
-      opacity: 0.85;
-    }
-
-    .signin-logo-wrap {
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-
-    .signin-logo-wrap img {
-      width: 160px;
-      height: auto;
-    }
-
-    .signin-title {
-      font-size: 22px;
-      font-weight: 900;
-      color: #0F172A;
-      margin-bottom: 6px;
-    }
-
-    .signin-sub {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    .country-selector {
-      border: 1.5px solid #CBD5E1;
-      border-radius: 12px;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: #1E293B;
-      margin-bottom: 16px;
-      background: #F8FAFC;
-    }
-
-    .btn-blue-pill {
-      width: 100%;
-      background: #1D4ED8;
-      color: #FFFFFF;
-      border: none;
-      padding: 15px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 6px 16px rgba(29, 78, 216, 0.3);
-      margin-bottom: 16px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-blue-pill:hover {
+    .btn-google-pill:hover {
       background: #1E40AF;
       transform: translateY(-2px);
     }
 
-    .or-divider {
+    .signin-or-divider {
+      width: 100%;
       text-align: center;
       position: relative;
-      margin: 14px 0;
+      margin: 12px 0 20px 0;
+      z-index: 10;
     }
 
-    .or-divider::before {
+    .signin-or-divider::before {
       content: '';
       position: absolute;
       left: 0;
@@ -507,24 +391,112 @@
       background: #E2E8F0;
     }
 
-    .or-divider span {
+    .signin-or-divider span {
       background: #FFFFFF;
       position: relative;
-      padding: 0 12px;
+      padding: 0 14px;
       font-size: 12px;
       color: #94A3B8;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    /* Retailer Store Registration Drawer */
-    .retailer-kyc-card {
-      display: none;
-      background: #F8FAFC;
+    .btn-phone-email-pill {
+      width: 100%;
+      background: #FFFFFF;
       border: 1.5px solid #CBD5E1;
-      border-radius: 16px;
-      padding: 18px;
-      margin-top: 14px;
-      animation: slideUp 0.3s ease;
+      color: #1E293B;
+      padding: 15px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+
+    .btn-phone-email-pill:hover {
+      border-color: var(--ankur-blue);
+      color: var(--ankur-blue);
+    }
+
+    .signin-legal-text {
+      font-size: 11px;
+      color: #94A3B8;
+      line-height: 1.5;
+      z-index: 10;
+    }
+
+    .signin-legal-text a {
+      color: var(--ankur-blue);
+      text-decoration: underline;
+    }
+
+    /* -------------------------------------------------------------------------
+       3. STORE KYC POP-UP MODAL (Appears Immediately After Login)
+       ------------------------------------------------------------------------- */
+    .kyc-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 26, 51, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .kyc-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 24px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .kyc-header-icon {
+      width: 52px;
+      height: 52px;
+      background: #EFF6FF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 12px auto;
+      border: 1px solid #DBEAFE;
+    }
+
+    .kyc-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--ankur-blue);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .kyc-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .field-group {
+      margin-bottom: 14px;
     }
 
     .field-label {
@@ -533,205 +505,172 @@
       color: var(--ankur-blue);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: block;
     }
 
     .field-input {
       width: 100%;
-      padding: 11px 14px;
-      border: 1px solid #CBD5E1;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
+      padding: 12px 14px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
       color: #0F172A;
-      margin-bottom: 12px;
       outline: none;
-      background: #FFFFFF;
+      background: #F8FAFC;
     }
 
     .field-input:focus {
       border-color: var(--paints-orange);
+      background: #FFFFFF;
+    }
+
+    .btn-orange-pill {
+      width: 100%;
+      background: linear-gradient(135deg, var(--paints-orange) 0%, #C43A0C 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(232, 80, 30, 0.4);
+      margin-top: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-orange-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 80, 30, 0.5);
     }
 
     /* -------------------------------------------------------------------------
-       SCREEN 4: HOME DASHBOARD (Reference Screen 4)
+       4. MAIN DASHBOARD: GREETING + QUICK SCAN + CATALOG
        ------------------------------------------------------------------------- */
-    #screenHome {
+    #screenDashboard {
       background: #F8FAFC;
       padding-bottom: 75px;
     }
 
-    .home-header {
+    .dash-top-bar {
       background: #FFFFFF;
-      padding: 12px 18px;
+      padding: 14px 18px;
+      border-bottom: 1px solid #E2E8F0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #F1F5F9;
     }
 
-    .home-user-greeting {
+    .dash-store-title {
       font-size: 17px;
       font-weight: 900;
       color: #0F172A;
     }
 
-    .home-user-sub {
+    .dash-store-gst {
       font-size: 11px;
       color: var(--text-secondary);
       font-weight: 600;
     }
 
-    .home-search-bar {
-      margin: 12px 16px;
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 999px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    .badge-gst-verified {
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
 
-    .home-search-bar input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 13px;
-      font-weight: 500;
-      color: #1E293B;
-    }
-
-    .home-hero-card {
-      margin: 0 16px 14px 16px;
-      background: linear-gradient(135deg, #004B87 0%, #002D54 60%, #C43A0C 100%);
+    /* Prominent Quick Scan & Sell Hero Card */
+    .quick-scan-hero-card {
+      margin: 14px 16px;
+      background: linear-gradient(135deg, var(--ankur-blue) 0%, #002D54 60%, #C43A0C 100%);
       border-radius: 20px;
       padding: 18px;
       color: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 75, 135, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .scan-hero-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 8px 24px rgba(0, 75, 135, 0.25);
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero-banner-title {
-      font-size: 18px;
+    .scan-hero-title {
+      font-size: 19px;
       font-weight: 900;
       line-height: 1.2;
-      margin-bottom: 6px;
     }
 
-    .hero-banner-sub {
-      font-size: 11px;
+    .scan-hero-sub {
+      font-size: 12px;
       color: #FEF08A;
-      margin-bottom: 12px;
       font-weight: 600;
     }
 
-    .hero-banner-btn {
+    .btn-hero-scan {
       background: #FFFFFF;
       color: var(--ankur-blue);
       border: none;
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 900;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
     }
 
-    .home-section-header {
+    .btn-hero-scan:hover {
+      background: #F1F5F9;
+      transform: translateY(-2px);
+    }
+
+    /* Catalog Section */
+    .dash-section-header {
       padding: 10px 16px 8px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .section-title {
+    .dash-section-title {
       font-size: 15px;
       font-weight: 900;
       color: #0F172A;
     }
 
-    .section-see-all {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ankur-blue);
-      cursor: pointer;
-    }
-
-    /* 4 Categories Row */
-    .home-categories-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      padding: 0 16px 14px 16px;
-    }
-
-    .cat-card-box {
-      background: #FFFFFF;
-      border-radius: 14px;
-      padding: 10px 6px;
-      text-align: center;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .cat-card-box:hover {
-      border-color: var(--paints-orange);
-      transform: translateY(-2px);
-    }
-
-    .cat-icon-circle {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #EFF6FF;
-      margin: 0 auto 6px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .cat-box-name {
-      font-size: 11px;
-      font-weight: 700;
-      color: #334155;
-    }
-
-    /* Popular Products 2x2 Grid */
-    .home-products-2x2 {
+    .dash-catalog-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       padding: 0 16px 16px 16px;
     }
 
-    .prod-grid-card {
+    .catalog-item-card {
       background: #FFFFFF;
       border-radius: 16px;
       padding: 12px;
       border: 1px solid #E2E8F0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      cursor: pointer;
-      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
-      transition: all 0.2s ease;
+      position: relative;
     }
 
-    .prod-grid-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
-
-    .prod-grid-img-wrap {
+    .catalog-img-wrap {
       width: 100%;
       height: 105px;
       display: flex;
@@ -740,353 +679,380 @@
       margin-bottom: 8px;
     }
 
-    .prod-grid-img-wrap img {
+    .catalog-img-wrap img {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.12));
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
     }
 
-    .prod-grid-name {
+    .catalog-item-name {
       font-size: 13px;
       font-weight: 800;
       color: #0F172A;
-      line-height: 1.2;
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
-    .prod-grid-cat {
+    .catalog-item-pack {
       font-size: 11px;
       color: var(--text-secondary);
       margin-bottom: 6px;
     }
 
-    .prod-grid-price-row {
+    .catalog-price-row {
       display: flex;
       align-items: baseline;
       gap: 6px;
-      margin-top: auto;
+      margin-bottom: 10px;
     }
 
-    .prod-grid-price {
+    .catalog-mrp {
       font-size: 14px;
       font-weight: 900;
       color: var(--ankur-blue);
     }
 
-    .prod-grid-mrp {
+    .catalog-stock-tag {
       font-size: 10px;
-      color: #94A3B8;
-      text-decoration: line-through;
-    }
-
-    /* Colour Palette Swatches Row */
-    .palette-swatches-row {
-      display: flex;
-      gap: 12px;
-      padding: 0 16px 16px 16px;
-      overflow-x: auto;
-    }
-
-    .swatch-circle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      border: 2px solid #FFFFFF;
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-
-    /* -------------------------------------------------------------------------
-       SCREEN 5: COLOUR STUDIO & RETAILER QR SCANNER (Reference Screen 5)
-       ------------------------------------------------------------------------- */
-    #screenStudio {
-      background: #FFFFFF;
-      padding-bottom: 75px;
-    }
-
-    .studio-header {
-      padding: 12px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #E2E8F0;
-    }
-
-    .studio-room-visualizer {
-      width: 100%;
-      height: 220px;
-      background: #0F172A;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .studio-room-visualizer img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .color-probe-target {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid #FFFFFF;
-      position: absolute;
-      top: 35%;
-      left: 60%;
-      box-shadow: 0 0 12px rgba(255,255,255,0.8);
-      animation: probePulse 2s infinite ease-in-out;
-    }
-
-    @keyframes probePulse {
-      0% { transform: scale(0.9); }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(0.9); }
-    }
-
-    .studio-tabs-row {
-      display: flex;
-      border-bottom: 1px solid #E2E8F0;
-      margin-bottom: 14px;
-    }
-
-    .studio-tab-item {
-      flex: 1;
-      text-align: center;
-      padding: 12px;
-      font-size: 13px;
       font-weight: 700;
-      color: var(--text-secondary);
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-    }
-
-    .studio-tab-item.active {
-      color: var(--ankur-blue);
-      border-bottom-color: var(--ankur-blue);
-    }
-
-    .shades-palette-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
-      padding: 0 18px 16px 18px;
-    }
-
-    .shade-bubble {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-    }
-
-    .selected-shade-card {
-      margin: 0 18px 16px 18px;
-      background: #F8FAFC;
-      border-radius: 14px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 1px solid #E2E8F0;
-    }
-
-    .finish-selector-row {
-      display: flex;
-      gap: 8px;
-      padding: 0 18px 20px 18px;
-    }
-
-    .finish-pill {
-      flex: 1;
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      border-radius: 999px;
-      padding: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #334155;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .finish-pill.active {
-      background: #004B87;
-      color: #FFFFFF;
-      border-color: #004B87;
-    }
-
-    /* -------------------------------------------------------------------------
-       SCREEN 6: PRODUCT DETAIL SCREEN (Reference Screen 6)
-       ------------------------------------------------------------------------- */
-    #screenDetail {
-      background: #FFFFFF;
-      padding-bottom: 90px;
-    }
-
-    .detail-top-nav {
-      padding: 12px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .detail-hero-box {
-      width: 100%;
-      height: 240px;
-      background: #F8FAFC;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .detail-backdrop-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.35;
-    }
-
-    .detail-bucket-hero {
-      height: 180px;
-      width: auto;
-      object-fit: contain;
-      z-index: 5;
-      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.25));
-    }
-
-    .detail-content-wrap {
-      padding: 0 20px;
-    }
-
-    .detail-title {
-      font-size: 24px;
-      font-weight: 900;
-      color: #0F172A;
-      line-height: 1.15;
-    }
-
-    .detail-subtitle {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--paints-orange);
+      color: #0284C7;
       margin-bottom: 8px;
     }
 
-    .detail-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      margin-bottom: 18px;
+    .btn-quick-sell {
+      background: #FFFFFF;
+      border: 1.5px solid var(--paints-orange);
+      color: var(--paints-orange);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      margin-top: auto;
+      transition: all 0.2s ease;
     }
 
-    /* 4 Feature Badges Grid */
-    .features-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
+    .btn-quick-sell:hover {
+      background: var(--paints-orange);
+      color: #FFFFFF;
     }
 
-    .feature-item-row {
+    /* -------------------------------------------------------------------------
+       5. QR SCAN & BILLING MODAL (Scan -> Product & MRP -> Enter Price -> Sell)
+       ------------------------------------------------------------------------- */
+    .billing-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 26, 51, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      display: none;
+      align-items: flex-end;
+    }
+
+    .billing-drawer {
+      background: #FFFFFF;
+      width: 100%;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: drawerSlideUp 0.3s ease;
+    }
+
+    @keyframes drawerSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .drawer-top-row {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      margin-bottom: 16px;
     }
 
-    .feature-icon-circle {
-      width: 36px;
-      height: 36px;
+    .drawer-close-btn {
+      background: #F1F5F9;
+      border: none;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: #EFF6FF;
-      color: var(--ankur-blue);
+      font-size: 15px;
+      font-weight: 900;
+      color: #64748B;
+      cursor: pointer;
+    }
+
+    .scanner-viewfinder {
+      width: 100%;
+      height: 150px;
+      background: #0F172A;
+      border-radius: 14px;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-      border: 1px solid #DBEAFE;
+      margin-bottom: 16px;
+      overflow: hidden;
     }
 
-    .feature-title {
+    .laser-line {
+      width: 100%;
+      height: 2px;
+      background: #EF4444;
+      position: absolute;
+      animation: laserSweep 1.8s infinite ease-in-out;
+      box-shadow: 0 0 8px #EF4444;
+    }
+
+    @keyframes laserSweep {
+      0% { top: 15%; opacity: 0.3; }
+      50% { top: 85%; opacity: 1; }
+      100% { top: 15%; opacity: 0.3; }
+    }
+
+    .scanned-product-card {
+      background: #F8FAFC;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .scanned-img-thumb {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .scanned-meta-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: #0F172A;
+    }
+
+    .scanned-meta-mrp {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .scanned-meta-mrp strong {
+      color: var(--ankur-blue);
       font-size: 13px;
-      font-weight: 800;
-      color: #1E293B;
     }
 
-    .feature-sub {
+    .selling-price-box {
+      margin-bottom: 16px;
+    }
+
+    .price-rule-warning {
+      display: none;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--error-red);
+      margin-top: 4px;
+    }
+
+    /* -------------------------------------------------------------------------
+       6. BIG GREEN TICK ANIMATION MODAL (✓ Sale Successful!)
+       ------------------------------------------------------------------------- */
+    .green-tick-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 1500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .green-tick-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 30px 24px;
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+      animation: popBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popBounce {
+      0% { opacity: 0; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .green-circle-icon {
+      width: 80px;
+      height: 80px;
+      background: #10B981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+      animation: pulseGreen 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(0.95); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(0.95); }
+    }
+
+    .green-tick-svg {
+      width: 44px;
+      height: 44px;
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: drawCheck 0.6s ease forwards 0.2s;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .tick-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #065F46;
+      margin-bottom: 6px;
+    }
+
+    .tick-sub {
+      font-size: 13px;
+      color: #047857;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .tick-receipt-details {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 12px;
+      color: #14532D;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    /* -------------------------------------------------------------------------
+       7. SALES HISTORY SCREEN ("Bikri Ka Hisaab")
+       ------------------------------------------------------------------------- */
+    #screenHistory {
+      background: #F8FAFC;
+      padding-bottom: 75px;
+    }
+
+    .history-header {
+      background: #FFFFFF;
+      padding: 14px 18px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .history-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #0F172A;
+    }
+
+    .history-sub {
       font-size: 11px;
       color: var(--text-secondary);
     }
 
-    .pack-size-selector {
-      border: 1.5px solid #CBD5E1;
-      border-radius: 12px;
-      padding: 12px 16px;
+    .history-summary-box {
+      margin: 14px 16px;
+      background: linear-gradient(135deg, #004B87 0%, #002D54 100%);
+      border-radius: 18px;
+      padding: 18px;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 8px 20px rgba(0, 75, 135, 0.25);
+    }
+
+    .summary-stat-label {
+      font-size: 11px;
+      color: #93C5FD;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .summary-stat-value {
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    .history-list-wrap {
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .history-card-item {
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: #0F172A;
-      margin-bottom: 20px;
-      background: #F8FAFC;
     }
 
-    .retailer-mrp-guarantee-box {
-      background: #ECFDF5;
-      border: 1px solid #A7F3D0;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-    }
-
-    /* Detail Bottom Action Bar */
-    .detail-bottom-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 75px;
-      background: #FFFFFF;
-      border-top: 1px solid #E2E8F0;
+    .history-item-left {
       display: flex;
       align-items: center;
-      padding: 0 16px;
       gap: 12px;
-      z-index: 100;
     }
 
-    /* -------------------------------------------------------------------------
-       BOTTOM SYSTEM NAVIGATION BAR (5 Tabs)
-       ------------------------------------------------------------------------- */
+    .history-icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ECFDF5;
+      color: #10B981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border: 1px solid #A7F3D0;
+    }
+
+    /* Bottom System Tabs */
     .app-bottom-nav {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 64px;
+      height: 62px;
       background: #FFFFFF;
       border-top: 1px solid #E2E8F0;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      z-index: 80;
+      z-index: 100;
     }
 
     .nav-tab-btn {
@@ -1111,66 +1077,25 @@
     .nav-tab-icon {
       font-size: 18px;
     }
-
-    /* -------------------------------------------------------------------------
-       ADMIN HQ MODAL & DISPATCH CONSOLE
-       ------------------------------------------------------------------------- */
-    .admin-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 26, 51, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .admin-card {
-      background: #FFFFFF;
-      border-radius: 20px;
-      padding: 24px;
-      width: 100%;
-      max-width: 360px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      position: relative;
-    }
-
-    .admin-close-btn {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: #F1F5F9;
-      border: none;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      font-size: 14px;
-      font-weight: bold;
-      color: #64748B;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Top Controller Bar with Direct Screen Jump & Mode Switcher -->
+  <!-- Top Controller Bar for Easy Testing -->
   <div class="top-control-bar">
     <div class="top-brand-label">
       <span>🎨</span>
-      <span>ANKUR PAINTS DESIGN SYSTEM</span>
+      <span>ANKUR PAINTS RETAILER PLATFORM</span>
     </div>
 
-    <!-- Screen Jumpers Matching User Reference -->
+    <!-- Quick Jump to Any Phase -->
     <div class="screen-jump-group">
-      <button class="screen-jump-btn active" id="jumpBtnSplash" onclick="goToScreen('screenSplash')">1. Splash</button>
-      <button class="screen-jump-btn" id="jumpBtnOnboard" onclick="goToScreen('screenOnboarding')">2. Welcome</button>
-      <button class="screen-jump-btn" id="jumpBtnSignIn" onclick="goToScreen('screenSignIn')">3. Sign In</button>
-      <button class="screen-jump-btn" id="jumpBtnHome" onclick="goToScreen('screenHome')">4. Home</button>
-      <button class="screen-jump-btn" id="jumpBtnStudio" onclick="goToScreen('screenStudio')">5. Studio & Scan</button>
-      <button class="screen-jump-btn" id="jumpBtnDetail" onclick="goToScreen('screenDetail')">6. Product Detail</button>
-      <button class="screen-jump-btn" style="background: #002D54; border-color: #38BDF8;" onclick="openAdminModal()">🛡️ Admin HQ</button>
+      <button class="screen-jump-btn active" id="jumpSplash" onclick="goToScreen('screenSplash')">1. Splash Animation</button>
+      <button class="screen-jump-btn" id="jumpSignIn" onclick="goToScreen('screenSignIn')">2. Sign In</button>
+      <button class="screen-jump-btn" id="jumpKyc" onclick="openKycModal()">3. KYC Pop-up</button>
+      <button class="screen-jump-btn" id="jumpDash" onclick="goToScreen('screenDashboard')">4. Dashboard & Catalog</button>
+      <button class="screen-jump-btn" id="jumpScan" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">5. Scan & Sell</button>
+      <button class="screen-jump-btn" id="jumpHistory" onclick="goToScreen('screenHistory')">6. Sales History</button>
     </div>
 
     <button class="view-mode-toggle" id="btnModeToggle" onclick="toggleViewMode()">📱 Phone Frame</button>
@@ -1181,8 +1106,8 @@
     <!-- Dynamic Island -->
     <div class="phone-island"></div>
 
-    <!-- System Status Bar -->
-    <div class="status-bar" id="statusBar">
+    <!-- Status Bar -->
+    <div class="status-bar">
       <span>9:41</span>
       <div style="display: flex; gap: 6px; align-items: center;">
         <span>5G</span>
@@ -1191,84 +1116,43 @@
     </div>
 
     <!-- =======================================================================
-         1. SPLASH SCREEN (Reference Screen 1)
+         PHASE 1: SPLASH SCREEN (Exact Animation: 0.0s to 2.0s)
          ======================================================================= -->
     <div class="app-screen active" id="screenSplash">
-      <div class="splash-center-content">
-        <div class="splash-logo-card" ondblclick="openAdminModal()" title="Double click for Admin">
-          <img src="ankur_logo_clean.png" alt="Ankur Paints Logo">
+      <!-- Background paint sweep artwork from uploaded image -->
+      <img src="splash_screen_art.png" alt="Splash Paint Artwork" class="splash-brush-canvas">
+
+      <div class="splash-content">
+        <div class="splash-logo-box">
+          <img src="ankur_logo_clean.png" alt="Ankur Paints">
         </div>
-        <div class="splash-tagline">Colour Your World</div>
-        <div class="splash-sub">Colors of Trust • ISO 9001:2015</div>
-
-        <button class="splash-enter-btn" onclick="goToScreen('screenOnboarding')">
-          Enter Experience ➔
-        </button>
+        <div class="splash-tagline-text">Colour Your World</div>
+        <div class="splash-sub-text">Colors of Trust • ISO 9001:2015</div>
       </div>
 
-      <!-- Rainbow Brush Wave from User Reference -->
-      <img src="rainbow_wave.png" alt="Rainbow Brush" class="splash-brush-wave">
+      <div class="splash-timer-badge" id="splashTimerBadge">
+        Opening Sign-In (2.0s)...
+      </div>
     </div>
 
     <!-- =======================================================================
-         2. WELCOME / ONBOARDING SCREEN (Reference Screen 2)
-         ======================================================================= -->
-    <div class="app-screen" id="screenOnboarding">
-      <div class="onboard-top-logo" ondblclick="openAdminModal()">
-        <img src="ankur_logo_clean.png" alt="Ankur Paints Logo">
-      </div>
-
-      <!-- Luxury Living Room Hero Photo -->
-      <div class="onboard-hero-card">
-        <img src="living_room_hero.png" alt="Luxury Living Room">
-      </div>
-
-      <!-- Carousel Pagination Indicator -->
-      <div class="carousel-dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-
-      <h1 class="onboard-heading">Bring Your Vision to Life</h1>
-      <p class="onboard-sub">Beautiful walls. Healthier spaces. A brighter tomorrow.</p>
-
-      <button class="btn-orange-pill" onclick="goToScreen('screenSignIn')">
-        Get Started ➔
-      </button>
-
-      <button class="btn-outline-pill" onclick="goToScreen('screenHome')">
-        Explore Colours & Products
-      </button>
-    </div>
-
-    <!-- =======================================================================
-         3. SIGN IN & RETAILER KYC SCREEN (Reference Screen 3)
+         PHASE 1 & 2: SIGN IN SCREEN (Welcome Back + Google Login)
          ======================================================================= -->
     <div class="app-screen" id="screenSignIn">
-      <!-- Brush flourish top right -->
-      <img src="rainbow_wave.png" alt="Flourish" class="signin-brush-flourish">
+      <!-- Corner brush flourishes from reference image -->
+      <img src="rainbow_wave.png" alt="Corner Accent Top" class="signin-corner-top">
+      <img src="rainbow_wave.png" alt="Corner Accent Bottom" class="signin-corner-bottom">
 
-      <div class="signin-logo-wrap" ondblclick="openAdminModal()" title="Double click for Admin">
+      <div class="signin-logo-wrap">
         <img src="ankur_logo_clean.png" alt="Ankur Paints">
       </div>
 
-      <h2 class="signin-title">Welcome to Ankur Paints</h2>
-      <p class="signin-sub">Your one-stop destination for paints, colours, retailer stock and schemes.</p>
+      <h1 class="signin-title-text">Welcome Back</h1>
+      <p class="signin-sub-text">Sign in to explore beautiful colours, products and more.</p>
 
-      <!-- Region Selector -->
-      <div class="country-selector">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span>🇮🇳</span>
-          <span>India (+91)</span>
-        </div>
-        <span style="color: #94A3B8;">▼</span>
-      </div>
-
-      <!-- Google Sign In Button -->
-      <button class="btn-blue-pill" onclick="handleGoogleSignIn()">
-        <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24">
+      <!-- Google Sign In Button (Matching Image) -->
+      <button class="btn-google-pill" onclick="handleGoogleSignIn()">
+        <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24">
           <path fill="#FFFFFF" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
           <path fill="#FFFFFF" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
           <path fill="#FFFFFF" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
@@ -1277,433 +1161,404 @@
         Continue with Google
       </button>
 
-      <div class="or-divider">
-        <span>or</span>
+      <div class="signin-or-divider">
+        <span>OR</span>
       </div>
 
-      <button class="btn-outline-pill" onclick="toggleKycForm()">
-        ✉️ Register / Sign in with Store Details
+      <!-- Phone / Email Sign In Button -->
+      <button class="btn-phone-email-pill" onclick="handleGoogleSignIn()">
+        <span style="font-size: 16px;">📱</span>
+        Sign in with Phone / Email
       </button>
 
-      <!-- Retailer Store Registration Drawer -->
-      <div class="retailer-kyc-card" id="retailerKycDrawer">
-        <div style="font-size: 13px; font-weight: 800; color: #0F172A; margin-bottom: 10px;">
-          🏪 Retailer Store Profile
-        </div>
-
-        <label class="field-label">Store / Firm Name *</label>
-        <input type="text" class="field-input" id="inpStoreName" value="Shree Ganesh Paints & Hardware">
-
-        <label class="field-label">GSTIN (15 Digits) *</label>
-        <input type="text" class="field-input" id="inpGstin" value="20AAACG1234F1Z8">
-
-        <label class="field-label">Mobile Number *</label>
-        <input type="tel" class="field-input" id="inpMobile" value="+91 98765 43210">
-
-        <button class="btn-orange-pill" onclick="submitRetailerProfile()">
-          Enter Retailer Dashboard ➔
-        </button>
-      </div>
-
-      <div style="text-align: center; font-size: 11px; color: #94A3B8; margin-top: 24px;">
-        By continuing, you agree to our <u>Terms of Service</u> and <u>Privacy Policy</u>.<br>
-        <span style="color: #64748B; font-weight: 700;">Factory Staff? Double-click Ankur Paints logo for Admin HQ.</span>
+      <div class="signin-legal-text">
+        By continuing, you agree to our<br>
+        <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.
       </div>
     </div>
 
     <!-- =======================================================================
-         4. HOME DASHBOARD (Reference Screen 4)
+         PHASE 2: STORE KYC POP-UP MODAL (Appears on Dashboard)
          ======================================================================= -->
-    <div class="app-screen" id="screenHome">
-      <!-- Header -->
-      <div class="home-header">
+    <div class="kyc-modal-overlay" id="kycModal">
+      <div class="kyc-card">
+        <div class="kyc-header-icon">🏪</div>
+        <h3 class="kyc-title">Register Your Store</h3>
+        <p class="kyc-sub">Dukan ka naam, GSTIN aur mobile number confirm karein:</p>
+
+        <div class="field-group">
+          <label class="field-label">Store / Shop Name *</label>
+          <input type="text" class="field-input" id="inpStoreName" value="Shree Ganesh Paints & Hardware">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">GSTIN (15 Digits) *</label>
+          <input type="text" class="field-input" id="inpGstin" value="20AAACG1234F1Z8">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Mobile Number *</label>
+          <input type="tel" class="field-input" id="inpMobile" value="+91 98765 43210">
+        </div>
+
+        <button class="btn-orange-pill" onclick="saveStoreKyc()">
+          Save & Enter Dashboard ➔
+        </button>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         PHASE 3: DASHBOARD & OFFICIAL PRODUCT CATALOG
+         ======================================================================= -->
+    <div class="app-screen" id="screenDashboard">
+      <!-- Top Bar Greeting -->
+      <div class="dash-top-bar">
         <div>
-          <div class="home-user-greeting" id="lblHomeGreeting">Hi, Ramesh</div>
-          <div class="home-user-sub" id="lblHomeStoreSub">Shree Ganesh Paints, Ranchi • Gold Partner</div>
+          <div class="dash-store-title" id="lblGreetingStore">Namaste, Shree Ganesh Paints! 🙏</div>
+          <div class="dash-store-gst" id="lblGstStore">GSTIN: 20AAACG1234F1Z8 • Ranchi</div>
         </div>
-        <div style="display: flex; gap: 12px; align-items: center;">
-          <button style="background: none; border: none; font-size: 20px; cursor: pointer;" onclick="openAdminModal()">🛡️</button>
-          <button style="background: none; border: none; font-size: 20px; cursor: pointer;" onclick="alert('Notification: October Target Cashback active!')">🔔</button>
-        </div>
+        <span class="badge-gst-verified">GST Verified ✓</span>
       </div>
 
-      <!-- Search Bar -->
-      <div class="home-search-bar">
-        <span style="color: #94A3B8;">🔍</span>
-        <input type="text" placeholder="Search paints, shades, products...">
-        <span style="color: #94A3B8; cursor: pointer;" onclick="goToScreen('screenStudio')">📷</span>
+      <!-- Prominent Quick QR Scan & Sell Hero Bar -->
+      <div class="quick-scan-hero-card">
+        <div class="scan-hero-content">
+          <div>
+            <div class="scan-hero-title">Instant QR Billing</div>
+            <div class="scan-hero-sub">Dabbe ka barcode scan karein aur turant bechein</div>
+          </div>
+          <div style="font-size: 38px;">📷</div>
+        </div>
+        <button class="btn-hero-scan" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
+          <span>⚡ Tap to Scan Paint Bucket</span>
+        </button>
       </div>
 
-      <!-- Hero Banner Card -->
-      <div class="home-hero-card">
-        <div style="max-width: 65%;">
-          <div class="hero-banner-title">Find Your Perfect Shade</div>
-          <div class="hero-banner-sub">October Target: ₹75,000 / ₹1,00,000 (Gold 10% Slab)</div>
-          <button class="hero-banner-btn" onclick="goToScreen('screenStudio')">
-            Explore Now ➔
+      <!-- Catalog Header -->
+      <div class="dash-section-header">
+        <span class="dash-section-title">Official Product Catalog (8 Products)</span>
+        <span style="font-size: 11px; color: var(--ankur-blue); font-weight: 700;">Swipe & Sell</span>
+      </div>
+
+      <!-- 8 Core Products Grid -->
+      <div class="dash-catalog-grid">
+
+        <!-- 1. Epic Coat -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_1.png" alt="Epic Coat">
+          </div>
+          <div class="catalog-item-name">Epic Coat Luxury Emulsion</div>
+          <div class="catalog-item-pack">Exterior • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹9,850</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 12 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
+            ⚡ Scan & Sell
           </button>
         </div>
-        <div style="font-size: 54px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));">
-          🛋️
+
+        <!-- 2. Rang Ritu -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_2.png" alt="Rang Ritu">
+          </div>
+          <div class="catalog-item-name">Rang Ritu 100% Acrylic</div>
+          <div class="catalog-item-pack">Exterior • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹6,400</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 18 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Rang Ritu 20L', 6400, 6150, 'bucket_2.png')">
+            ⚡ Scan & Sell
+          </button>
         </div>
+
+        <!-- 3. Gleam Coat -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_3.png" alt="Gleam Coat">
+          </div>
+          <div class="catalog-item-name">Gleam Coat Luxury Interior</div>
+          <div class="catalog-item-pack">Interior • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹8,900</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 8 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Gleam Coat 20L', 8900, 8600, 'bucket_3.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
+        <!-- 4. Rose Gold -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_4.png" alt="Rose Gold">
+          </div>
+          <div class="catalog-item-name">Rose Gold Silk Interior</div>
+          <div class="catalog-item-pack">Interior • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹7,200</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 15 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Rose Gold 20L', 7200, 6900, 'bucket_4.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
+        <!-- 5. Damp Proof -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_5.png" alt="Damp Proof">
+          </div>
+          <div class="catalog-item-name">Damp Proof Waterproofing</div>
+          <div class="catalog-item-pack">Waterproofing • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹8,200</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 22 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Damp Proof 20L', 8200, 7850, 'bucket_5.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
+        <!-- 6. Wall Putty -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_7.png" alt="Wall Putty">
+          </div>
+          <div class="catalog-item-name">Polymer Modified Wall Putty</div>
+          <div class="catalog-item-pack">Base Coat • 40kg</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹1,150</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 50 Bags in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Wall Putty 40kg', 1150, 1080, 'bucket_7.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
+        <!-- 7. Primer -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_8.png" alt="Wall Primer">
+          </div>
+          <div class="catalog-item-name">Acrylic Wall Primer</div>
+          <div class="catalog-item-pack">Undercoat • 20L</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹3,800</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 14 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Wall Primer 20L', 3800, 3600, 'bucket_8.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
+        <!-- 8. Distemper -->
+        <div class="catalog-item-card">
+          <div class="catalog-img-wrap">
+            <img src="bucket_6.png" alt="Distemper">
+          </div>
+          <div class="catalog-item-name">Acrylic Distemper Smooth</div>
+          <div class="catalog-item-pack">Economy • 20kg</div>
+          <div class="catalog-price-row">
+            <span class="catalog-mrp">MRP ₹1,650</span>
+          </div>
+          <div class="catalog-stock-tag">✓ 40 Buckets in Stock</div>
+          <button class="btn-quick-sell" onclick="openBillingModal('Distemper 20kg', 1650, 1550, 'bucket_6.png')">
+            ⚡ Scan & Sell
+          </button>
+        </div>
+
       </div>
 
-      <!-- Categories Section -->
-      <div class="home-section-header">
-        <div class="section-title">Categories</div>
-        <div class="section-see-all" onclick="alert('All Categories: Exterior, Interior, Waterproofing, Primers, Putty, Distemper')">See All &gt;</div>
-      </div>
-
-      <div class="home-categories-grid">
-        <div class="cat-card-box" onclick="filterHomeCategory('Interior')">
-          <div class="cat-icon-circle">🏠</div>
-          <div class="cat-box-name">Interior</div>
-        </div>
-        <div class="cat-card-box" onclick="filterHomeCategory('Exterior')">
-          <div class="cat-icon-circle">🏢</div>
-          <div class="cat-box-name">Exterior</div>
-        </div>
-        <div class="cat-card-box" onclick="filterHomeCategory('Waterproofing')">
-          <div class="cat-icon-circle">💧</div>
-          <div class="cat-box-name">Waterproofing</div>
-        </div>
-        <div class="cat-card-box" onclick="filterHomeCategory('Primers')">
-          <div class="cat-icon-circle">🖌️</div>
-          <div class="cat-box-name">Primers</div>
-        </div>
-      </div>
-
-      <!-- Our Popular Products (2x2 Grid) -->
-      <div class="home-section-header">
-        <div class="section-title">Our Popular Products</div>
-        <div class="section-see-all" onclick="goToScreen('screenDetail')">See All &gt;</div>
-      </div>
-
-      <div class="home-products-2x2">
-        <!-- 1. EPIC Coat -->
-        <div class="prod-grid-card" onclick="goToScreen('screenDetail')">
-          <div class="prod-grid-img-wrap">
-            <img src="bucket_1.png" alt="EPIC Coat">
-          </div>
-          <div class="prod-grid-name">EPIC Coat</div>
-          <div class="prod-grid-cat">Exterior Emulsion</div>
-          <div class="prod-grid-price-row">
-            <span class="prod-grid-price">₹9,500</span>
-            <span class="prod-grid-mrp">₹9,850</span>
-          </div>
-        </div>
-
-        <!-- 2. RANG Ritu -->
-        <div class="prod-grid-card" onclick="goToScreen('screenDetail')">
-          <div class="prod-grid-img-wrap">
-            <img src="bucket_2.png" alt="RANG Ritu">
-          </div>
-          <div class="prod-grid-name">RANG Ritu</div>
-          <div class="prod-grid-cat">Premium Emulsion</div>
-          <div class="prod-grid-price-row">
-            <span class="prod-grid-price">₹6,150</span>
-            <span class="prod-grid-mrp">₹6,400</span>
-          </div>
-        </div>
-
-        <!-- 3. ROSE Gold -->
-        <div class="prod-grid-card" onclick="goToScreen('screenDetail')">
-          <div class="prod-grid-img-wrap">
-            <img src="bucket_4.png" alt="ROSE Gold">
-          </div>
-          <div class="prod-grid-name">ROSE Gold</div>
-          <div class="prod-grid-cat">Luxury Emulsion</div>
-          <div class="prod-grid-price-row">
-            <span class="prod-grid-price">₹6,900</span>
-            <span class="prod-grid-mrp">₹7,200</span>
-          </div>
-        </div>
-
-        <!-- 4. GLEAM Coat -->
-        <div class="prod-grid-card" onclick="goToScreen('screenDetail')">
-          <div class="prod-grid-img-wrap">
-            <img src="bucket_3.png" alt="GLEAM Coat">
-          </div>
-          <div class="prod-grid-name">GLEAM Coat</div>
-          <div class="prod-grid-cat">Interior Emulsion</div>
-          <div class="prod-grid-price-row">
-            <span class="prod-grid-price">₹8,600</span>
-            <span class="prod-grid-mrp">₹8,900</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Colour Palette Section -->
-      <div class="home-section-header">
-        <div class="section-title">Colour Palette</div>
-        <div class="section-see-all" onclick="goToScreen('screenStudio')">See All &gt;</div>
-      </div>
-
-      <div class="palette-swatches-row">
-        <div class="swatch-circle" style="background: #004B87;" title="Ankur Cobalt Blue" onclick="selectPaletteColor('#004B87', 'Cobalt Blue AP-101')"></div>
-        <div class="swatch-circle" style="background: #008080;" title="Teal Green" onclick="selectPaletteColor('#008080', 'Teal Green AP-204')"></div>
-        <div class="swatch-circle" style="background: #26A69A;" title="Aqua Breeze" onclick="selectPaletteColor('#26A69A', 'Aqua Breeze AP-3127')"></div>
-        <div class="swatch-circle" style="background: #FF7043;" title="Coral Glow" onclick="selectPaletteColor('#FF7043', 'Coral Glow AP-412')"></div>
-        <div class="swatch-circle" style="background: #FFA726;" title="Sunlit Amber" onclick="selectPaletteColor('#FFA726', 'Sunlit Amber AP-502')"></div>
-        <div class="swatch-circle" style="background: #FFE082;" title="Warm Silk Sand" onclick="selectPaletteColor('#FFE082', 'Silk Sand AP-610')"></div>
-      </div>
-
-      <!-- Bottom Nav Bar -->
+      <!-- Bottom Navigation -->
       <div class="app-bottom-nav">
-        <button class="nav-tab-btn active" onclick="goToScreen('screenHome')">
+        <button class="nav-tab-btn active" onclick="goToScreen('screenDashboard')">
           <span class="nav-tab-icon">🏠</span>
-          <span>Home</span>
+          <span>Catalog</span>
         </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenDetail')">
-          <span class="nav-tab-icon">📦</span>
-          <span>Products</span>
+        <button class="nav-tab-btn" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
+          <span class="nav-tab-icon">📷</span>
+          <span>Scan & Sell</span>
         </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenStudio')">
-          <span class="nav-tab-icon">🎨</span>
-          <span>Colour Studio</span>
+        <button class="nav-tab-btn" onclick="goToScreen('screenHistory')">
+          <span class="nav-tab-icon">📊</span>
+          <span>Sales History</span>
         </button>
-        <button class="nav-tab-btn" onclick="showTargetSchemeAlert()">
-          <span class="nav-tab-icon">📈</span>
-          <span>Targets</span>
-        </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenSignIn')">
-          <span class="nav-tab-icon">👤</span>
-          <span>Profile</span>
+        <button class="nav-tab-btn" onclick="openKycModal()">
+          <span class="nav-tab-icon">⚙️</span>
+          <span>Store KYC</span>
         </button>
       </div>
     </div>
 
     <!-- =======================================================================
-         5. COLOUR STUDIO & RETAILER SCANNER (Reference Screen 5)
+         PHASE 4: QR SCAN & BILLING MODAL (Scan -> Product & MRP -> Rate -> Sell)
          ======================================================================= -->
-    <div class="app-screen" id="screenStudio">
-      <div class="studio-header">
-        <button style="background: none; border: none; font-size: 18px; cursor: pointer;" onclick="goToScreen('screenHome')">←</button>
-        <div style="font-size: 16px; font-weight: 800; color: #0F172A;">Colour Studio & Scan</div>
-        <div style="display: flex; gap: 10px;">
-          <span>♡</span>
-          <span>↗</span>
+    <div class="billing-modal-overlay" id="billingModal">
+      <div class="billing-drawer">
+        <div class="drawer-top-row">
+          <h3 style="font-size: 17px; font-weight: 900; color: var(--ankur-blue);">📷 Barcode / QR Billing</h3>
+          <button class="drawer-close-btn" onclick="closeBillingModal()">✕</button>
         </div>
-      </div>
 
-      <!-- Room Visualizer Viewport -->
-      <div class="studio-room-visualizer">
-        <img src="living_room_hero.png" alt="Room Visualizer" id="studioRoomVisualizer">
-        <div class="color-probe-target"></div>
-      </div>
-
-      <!-- Tabs: Try on wall vs Scan Bucket -->
-      <div class="studio-tabs-row">
-        <div class="studio-tab-item active" id="tabTryWall" onclick="switchStudioTab('wall')">Try on Your Wall</div>
-        <div class="studio-tab-item" id="tabScanBucket" onclick="switchStudioTab('scan')">⚡ Scan Paint SKU</div>
-      </div>
-
-      <div style="padding: 0 18px 8px 18px; font-size: 14px; font-weight: 800; color: #0F172A;">
-        Choose a Shade
-      </div>
-
-      <!-- Swatches Grid -->
-      <div class="shades-palette-grid">
-        <div class="shade-bubble" style="background: #26A69A;" onclick="selectPaletteColor('#26A69A', 'Aqua Breeze AP-3127')">✓</div>
-        <div class="shade-bubble" style="background: #004B87;" onclick="selectPaletteColor('#004B87', 'Cobalt Royal AP-102')"></div>
-        <div class="shade-bubble" style="background: #334155;" onclick="selectPaletteColor('#334155', 'Midnight Slate AP-201')"></div>
-        <div class="shade-bubble" style="background: #64748B;" onclick="selectPaletteColor('#64748B', 'Steel Grey AP-404')"></div>
-        <div class="shade-bubble" style="background: #CBD5E1;" onclick="selectPaletteColor('#CBD5E1', 'Morning Mist AP-105')"></div>
-        <div class="shade-bubble" style="background: #E8501E;" onclick="selectPaletteColor('#E8501E', 'Vermillion Orange AP-901')"></div>
-        <div class="shade-bubble" style="background: #B91C1C;" onclick="selectPaletteColor('#B91C1C', 'Crimson Velvet AP-802')"></div>
-      </div>
-
-      <!-- Selected Shade Card -->
-      <div class="selected-shade-card">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div id="swatchPreviewCircle" style="width: 32px; height: 32px; border-radius: 50%; background: #26A69A;"></div>
-          <div>
-            <div id="lblSelectedShadeName" style="font-size: 14px; font-weight: 800; color: #0F172A;">Aqua Breeze</div>
-            <div id="lblSelectedShadeCode" style="font-size: 11px; color: var(--text-secondary);">AP-3127</div>
+        <!-- Camera Viewfinder -->
+        <div class="scanner-viewfinder">
+          <div class="laser-line"></div>
+          <div style="font-size: 36px; z-index: 5;">📦</div>
+          <div style="position: absolute; bottom: 8px; font-size: 11px; color: #94A3B8; font-weight: 600;">
+            Static SKU QR code aligned ✓
           </div>
         </div>
-        <span>♡</span>
-      </div>
 
-      <div style="padding: 0 18px 8px 18px; font-size: 14px; font-weight: 800; color: #0F172A;">
-        Finish
-      </div>
+        <!-- Scanned Product Card -->
+        <div class="scanned-product-card">
+          <img src="bucket_1.png" alt="Scanned" class="scanned-img-thumb" id="billProdImg">
+          <div>
+            <div class="scanned-meta-title" id="billProdName">Epic Coat Luxury Exterior Emulsion (20L)</div>
+            <div class="scanned-meta-mrp">Printed MRP: <strong id="billProdMrp">₹9,850</strong></div>
+            <div style="font-size: 11px; color: #0284C7; font-weight: 700; margin-top: 2px;">
+              Shelf Stock Available: <span id="billProdStock">12 Buckets</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="finish-selector-row">
-        <div class="finish-pill active" onclick="setFinish(this, 'Matt')">Matt</div>
-        <div class="finish-pill" onclick="setFinish(this, 'Silk')">Silk</div>
-        <div class="finish-pill" onclick="setFinish(this, 'Satin')">Satin</div>
-        <div class="finish-pill" onclick="setFinish(this, 'Gloss')">Gloss</div>
-      </div>
+        <!-- Retailer Price Input -->
+        <div class="selling-price-box">
+          <label class="field-label">Retailer Selling Price (₹) *</label>
+          <input type="number" class="field-input" id="inpSellPrice" value="9500" oninput="validatePriceCeiling()">
+          <div class="price-rule-warning" id="priceWarning">
+            ❌ Strictly Blocked: Selling price cannot exceed printed MRP!
+          </div>
+          <div style="font-size: 11px; color: #059669; font-weight: 700; margin-top: 4px;">
+            ✓ Rule: Selling Price ≤ Printed MRP (Enforced)
+          </div>
+        </div>
 
-      <div style="padding: 0 18px;">
-        <button class="btn-blue-pill" onclick="saveShadeToInvoice()">
-          Save Shade & Add to Retailer Bill ➔
+        <button class="btn-orange-pill" id="btnConfirmSell" onclick="executeRetailerSale()">
+          ⚡ Confirm & Record Sale ➔
         </button>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         PHASE 4: BIG GREEN TICK ANIMATION MODAL (✓ Sale Successful!)
+         ======================================================================= -->
+    <div class="green-tick-overlay" id="greenTickModal">
+      <div class="green-tick-card">
+        <div class="green-circle-icon">
+          <svg class="green-tick-svg" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+
+        <div class="tick-title">Sale Recorded!</div>
+        <div class="tick-sub">Customer receipt generated and stock deducted atomically in database.</div>
+
+        <div class="tick-receipt-details" id="tickReceiptDetails">
+          • Item: Epic Coat 20L<br>
+          • Printed MRP: ₹9,850<br>
+          • Sold Amount: ₹9,500<br>
+          • Status: Paid & Logged
+        </div>
+
+        <button class="btn-orange-pill" style="margin-top: 0;" onclick="dismissGreenTick()">
+          Done & View Sales History ➔
+        </button>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         PHASE 5: SALES HISTORY SCREEN ("Bikri Ka Hisaab")
+         ======================================================================= -->
+    <div class="app-screen" id="screenHistory">
+      <div class="history-header">
+        <div class="history-title">📊 Sales History & Hisaab</div>
+        <div class="history-sub">Track all recorded sales and store revenue</div>
+      </div>
+
+      <!-- Top Summary Stat Box -->
+      <div class="history-summary-box">
+        <div>
+          <div class="summary-stat-label">Kul Bikri (Total Revenue)</div>
+          <div class="summary-stat-value" id="lblTotalRevenue">₹1,45,000</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="summary-stat-label">Kul Dabbe (Sold)</div>
+          <div class="summary-stat-value" id="lblTotalBuckets">18 Buckets</div>
+        </div>
+      </div>
+
+      <!-- Itemized Ledger List -->
+      <div class="dash-section-header">
+        <span class="dash-section-title">Recent Transactions</span>
+        <span style="font-size: 11px; color: #10B981; font-weight: 800;">Real-Time Sync ✓</span>
+      </div>
+
+      <div class="history-list-wrap" id="historyListContainer">
+        <!-- Default sample transactions -->
+        <div class="history-card-item">
+          <div class="history-item-left">
+            <div class="history-icon-circle">✓</div>
+            <div>
+              <strong style="font-size: 13px; color: #0F172A;">Epic Coat 20L</strong><br>
+              <span style="font-size: 11px; color: #64748B;">Today, 11:30 PM • Bill #AP-8842</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <strong style="color: var(--ankur-blue); font-size: 14px;">₹9,500</strong><br>
+            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
+          </div>
+        </div>
+
+        <div class="history-card-item">
+          <div class="history-item-left">
+            <div class="history-icon-circle">✓</div>
+            <div>
+              <strong style="font-size: 13px; color: #0F172A;">Rang Ritu 20L</strong><br>
+              <span style="font-size: 11px; color: #64748B;">Today, 09:15 PM • Bill #AP-8841</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <strong style="color: var(--ankur-blue); font-size: 14px;">₹6,150</strong><br>
+            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
+          </div>
+        </div>
+
+        <div class="history-card-item">
+          <div class="history-item-left">
+            <div class="history-icon-circle">✓</div>
+            <div>
+              <strong style="font-size: 13px; color: #0F172A;">Damp Proof 20L</strong><br>
+              <span style="font-size: 11px; color: #64748B;">Yesterday, 04:20 PM • Bill #AP-8840</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <strong style="color: var(--ankur-blue); font-size: 14px;">₹7,850</strong><br>
+            <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
+          </div>
+        </div>
       </div>
 
       <!-- Bottom Nav -->
       <div class="app-bottom-nav">
-        <button class="nav-tab-btn" onclick="goToScreen('screenHome')">
+        <button class="nav-tab-btn" onclick="goToScreen('screenDashboard')">
           <span class="nav-tab-icon">🏠</span>
-          <span>Home</span>
+          <span>Catalog</span>
         </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenDetail')">
-          <span class="nav-tab-icon">📦</span>
-          <span>Products</span>
+        <button class="nav-tab-btn" onclick="openBillingModal('Epic Coat 20L', 9850, 9500, 'bucket_1.png')">
+          <span class="nav-tab-icon">📷</span>
+          <span>Scan & Sell</span>
         </button>
-        <button class="nav-tab-btn active" onclick="goToScreen('screenStudio')">
-          <span class="nav-tab-icon">🎨</span>
-          <span>Colour Studio</span>
+        <button class="nav-tab-btn active" onclick="goToScreen('screenHistory')">
+          <span class="nav-tab-icon">📊</span>
+          <span>Sales History</span>
         </button>
-        <button class="nav-tab-btn" onclick="showTargetSchemeAlert()">
-          <span class="nav-tab-icon">📈</span>
-          <span>Targets</span>
-        </button>
-        <button class="nav-tab-btn" onclick="goToScreen('screenSignIn')">
-          <span class="nav-tab-icon">👤</span>
-          <span>Profile</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         6. PRODUCT DETAIL SCREEN (Reference Screen 6)
-         ======================================================================= -->
-    <div class="app-screen" id="screenDetail">
-      <!-- Top Navigation -->
-      <div class="detail-top-nav">
-        <button style="background: none; border: none; font-size: 18px; cursor: pointer;" onclick="goToScreen('screenHome')">←</button>
-        <div style="display: flex; gap: 12px; font-size: 18px;">
-          <span>♡</span>
-          <span>↗</span>
-        </div>
-      </div>
-
-      <!-- Hero Bucket with House Backdrop -->
-      <div class="detail-hero-box">
-        <img src="house_hero.png" alt="Exterior House" class="detail-backdrop-img">
-        <img src="bucket_1.png" alt="EPIC Coat 20L" class="detail-bucket-hero">
-      </div>
-
-      <div class="detail-content-wrap">
-        <h1 class="detail-title">EPIC Coat</h1>
-        <div class="detail-subtitle">Exterior Emulsion</div>
-        <p class="detail-desc">Long lasting beauty and protection for your exterior walls.</p>
-
-        <!-- 4 Bullet Features with Circle Icons -->
-        <div class="features-list">
-          <div class="feature-item-row">
-            <div class="feature-icon-circle">☀️</div>
-            <div>
-              <div class="feature-title">Weather Resistant</div>
-              <div class="feature-sub">Handles harsh sun, rain & dust</div>
-            </div>
-          </div>
-
-          <div class="feature-item-row">
-            <div class="feature-icon-circle">🛡️</div>
-            <div>
-              <div class="feature-title">Anti-Fungal</div>
-              <div class="feature-sub">Keeps walls fresh and clean</div>
-            </div>
-          </div>
-
-          <div class="feature-item-row">
-            <div class="feature-icon-circle">⚡</div>
-            <div>
-              <div class="feature-title">Excellent Coverage</div>
-              <div class="feature-sub">More coverage (180–200 sq.ft./L), less effort</div>
-            </div>
-          </div>
-
-          <div class="feature-item-row">
-            <div class="feature-icon-circle">✨</div>
-            <div>
-              <div class="feature-title">Rich & Lasting Colours</div>
-              <div class="feature-sub">Brighter walls, 10-year durability</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Finish Selector -->
-        <div style="font-size: 13px; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
-          Finish
-        </div>
-        <div class="finish-selector-row" style="padding: 0 0 16px 0;">
-          <div class="finish-pill active" onclick="setFinish(this, 'Matt')">Matt</div>
-          <div class="finish-pill" onclick="setFinish(this, 'Silk')">Silk</div>
-          <div class="finish-pill" onclick="setFinish(this, 'Satin')">Satin</div>
-        </div>
-
-        <!-- Pack Size Selector -->
-        <div style="font-size: 13px; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
-          Pack Size & Coverage
-        </div>
-        <div class="pack-size-selector">
-          <span>20 L (180–200 sq.ft.)</span>
-          <span style="color: #94A3B8;">▼</span>
-        </div>
-
-        <!-- Strict Price Ceiling Guarantee Box -->
-        <div class="retailer-mrp-guarantee-box">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <strong style="color: #065F46; font-size: 13px;">Retailer Price Enforcement</strong>
-            <span style="background: #10B981; color: #FFFFFF; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">VERIFIED</span>
-          </div>
-          <div style="font-size: 12px; color: #047857;">
-            • Printed MRP: <strong>₹9,850</strong><br>
-            • Retailer Rate: <strong>₹9,500</strong> (Strict Rule: Price ≤ MRP)<br>
-            • Accrued Cash Incentive: <strong>+₹950</strong> (10% Gold Slab)
-          </div>
-        </div>
-      </div>
-
-      <!-- Detail Bottom Action Bar -->
-      <div class="detail-bottom-bar">
-        <button class="btn-outline-pill" style="flex: 1; padding: 14px;" onclick="simulateSkuScan('EPIC Coat 20L', 9850, 9500)">
-          📷 Scan to Sell
-        </button>
-        <button class="btn-orange-pill" style="flex: 1.4; padding: 14px; margin-bottom: 0;" onclick="addToRetailerOrder('EPIC Coat 20L', 9850, 9500)">
-          ⚡ Add to Order (₹9,500)
-        </button>
-      </div>
-    </div>
-
-    <!-- =======================================================================
-         ADMIN HQ MODAL & FACTORY DISPATCH CONSOLE
-         ======================================================================= -->
-    <div class="admin-overlay" id="adminModal">
-      <div class="admin-card">
-        <button class="admin-close-btn" onclick="closeAdminModal()">✕</button>
-
-        <div style="text-align: center; margin-bottom: 16px;">
-          <div style="font-size: 32px; margin-bottom: 6px;">🏭</div>
-          <h3 style="color: var(--ankur-blue); font-size: 18px; font-weight: 900;">Ankur Paints HQ Dispatch</h3>
-          <p style="font-size: 11px; color: var(--text-secondary);">Direct Factory to Retailer Stock Management</p>
-        </div>
-
-        <label class="field-label">Target Retailer</label>
-        <select class="field-input" id="selDispatchRetailer">
-          <option>Shree Ganesh Paints & Hardware (Ranchi)</option>
-          <option>Kisan Paints & Hardware (Bokaro)</option>
-          <option>Maa Durga Paint Store (Patna)</option>
-        </select>
-
-        <label class="field-label">SKU for Dispatch</label>
-        <select class="field-input" id="selDispatchSku">
-          <option>EPIC Coat 20L - Brilliant White 101 (MRP ₹9,850)</option>
-          <option>RANG Ritu 20L - Pearl White 101 (MRP ₹6,400)</option>
-          <option>GLEAM Coat 20L - Luxury Gloss (MRP ₹8,900)</option>
-          <option>ROSE Gold 20L - Silk Interior (MRP ₹7,200)</option>
-          <option>Damp Proof 20L - Shield White 001 (MRP ₹8,200)</option>
-        </select>
-
-        <label class="field-label">Dispatch Quantity (Buckets)</label>
-        <input type="number" class="field-input" id="inpDispatchQty" value="10" min="1" max="500">
-
-        <button class="btn-orange-pill" onclick="executeFactoryDispatch()">
-          Submit Dispatch to Supabase ➔
+        <button class="nav-tab-btn" onclick="openKycModal()">
+          <span class="nav-tab-icon">⚙️</span>
+          <span>Store KYC</span>
         </button>
       </div>
     </div>
@@ -1712,33 +1567,48 @@
 
   <script>
     // -------------------------------------------------------------------------
-    // SCREEN SWITCHER LOGIC
+    // 1. SPLASH SCREEN (0.0s to 2.0s Auto Transition)
     // -------------------------------------------------------------------------
-    const screenIds = ['screenSplash', 'screenOnboarding', 'screenSignIn', 'screenHome', 'screenStudio', 'screenDetail'];
+    window.addEventListener('load', () => {
+      let secondsLeft = 2;
+      const timerBadge = document.getElementById('splashTimerBadge');
+      
+      const interval = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft > 0) {
+          timerBadge.innerText = `Opening Sign-In (${secondsLeft}s)...`;
+        } else {
+          clearInterval(interval);
+          goToScreen('screenSignIn');
+        }
+      }, 1000);
+    });
 
-    function goToScreen(targetId) {
-      screenIds.forEach(id => {
+    // -------------------------------------------------------------------------
+    // SCREEN NAVIGATION LOGIC
+    // -------------------------------------------------------------------------
+    const screens = ['screenSplash', 'screenSignIn', 'screenDashboard', 'screenHistory'];
+
+    function goToScreen(screenId) {
+      screens.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.remove('active');
       });
 
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) targetEl.classList.add('active');
+      const target = document.getElementById(screenId);
+      if (target) target.classList.add('active');
 
-      // Update Top Nav Bar buttons
+      // Top control bar active highlights
       document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
-      if (targetId === 'screenSplash') document.getElementById('jumpBtnSplash')?.classList.add('active');
-      if (targetId === 'screenOnboarding') document.getElementById('jumpBtnOnboard')?.classList.add('active');
-      if (targetId === 'screenSignIn') document.getElementById('jumpBtnSignIn')?.classList.add('active');
-      if (targetId === 'screenHome') document.getElementById('jumpBtnHome')?.classList.add('active');
-      if (targetId === 'screenStudio') document.getElementById('jumpBtnStudio')?.classList.add('active');
-      if (targetId === 'screenDetail') document.getElementById('jumpBtnDetail')?.classList.add('active');
+      if (screenId === 'screenSplash') document.getElementById('jumpSplash')?.classList.add('active');
+      if (screenId === 'screenSignIn') document.getElementById('jumpSignIn')?.classList.add('active');
+      if (screenId === 'screenDashboard') document.getElementById('jumpDash')?.classList.add('active');
+      if (screenId === 'screenHistory') document.getElementById('jumpHistory')?.classList.add('active');
 
-      // Scroll top
-      if (targetEl) targetEl.scrollTop = 0;
+      if (target) target.scrollTop = 0;
     }
 
-    // Toggle Desktop Full Screen vs Phone Mockup
+    // Toggle Desktop Viewport
     let isFullMode = false;
     function toggleViewMode() {
       const container = document.getElementById('phoneContainer');
@@ -1756,125 +1626,145 @@
     }
 
     // -------------------------------------------------------------------------
-    // AUTH & KYC FORM LOGIC
+    // 2. GOOGLE LOGIN -> DASHBOARD & KYC POP-UP
     // -------------------------------------------------------------------------
     function handleGoogleSignIn() {
-      document.getElementById('retailerKycDrawer').style.display = 'block';
-      alert('✓ Google Account Verified: ramesh.paints@gmail.com\nPlease confirm your Store & GST details.');
+      // Direct jump to Dashboard + Pop-up KYC
+      goToScreen('screenDashboard');
+      setTimeout(() => {
+        openKycModal();
+      }, 300);
     }
 
-    function toggleKycForm() {
-      const drawer = document.getElementById('retailerKycDrawer');
-      drawer.style.display = (drawer.style.display === 'block') ? 'none' : 'block';
+    function openKycModal() {
+      document.getElementById('kycModal').style.display = 'flex';
+      document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('jumpKyc')?.classList.add('active');
     }
 
-    function submitRetailerProfile() {
+    function closeKycModal() {
+      document.getElementById('kycModal').style.display = 'none';
+    }
+
+    function saveStoreKyc() {
       const storeName = document.getElementById('inpStoreName').value.trim();
+      const gstin = document.getElementById('inpGstin').value.trim();
+
       if (!storeName) {
-        alert('Please enter Store Name');
+        alert('Please enter your Store Name');
         return;
       }
-      document.getElementById('lblHomeGreeting').innerText = `Hi, ${storeName.split(' ')[0]}`;
-      document.getElementById('lblHomeStoreSub').innerText = `${storeName}, Ranchi • Gold Partner`;
-      goToScreen('screenHome');
+
+      document.getElementById('lblGreetingStore').innerText = `Namaste, ${storeName}! 🙏`;
+      document.getElementById('lblGstStore').innerText = `GSTIN: ${gstin || '20AAACG1234F1Z8'} • Verified`;
+      closeKycModal();
+      goToScreen('screenDashboard');
     }
 
     // -------------------------------------------------------------------------
-    // COLOUR STUDIO & SHADE SELECTOR
+    // 3. SCAN & BILLING FLOW
     // -------------------------------------------------------------------------
-    function selectPaletteColor(hex, name) {
-      document.getElementById('swatchPreviewCircle').style.background = hex;
-      document.getElementById('lblSelectedShadeName').innerText = name.split(' ')[0] + ' ' + (name.split(' ')[1] || '');
-      document.getElementById('lblSelectedShadeCode').innerText = name.split(' ')[2] || 'AP-3127';
-      alert(`Selected Shade: ${name}\nPreview updated on wall probe.`);
+    let currentItem = {
+      name: 'Epic Coat Luxury Exterior Emulsion (20L)',
+      mrp: 9850,
+      sellPrice: 9500,
+      img: 'bucket_1.png'
+    };
+
+    function openBillingModal(name, mrp, sellPrice, img) {
+      currentItem = { name, mrp, sellPrice, img };
+      document.getElementById('billProdName').innerText = name;
+      document.getElementById('billProdMrp').innerText = `₹${mrp.toLocaleString('en-IN')}`;
+      document.getElementById('inpSellPrice').value = sellPrice;
+      document.getElementById('billProdImg').src = img;
+      document.getElementById('priceWarning').style.display = 'none';
+      document.getElementById('btnConfirmSell').disabled = false;
+      document.getElementById('btnConfirmSell').style.opacity = '1';
+
+      document.getElementById('billingModal').style.display = 'flex';
+      document.querySelectorAll('.screen-jump-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('jumpScan')?.classList.add('active');
     }
 
-    function setFinish(el, finishName) {
-      const parent = el.parentElement;
-      parent.querySelectorAll('.finish-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
+    function closeBillingModal() {
+      document.getElementById('billingModal').style.display = 'none';
     }
 
-    function switchStudioTab(tab) {
-      const tWall = document.getElementById('tabTryWall');
-      const tScan = document.getElementById('tabScanBucket');
-      if (tab === 'wall') {
-        tWall.classList.add('active');
-        tScan.classList.remove('active');
+    function validatePriceCeiling() {
+      const enteredPrice = parseFloat(document.getElementById('inpSellPrice').value) || 0;
+      const warning = document.getElementById('priceWarning');
+      const btn = document.getElementById('btnConfirmSell');
+
+      if (enteredPrice > currentItem.mrp) {
+        warning.style.display = 'block';
+        warning.innerText = `❌ Strictly Blocked: Selling price (₹${enteredPrice}) cannot exceed printed MRP (₹${currentItem.mrp})!`;
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
       } else {
-        tScan.classList.add('active');
-        tWall.classList.remove('active');
-        simulateSkuScan('EPIC Coat 20L', 9850, 9500);
+        warning.style.display = 'none';
+        btn.disabled = false;
+        btn.style.opacity = '1';
       }
     }
 
-    function saveShadeToInvoice() {
-      const shade = document.getElementById('lblSelectedShadeName').innerText;
-      const code = document.getElementById('lblSelectedShadeCode').innerText;
-      alert(`✓ Shade [${shade} - ${code}] added to Retailer Order!\nApplied with Matt Finish.\nPrice ceiling strictly verified.`);
-      goToScreen('screenDetail');
-    }
+    // -------------------------------------------------------------------------
+    // 4. SALE EXECUTION & GREEN TICK ANIMATION
+    // -------------------------------------------------------------------------
+    let totalRevenue = 145000;
+    let totalBuckets = 18;
 
-    // -------------------------------------------------------------------------
-    // RETAILER ORDER & SCANNING SIMULATION
-    // -------------------------------------------------------------------------
-    function addToRetailerOrder(skuName, mrp, sellPrice) {
-      if (sellPrice > mrp) {
-        alert(`❌ TRANSACTION REJECTED!\nSelling price (₹${sellPrice}) exceeds printed MRP (₹${mrp}).\nStrict price ceiling rule enforced.`);
+    function executeRetailerSale() {
+      const enteredPrice = parseFloat(document.getElementById('inpSellPrice').value) || currentItem.sellPrice;
+      
+      if (enteredPrice > currentItem.mrp) {
+        alert('Selling price cannot exceed printed MRP!');
         return;
       }
-      alert(`✓ ${skuName} added to Retailer Order!\n\n` +
-            `• Printed MRP: ₹${mrp}\n` +
-            `• Selling Rate: ₹${sellPrice}\n` +
-            `• Retailer Margin: ₹${mrp - sellPrice}\n` +
-            `• Target Scheme Cashback: +₹${Math.round(sellPrice * 0.10)} (10% Gold Slab)`);
+
+      closeBillingModal();
+
+      // Update receipts
+      document.getElementById('tickReceiptDetails').innerHTML = `
+        • Item: ${currentItem.name}<br>
+        • Printed MRP: ₹${currentItem.mrp.toLocaleString('en-IN')}<br>
+        • Sold Amount: <strong>₹${enteredPrice.toLocaleString('en-IN')}</strong><br>
+        • Stock Deducted: 1 Bucket (Remaining: 11)<br>
+        • Timestamp: Just now
+      `;
+
+      // Trigger Big Green Tick Modal
+      document.getElementById('greenTickModal').style.display = 'flex';
+
+      // Update Ledger & Counters
+      totalRevenue += enteredPrice;
+      totalBuckets += 1;
+      document.getElementById('lblTotalRevenue').innerText = `₹${totalRevenue.toLocaleString('en-IN')}`;
+      document.getElementById('lblTotalBuckets').innerText = `${totalBuckets} Buckets`;
+
+      // Append to sales history list
+      const container = document.getElementById('historyListContainer');
+      const newCard = document.createElement('div');
+      newCard.className = 'history-card-item';
+      newCard.style.animation = 'screenFadeIn 0.3s ease';
+      newCard.innerHTML = `
+        <div class="history-item-left">
+          <div class="history-icon-circle">✓</div>
+          <div>
+            <strong style="font-size: 13px; color: #0F172A;">${currentItem.name}</strong><br>
+            <span style="font-size: 11px; color: #64748B;">Just now • Bill #AP-${Math.floor(1000 + Math.random() * 9000)}</span>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <strong style="color: var(--ankur-blue); font-size: 14px;">₹${enteredPrice.toLocaleString('en-IN')}</strong><br>
+          <span style="font-size: 10px; color: #10B981; font-weight: 800;">PAID</span>
+        </div>
+      `;
+      container.insertBefore(newCard, container.firstChild);
     }
 
-    function simulateSkuScan(skuName, mrp, sellPrice) {
-      alert(`📷 BARCODE SCANNED!\n\n` +
-            `• SKU: ${skuName}\n` +
-            `• Static QR Verified ✓\n` +
-            `• Live Shelf Stock: 12 Buckets Available\n` +
-            `• Selling Price Ceiling: ₹${sellPrice} ≤ ₹${mrp} (VALID)`);
-    }
-
-    function filterHomeCategory(cat) {
-      alert(`Filter catalog by: ${cat}\nShowing official Ankur Paints ${cat} emulsions.`);
-    }
-
-    function showTargetSchemeAlert() {
-      alert(`🎯 RETAILER TARGET SCHEME (October 2026):\n\n` +
-            `• Target: ₹1,00,000\n` +
-            `• Current Sales: ₹75,000 (75% Complete)\n` +
-            `• Active Slab: Gold Tier (10% Cashback)\n` +
-            `• Accrued Cash Payout: ₹7,500\n` +
-            `• Remaining: Just ₹25,000 more before Oct 31 to claim ₹10,000 cash bonus!`);
-    }
-
-    // -------------------------------------------------------------------------
-    // ADMIN HQ FACTORY DISPATCH MODAL
-    // -------------------------------------------------------------------------
-    function openAdminModal() {
-      document.getElementById('adminModal').style.display = 'flex';
-    }
-
-    function closeAdminModal() {
-      document.getElementById('adminModal').style.display = 'none';
-    }
-
-    function executeFactoryDispatch() {
-      const ret = document.getElementById('selDispatchRetailer').value;
-      const sku = document.getElementById('selDispatchSku').value;
-      const qty = document.getElementById('inpDispatchQty').value;
-
-      alert(`✅ FACTORY DISPATCH RECORDED!\n\n` +
-            `• Destination: ${ret}\n` +
-            `• Product: ${sku}\n` +
-            `• Quantity: ${qty} Buckets\n\n` +
-            `✓ Atomically written to stock_transactions\n` +
-            `✓ Retailer shelf stock updated in Supabase cloud!`);
-      closeAdminModal();
-      goToScreen('screenHome');
+    function dismissGreenTick() {
+      document.getElementById('greenTickModal').style.display = 'none';
+      goToScreen('screenHistory');
     }
   </script>
 </body>
