@@ -171,6 +171,19 @@
 - **Evidence & Rationale:** Verified successful git push on 2026-10-20.
 - **Impact on Future Work:** Continuous cloud backup and version control for all subsequent phases.
 
+### DEC-018: Executable Database Migrations & Seed Data Authored (Phase 5)
+- **Date:** 2026-10-20
+- **Category:** Database Architecture & Migrations
+- **Status:** CONFIRMED
+- **Decision:**
+  1. Author executable Supabase PostgreSQL migrations in `supabase/migrations/20261020000001_initial_schema.sql` implementing all 12 core tables: `profiles`, `products`, `skus`, `retailer_inventory`, `stock_transactions`, `dispatches`, `dispatch_items`, `sales`, `sale_items`, `incentive_schemes`, `scheme_slabs`, `retailer_incentives`.
+  2. Implement strict invariant database constraints: `chk_selling_price_mrp` (`selling_price <= mrp`), `chk_stock_non_negative` (`current_stock >= 0`), and `uq_sales_idempotency` (`idempotency_key`).
+  3. Implement Row Level Security (RLS) policies guaranteeing total retailer data isolation.
+  4. Implement atomic stored procedures: `submit_retailer_sale` (concurrency-locked stock decrement, double-entry audit ledger, dynamic incentive slab accrual) and `submit_dispatch` (warehouse stock increment).
+  5. Author official brand catalog seed data in `supabase/seed/seed.sql` populating the 9 verified Ankur Paints product lines, realistic SKU MRPs, deterministic QR payloads (`ANKUR_{PROD}_{SHADE}_{SIZE}`), and Diwali Dhamaka promotional target slabs.
+- **Evidence & Rationale:** Fulfills Phase 2 technical design and stakeholder requirements.
+- **Impact on Future Work:** Unlocks Phase 6 (Authentication & Security) and client-side Supabase client configuration.
+
 ---
 
 ## 4. Unresolved Architectural & Business Items (Requiring Clarification)
