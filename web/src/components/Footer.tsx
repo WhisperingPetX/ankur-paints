@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
                 <a href="#products" className="hover:text-[#E8501E] transition-colors">Products</a>
               </li>
               <li>
-                <a href="#explorer" className="hover:text-[#E8501E] transition-colors">Colour Explorer</a>
+                <a href="#visualizer" className="hover:text-[#E8501E] transition-colors">Colour Visualizer</a>
               </li>
               <li>
                 <a href="#about" className="hover:text-[#E8501E] transition-colors">About Us</a>

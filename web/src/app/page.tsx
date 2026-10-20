@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { TrustBadges } from "@/components/TrustBadges";
-import { ProductCollections } from "@/components/ProductCollections";
-import { ColourExplorer } from "@/components/ColourExplorer";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { CallToAction } from "@/components/CallToAction";
+import { GermanTechnology } from "@/components/GermanTechnology";
+import { RoomVisualizer } from "@/components/RoomVisualizer";
+import { MasterCatalog } from "@/components/MasterCatalog";
+import { RetailerPOSDemo } from "@/components/RetailerPOSDemo";
+import { PrestigeHeritage } from "@/components/PrestigeHeritage";
 import { Footer } from "@/components/Footer";
 import { StoreAuthModal } from "@/components/StoreAuthModal";
 
@@ -16,48 +16,49 @@ export default function Home() {
   const [cartCount, setCartCount] = useState(0);
 
   const handleExploreClick = () => {
-    const productsElement = document.getElementById("products");
+    const productsElement = document.getElementById("collections") || document.getElementById("products");
     if (productsElement) {
       productsElement.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const handleSelectProduct = (productName: string) => {
+  const handleAddToCart = () => {
     setCartCount((prev) => prev + 1);
   };
 
   return (
-    <main className="min-h-screen bg-[#050B14] text-slate-100 flex flex-col">
-      {/* 1. Sticky Glass Navbar */}
+    <main className="min-h-screen bg-[#030712] text-slate-100 flex flex-col selection:bg-[#E8501E] selection:text-white">
+      {/* 1. Sticky Glass Navbar with Vector SVG Logo & Live Cart */}
       <Navbar
         onOpenAuth={() => setAuthModalOpen(true)}
         cartCount={cartCount}
       />
 
-      {/* 2. 4K Animated Hero Carousel */}
+      {/* 2. 4K Virtual Exhibition Hero Stage & Ambient Lighting Moods */}
       <HeroSection
         onExploreClick={handleExploreClick}
+        onOpenAuth={() => setAuthModalOpen(true)}
       />
 
-      {/* 3. 5-Pillar Trust & Feature Badges */}
-      <TrustBadges />
+      {/* 3. German Crosslinking Polymer Science & Engineering Pillars */}
+      <GermanTechnology />
 
-      {/* 4. Our Products - Premium Paint Collections */}
-      <ProductCollections onSelectProduct={handleSelectProduct} />
+      {/* 4. Interactive 3D Architectural Room Shade Visualizer */}
+      <RoomVisualizer onAddToCart={handleAddToCart} />
 
-      {/* 5. Colour Explorer - Find Your Perfect Shade */}
-      <ColourExplorer />
+      {/* 5. The 9 Official Master Collections (1L, 4L, 10L, 20L MRP Calculator) */}
+      <MasterCatalog onAddToCart={handleAddToCart} />
 
-      {/* 6. Why Choose Ankur Paints & Testimonial */}
-      <WhyChooseUs />
+      {/* 6. Interactive B2B Retailer POS & Diwali Dhamaka Terminal */}
+      <RetailerPOSDemo />
 
-      {/* 7. Call To Action Banner */}
-      <CallToAction onShopClick={handleExploreClick} />
+      {/* 7. Prestige Heritage Counters & Verified Client Testimonials */}
+      <PrestigeHeritage />
 
-      {/* 8. Footer */}
+      {/* 8. Dark Luxury Footer */}
       <Footer />
 
-      {/* Interactive Retailer Google One-Tap & Store KYC Modal */}
+      {/* 9. Interactive Retailer Google One-Tap & Store KYC Modal */}
       <StoreAuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
