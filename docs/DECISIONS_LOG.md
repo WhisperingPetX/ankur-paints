@@ -198,6 +198,20 @@
 - **Evidence & Rationale:** Implements secure RBAC and session lifecycle for both mobile and web surfaces.
 - **Impact on Future Work:** Enables authenticated catalog viewing and QR scanner workflows in Phase 7.
 
+### DEC-020: Product Catalog Master, Bulk Excel Importer & Static QR Engine (Phase 7)
+- **Date:** 2026-10-20
+- **Category:** Catalog Management & QR Operations
+- **Status:** CONFIRMED
+- **Decision:**
+  1. Implement deterministic QR payload algorithm in `web/src/services/qrGenerator.ts`: `ANKUR_{PRODUCT}_{SHADE}_{SIZE}` (e.g. `ANKUR_EPIC_101_20L`).
+  2. Build vector SVG label generator `generatePrintableBucketLabelSVG` with official Ankur Paints Cobalt Blue & Vermillion Orange corporate branding, shade description, printed MRP, and high-density scannable QR.
+  3. Build bulk spreadsheet importer `web/src/services/excelImporter.ts` validating required headers (`Product Name`, `Category`, `Shade Code`, `Shade Name`, `Pack Size`, `Pack Unit`, `Printed MRP`), enforcing `mrp > 0`, detecting file-level duplicates, and generating sample CSV templates.
+  4. Build catalog services (`web/src/services/catalogService.ts` and `mobile/src/services/catalogService.ts`) for batch upserting SKUs and resolving static QR payloads under 300ms.
+  5. Author Admin Web page `CatalogManagement.tsx` for catalog overview, search/filtering, bulk modal ingestion, and single label printing.
+  6. Author factory sticker sheet component `PrintableQRSheet.tsx` for printing bulk labels on standard A4 adhesive paper.
+- **Evidence & Rationale:** Implements core company catalog ingestion and static QR generation workflows mandated in Phase 1 & 2.
+- **Impact on Future Work:** Unlocks Phase 8 (Inventory and Stock Dispatch scanning).
+
 ---
 
 ## 4. Unresolved Architectural & Business Items (Requiring Clarification)
