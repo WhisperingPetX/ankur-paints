@@ -1,9 +1,9 @@
 # Ankur Paints — Project Status Report
 
-**Document Version:** 5.0.0  
+**Document Version:** 6.0.0  
 **Timestamp:** 2026-10-20  
-**Current Phase:** Phase 5 — Database Schema & SQL Migrations (Completed) — Transitioning to Phase 6  
-**Current Task:** Ready for Phase 6 — Authentication & Security (Supabase Client & Auth Wrappers)  
+**Current Phase:** Phase 6 — Authentication & Security (Completed) — Transitioning to Phase 7  
+**Current Task:** Ready for Phase 7 — Product & QR-Code System (Excel Importer & Vector QR Generator)  
 
 ---
 
@@ -21,38 +21,47 @@
   - Synced official brand asset to `mobile/assets/branding/` and `docs/assets/`.
   - Pushed commit `59e6714` to remote `main`.
 - **Phase 5 Formally Concluded (`DEC-018`):**
-  - Authored executable PostgreSQL migration in `supabase/migrations/20261020000001_initial_schema.sql` implementing:
-    - 5 domain enums: `user_role`, `pack_unit`, `stock_transaction_type`, `dispatch_status`, `incentive_status`.
-    - 12 core tables: `profiles`, `products`, `skus`, `retailer_inventory`, `stock_transactions`, `dispatches`, `dispatch_items`, `sales`, `sale_items`, `incentive_schemes`, `scheme_slabs`, `retailer_incentives`.
-    - Hard business invariant constraints: `chk_selling_price_mrp` (`selling_price <= mrp`), `chk_stock_non_negative` (`current_stock >= 0`), `uq_sales_idempotency` (`idempotency_key`), positive quantities, and valid dates.
-    - 14 performance indexes covering all foreign keys and lookup queries.
-    - Comprehensive Row Level Security (RLS) policies on all tables guaranteeing retailer data isolation.
-    - Two atomic stored procedures: `submit_retailer_sale` (concurrency-safe checkout with row-level locking, stock deduction, double-entry ledger debit, and dynamic slab accrual) and `submit_dispatch` (warehouse inventory credit and double-entry ledger credit).
-  - Authored official seed script in `supabase/seed/seed.sql`:
-    - 9 verified Ankur Paints product lines (Epic Coat, Rang Ritu, Gleam Coat, Rose Gold, Colour Crest, Damp Proof, Acrylic Distemper, Wall Primer, Wall Putty) with warranties and calibrated hex themes.
-    - Realistic market SKUs and MRPs with deterministic QR payloads (`ANKUR_{PROD}_{SHADE}_{SIZE}`).
-    - "Diwali Mahabachat Dhamaka 2026" promotional scheme with 3 gamified target slabs (₹50k/5%, ₹1L/10%, ₹2.5L/15%).
+  - Authored executable PostgreSQL schema in `supabase/migrations/20261020000001_initial_schema.sql` (12 tables, hard invariant constraints for Selling Price $\le$ MRP and Zero Negative Stock, Row Level Security policies, and atomic stored procedures `submit_retailer_sale` and `submit_dispatch`).
+  - Authored official seed script in `supabase/seed/seed.sql` populating all 9 verified Ankur Paints product lines, realistic SKU MRPs, deterministic QR payloads, and Diwali Dhamaka promotional target slabs.
+  - Pushed commit `5f351fd` to remote `main`.
+- **Phase 6 Formally Concluded (`DEC-019`):**
+  - Authored PostgreSQL auth user creation trigger in `supabase/migrations/20261020000002_auth_trigger.sql` automatically populating `public.profiles` on user signup.
+  - Created standardized environment templates (`.env.example`, `mobile/.env.example`, `web/.env.example`) and updated `.gitignore` rules.
+  - Defined complete TypeScript database definitions (`mobile/src/types/database.ts` and `web/src/types/database.ts`) covering all tables, enums, and RPC procedures.
+  - Configured resilient Supabase client services (`mobile/src/services/supabase.ts` and `web/src/services/supabase.ts`).
+  - Created React Context Auth providers (`mobile/src/contexts/AuthContext.tsx` and `web/src/contexts/AuthContext.tsx`) with role detection (`isRetailer`, `isAdmin`, `isWarehouse`), password/OTP sign-in, and auto-refresh session lifecycle.
+  - Built branded mobile `LoginScreen.tsx` with Flipkart-style promotional banner and dual password/OTP authentication tabs.
 
 ---
 
 ## 2. Files Created or Changed
-- `supabase/migrations/20261020000001_initial_schema.sql` — Complete executable schema migration.
-- `supabase/seed/seed.sql` — Official brand product lines, SKUs, MRPs, and promotional slabs.
-- `docs/DECISIONS_LOG.md` — Logged `DEC-018`.
-- `docs/PROJECT_STATUS.md` (v5.0.0) — Live status report.
-- `docs/PROJECT_HANDOVER.md` (v5.0.0) — Aligned handover document.
+- `supabase/migrations/20261020000002_auth_trigger.sql` — Automatic profile provisioning trigger.
+- `.env.example`, `mobile/.env.example`, `web/.env.example` — Environment templates.
+- `.gitignore` — Whitelisted `.env.example` templates.
+- `mobile/src/types/database.ts` — Comprehensive mobile database contracts.
+- `web/src/types/database.ts` — Comprehensive web database contracts.
+- `mobile/src/services/supabase.ts` — Mobile Supabase client.
+- `web/src/services/supabase.ts` — Web Supabase client.
+- `mobile/src/contexts/AuthContext.tsx` & `index.ts` — Mobile auth context and hooks.
+- `web/src/contexts/AuthContext.tsx` & `index.ts` — Web auth context and hooks.
+- `mobile/src/screens/LoginScreen.tsx` — Official branded login screen with Flipkart incentive banner.
+- `docs/DECISIONS_LOG.md` — Logged `DEC-019`.
+- `docs/PROJECT_STATUS.md` (v6.0.0) — Live status report.
+- `docs/PROJECT_HANDOVER.md` (v6.0.0) — Aligned handover document.
 
 ---
 
 ## 3. Checks Actually Performed and Results
 | Check Description | Target Location / Command | Result / Evidence | Status |
 | :--- | :--- | :--- | :--- |
-| **SQL migration syntax check** | `supabase/migrations/20261020000001_initial_schema.sql` | 12 tables, constraints, RLS, 2 stored procedures verified. | VERIFIED |
-| **Seed data script check** | `supabase/seed/seed.sql` | Populates products, SKUs, MRPs, and Diwali Dhamaka slabs cleanly. | VERIFIED |
-| **Git working directory check** | `git status` in project root | Untracked Phase 5 files ready for staging and commit. | VERIFIED |
+| **Auth trigger migration syntax check** | `supabase/migrations/20261020000002_auth_trigger.sql` | Automatic trigger function `handle_new_user()` verified. | VERIFIED |
+| **TypeScript database definitions check** | `mobile/src/types/database.ts` & `web/src/types/database.ts` | 12 tables, 5 enums, 3 functions defined with strict typing. | VERIFIED |
+| **Supabase client & context check** | `mobile/src/services/` & `mobile/src/contexts/` | Resilient storage adapter & `useAuth()` hook verified. | VERIFIED |
+| **Login screen component check** | `mobile/src/screens/LoginScreen.tsx` | Branded header, festive banner, phone prefix, and OTP/password tabs. | VERIFIED |
+| **Git working directory check** | `git status` in project root | Untracked Phase 6 files ready for staging and commit. | VERIFIED |
 | **Cross-file consistency check** | `PROJECT_STATUS.md` & `PROJECT_HANDOVER.md` | Phase status, active tasks, and next action match word-for-word. | VERIFIED CONSISTENT |
 
 ---
 
 ## 4. One Precise Next Action
-**Stage, commit, and push Phase 5 database migration and seed artifacts to GitHub, then proceed to Phase 6 (Authentication & Security: Supabase client setup, environment configuration template, and role-based auth wrappers).**
+**Stage, commit, and push Phase 6 authentication and security artifacts to GitHub, then proceed to Phase 7 (Product and QR-Code System: SKU catalog master, bulk Excel import parser, and static QR generator).**

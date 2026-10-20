@@ -184,6 +184,20 @@
 - **Evidence & Rationale:** Fulfills Phase 2 technical design and stakeholder requirements.
 - **Impact on Future Work:** Unlocks Phase 6 (Authentication & Security) and client-side Supabase client configuration.
 
+### DEC-019: Authentication & Security Architecture Implemented (Phase 6)
+- **Date:** 2026-10-20
+- **Category:** Authentication & Application Security
+- **Status:** CONFIRMED
+- **Decision:**
+  1. Author automatic user profile creation trigger `supabase/migrations/20261020000002_auth_trigger.sql` linking `auth.users` with `public.profiles`.
+  2. Provide standardized environment variable templates (`.env.example`, `mobile/.env.example`, `web/.env.example`).
+  3. Define full TypeScript domain database definitions for Supabase JS v2 client (`mobile/src/types/database.ts` and `web/src/types/database.ts`).
+  4. Configure Supabase client services (`mobile/src/services/supabase.ts` and `web/src/services/supabase.ts`) with token auto-refresh and resilient session storage adapters.
+  5. Build React Context Auth providers (`mobile/src/contexts/AuthContext.tsx` and `web/src/contexts/AuthContext.tsx`) managing active sessions, user roles (`retailer`, `admin`, `warehouse`), and login methods (password and phone OTP).
+  6. Author production-grade branded `LoginScreen.tsx` with Flipkart-style promotional banner, tabbed password/OTP authentication, and phone prefix support.
+- **Evidence & Rationale:** Implements secure RBAC and session lifecycle for both mobile and web surfaces.
+- **Impact on Future Work:** Enables authenticated catalog viewing and QR scanner workflows in Phase 7.
+
 ---
 
 ## 4. Unresolved Architectural & Business Items (Requiring Clarification)
