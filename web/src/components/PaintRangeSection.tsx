@@ -9,25 +9,25 @@ export const PaintRangeSection: React.FC = () => {
     {
       title: "Interior Emulsion",
       desc: "Smooth finish, vibrant colours, lasting beauty.",
-      img: "/branding/hero_splash_living_room.jpg",
+      img: "/branding/range_interior_emulsion_4k.jpg",
       href: "#spaces",
     },
     {
       title: "Exterior Emulsion",
       desc: "Weather resistant, long lasting protection.",
-      img: "/branding/generated/ankur_contemporary_villa_facade.jpg",
+      img: "/branding/range_exterior_emulsion_4k.jpg",
       href: "#spaces",
     },
     {
       title: "Industrial Paints",
       desc: "Tough on surfaces, strong on performance.",
-      img: "/branding/generated/ankur_luxury_penthouse_interior.jpg",
+      img: "/branding/range_industrial_paints_4k.jpg",
       href: "#spaces",
     },
     {
       title: "Speciality Coatings",
       desc: "For unique surfaces and creative finishes.",
-      img: "/branding/hero_splash_living_room.jpg",
+      img: "/branding/range_speciality_coatings_4k.jpg",
       href: "#spaces",
     },
   ];
@@ -71,12 +71,14 @@ export const PaintRangeSection: React.FC = () => {
             >
               <div>
                 {/* Photo Header */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={cat.img}
                     alt={cat.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    quality={100}
+                    unoptimized={true}
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 [image-rendering:-webkit-optimize-contrast]"
                   />
                 </div>
 
