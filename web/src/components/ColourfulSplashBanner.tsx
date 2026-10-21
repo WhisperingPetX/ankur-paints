@@ -18,7 +18,7 @@ export const ColourfulSplashBanner: React.FC<ColourfulSplashBannerProps> = ({
       <div className="absolute inset-0 z-0">
         <Image
           src="/branding/india_heritage_banner_4k.jpg"
-          alt="Ankur Paints — The Vibrant Colours of India"
+          alt="The Vibrant Heritage and Living Colours of India"
           fill
           priority
           quality={100}
@@ -26,34 +26,31 @@ export const ColourfulSplashBanner: React.FC<ColourfulSplashBannerProps> = ({
           className="object-cover object-center brightness-[0.55] [image-rendering:-webkit-optimize-contrast]"
           sizes="100vw"
         />
-        {/* Soft Contrast Scrim so Text & Logo Pop with 100% Clarity */}
+        {/* Soft Contrast Scrim so Text & Dancers Pop with 100% Clarity */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/70 via-black/40 to-[#030712]/80" />
       </div>
 
-      {/* 2. Seamless Floating Center Content */}
+      {/* 2. Seamless Floating Center Content — Inspiring, Patriotic & Colour-Centric */}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 flex flex-col items-center space-y-6">
         
-        {/* Eyebrow */}
-        <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[#FFD100] drop-shadow-md">
-          LET’S COLOUR YOUR WORLD
-        </span>
-
-        {/* Official Ankur Paints Brand Logo (Exact Official Identity with Rainbow Brush & Tagline) */}
-        <div className="py-2 transform transition-transform hover:scale-105 duration-300">
-          <Image
-            src="/branding/ankur_logo_hd.png"
-            alt="Ankur Paints and Inks Private Limited - Colours for a Better Tomorrow"
-            width={728}
-            height={233}
-            priority
-            unoptimized={true}
-            className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain drop-shadow-[0_0_35px_rgba(255,255,255,0.7)] drop-shadow-[0_12px_30px_rgba(0,0,0,0.9)] [image-rendering:-webkit-optimize-contrast]"
-          />
+        {/* Patriotic Eyebrow Badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFD100] text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] shadow-lg">
+          <span className="text-[#FF9933]">★</span>
+          <span>PROUDLY CRAFTED FOR INDIA</span>
+          <span className="text-[#138808]">★</span>
         </div>
 
-        {/* Subtitle Description — Bold as requested */}
-        <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl font-bold leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          Ready to transform your home with royal brilliance and enduring protection? Connect with our architectural paint experts today.
+        {/* Fascinating Patriotic Main Headline */}
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] max-w-3xl">
+          Where Every Colour Echoes the <br className="hidden sm:inline" />
+          <span className="bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] bg-clip-text text-transparent drop-shadow-[0_2px_20px_rgba(255,255,255,0.35)]">
+            Proud Soul of India.
+          </span>
+        </h2>
+
+        {/* Inspiring Patriotic Subtitle */}
+        <p className="text-base sm:text-lg md:text-xl text-slate-100 max-w-2xl font-medium leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+          From royal heritage architecture to modern dream spaces — celebrating the living colours, enduring strength, and cultural brilliance of our motherland on every wall.
         </p>
 
         {/* Call to Action Button: "Take A Tour" triggering Google Login */}
