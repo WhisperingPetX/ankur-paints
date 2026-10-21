@@ -41,7 +41,7 @@ export const WhyAnkurSection: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-100 group">
               <Image
-                src="/branding/hero_splash_living_room.jpg"
+                src="/branding/vibrant_colourful_dining_room.jpg"
                 alt="More Than Just Paint - Ankur Paints"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
