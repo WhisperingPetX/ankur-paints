@@ -39,27 +39,25 @@ The documentation has been consolidated into **3 lean, authoritative files**:
 ---
 
 ## 4. Current Phase and Exact Next Action
-- **Current Phase:** Indigo Paints-Style Architecture Redesign Live on `http://localhost:3000`.
+- **Current Phase:** Super-Minimalist Apple-Style Landing Page Live on `http://localhost:3000`.
 - **Verified State:**
-  - Complete frontend transformation adopting **Indigo Paints** (`indigopaints.com`) clean, high-impact aesthetic, section layout, tools, and visual hierarchy while preserving the Ankur Paints branding, live Supabase backend, and 3 core docs:
-    1. **Top Header Strip (`TopHeaderStrip.tsx`):** Toll-free customer care (`1800-266-1999`), quick links for Dealer Locator, Paint Calculator, Digital Shade Card, and Retailer B2B Zone.
-    2. **Main Navigation (`IndigoNavbar.tsx`):** Crisp white sticky navigation with pure vector SVG brand logo, interactive Products dropdown mega-menu, live search modal, dealer KYC trigger, and reactive cart icon badge.
-    3. **High-Impact Hero Carousel (`IndigoHeroCarousel.tsx`):** 3 dynamic animated slides for Exterior (Epic Coat 10-Yr Weather Defense), Interior (Rang Ritu Silky Washable), and Waterproofing (Damp Proof 10-Yr Seepage Proof) with authentic 3D packaging cutouts and dual CTAs.
-    4. **Category Strip (`CategoryBar.tsx`):** 5-card quick navigation across Exterior, Interior, Waterproofing, Primers & Undercoats, and Putties & Distempers.
-    5. **Interactive 3D Colour Visualizer (`IndigoVisualizer.tsx`):** Multi-room preview (Living Room, Master Bedroom, Exterior Villa) with real-time dynamic wall shade morphing, curated 2-tone architectural combinations, matching Ankur buckets, and instant cart order action.
-    6. **Smart Paint Calculator (`PaintCalculator.tsx`):** Interactive sq.ft & BHK configuration estimator calculating exact litres of Primer, Emulsion, and Putty needed + approximate budget.
-    7. **The 9 Official Master Collections (`IndigoProductCatalog.tsx`):** Clean white cards with category filter tabs, interactive pack size toggles (`1L`, `4L`, `10L`, `20L` / `KG`), coverage indices, and authoritative printed MRP calculation.
-    8. **Innovations in Paints (`InnovationsSection.tsx`):** 4 science pillars showcasing German acrylic crosslinking polymers (2.2mm crack bridging), solar heat reflectance (5°C cooling), ultra-low VOC (<15g/L), and silicone water beading.
-    9. **Retailer POS & Diwali Dhamaka Terminal (`DealerTerminal.tsx`):** Gamified B2B operations simulator with barcode QR scanner (`ANKUR_EPIC_101_20L`), strict database guard ($\text{Selling Price} \le \text{MRP}$), milestone progress meter, and Green Tick invoice receipt with confetti.
-    10. **Dealer Locator (`DealerLocator.tsx`):** Search by city (Delhi NCR, Jaipur, Lucknow, Chandigarh, Mumbai, Indore) or pincode with store details, addresses, and direction links.
-    11. **Inspiration & Painting Advice Feed (`InspirationBlog.tsx`):** 3 editorial decor articles on exterior combinations, monsoon waterproofing, and sheen guides.
-    12. **Corporate Navy Footer (`IndigoFooter.tsx`):** Multi-column footer with newsletter subscription, corporate address, customer support, and quick links.
-    13. **Order Cart Drawer (`CartDrawer.tsx`):** Slide-over drawer with item quantity adjustment, price calculation, and dealer estimate forwarding.
-    14. **Retailer Store KYC Modal (`StoreAuthModal.tsx`):** Google One-Tap authentication and GSTIN onboarding.
-  - Production build (`next build`) passed with zero errors (`Compiled successfully in 10.7s`).
+  - Complete minimalist pivot executed as explicitly requested by user:
+    1. **Zero Clutter Architecture:** Removed all generic category cards, extensive blog lists, and cluttered grids.
+    2. **Apple Navbar (`AppleNavbar.tsx`):** Ultra-clean glassmorphic header with mathematical vector SVG Ankur Paints logo, minimal navigation links (`Overview`, `Specifications`, `German Science`, `Retailer Portal`), and prominent `Sign in with Google` action.
+    3. **Hero Stage:**
+       - Majestic display typography: *"Epic Coat. Defies every season."*
+       - 4 Apple color dots (Royal Peacock Indigo, Velvet Magenta, Mediterranean Teal, Imperial Ochre) that smoothly morph the active bucket packaging, ambient backlight halo, and printed MRP.
+       - Floating 3D centerpiece paint bucket with authentic soft drop-shadow and obsidian mirror floor reflection.
+       - Primary CTA: Sleek `Sign in with Google` button with official multi-colored Google 'G' icon.
+    4. **Google Sign-In Modal (`GoogleAuthModal.tsx`):** Interactive Google OAuth account selector (Dealer, Architect, Homeowner) with one-click sign in, state persistence in navbar, and celebratory confetti.
+    5. **Apple Keynote Specifications Strip:** 4 bold typography metric highlights (`10-Yr` Weather Defense, `2.2mm` Crack Bridging, `5°C` Surface Cooling, `Zero` VOC).
+    6. **German Chemistry Spotlight:** 3 focused minimalist cards highlighting crosslinked polymers, solar heat reflectance, and zero-VOC health safety.
+    7. **Minimal Apple Footer:** Clean hairline divider, corporate contact info, and toll-free helpline `1800-266-1999`.
+  - Production build (`next build`) compiled successfully in **3.9 seconds** with zero errors.
   - Next.js 15 production server running in daemon mode on `http://localhost:3000` (HTTP 200 verified).
-  - All changes staged, committed, and pushed to GitHub repository `origin/main`.
+  - All changes committed and pushed to GitHub `origin/main`.
 - **Exact Next Action:**
+  > **Review with user, gather feedback on Apple-style minimalism, and proceed based on user guidance.**
   > **Review with user, gather feedback on visual aesthetics and user flows, and proceed to Supabase live data hooks and Capacitor Android build.**
 
 ---
