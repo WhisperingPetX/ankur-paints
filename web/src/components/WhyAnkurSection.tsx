@@ -56,19 +56,37 @@ export const WhyAnkurSection: React.FC = () => {
           </div>
 
           {/* Right Column: Editorial Copy & 4 Badges */}
-          <div className="lg:col-span-6 space-y-7 text-left">
+          <div className="lg:col-span-6 space-y-6 text-left">
             
-            {/* Section Tag */}
-            <div className="text-xs font-bold uppercase tracking-wider text-[#E8501E] flex items-center gap-2">
-              <span className="w-6 h-[2px] bg-[#E8501E]" />
-              <span>WHY ANKUR PAINTS?</span>
-            </div>
+            {/* Header + Rainbow Brush Row (Matching User Reference) */}
+            <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                {/* Section Tag */}
+                <div className="text-xs font-bold uppercase tracking-wider text-[#E8501E] flex items-center gap-2 mb-2">
+                  <span className="w-6 h-[2px] bg-[#E8501E]" />
+                  <span>WHY ANKUR PAINTS?</span>
+                </div>
 
-            {/* Headline */}
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              More Than Just Paint — <br />
-              <span className="text-[#004B87]">It’s a Feeling</span>
-            </h2>
+                {/* Headline */}
+                <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                  More Than Just Paint — <br />
+                  <span className="text-[#004B87]">It’s a Feeling</span>
+                </h2>
+              </div>
+
+              {/* Rainbow Paintbrush Graphic (From Reference) */}
+              <div className="relative w-40 sm:w-48 lg:w-56 aspect-[971/560] shrink-0 sm:-mt-6">
+                <Image
+                  src="/branding/rainbow_brush_stroke.png"
+                  alt="Ankur Paints Rainbow Paintbrush"
+                  fill
+                  quality={100}
+                  unoptimized={true}
+                  priority
+                  className="object-contain [image-rendering:-webkit-optimize-contrast]"
+                />
+              </div>
+            </div>
 
             {/* Body */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
