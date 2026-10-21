@@ -71,7 +71,7 @@ export const StoreAuthModal: React.FC<StoreAuthModalProps> = ({
         {/* Modal Header */}
         <div className="text-center space-y-2 mb-6">
           <div className="h-10 w-auto flex justify-center">
-            <AnkurLogo className="h-10 w-auto" />
+            <AnkurLogo className="h-10 w-auto" variant="light" />
           </div>
           <p className="text-xs text-slate-400">
             Official B2B Retailer & Distributor Portal

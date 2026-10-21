@@ -29,7 +29,7 @@ export const ColourfulSplashBanner: React.FC = () => {
 
         {/* Crisp Vector Ankur Paints Logo */}
         <div className="py-2">
-          <AnkurLogo className="h-14 sm:h-16 w-auto drop-shadow-2xl" />
+          <AnkurLogo className="h-14 sm:h-16 w-auto drop-shadow-2xl" variant="light" />
         </div>
 
         <p className="text-sm sm:text-base text-slate-200 max-w-lg font-medium leading-relaxed drop-shadow">

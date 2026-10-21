@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { AnkurLogo } from "./AnkurLogo";
+import Image from "next/image";
 import { Search, LogOut, Menu, X, Sparkles } from "lucide-react";
 
 interface ColourNavbarProps {
@@ -31,9 +31,16 @@ export const ColourNavbar: React.FC<ColourNavbarProps> = ({
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Brand Logo - 100% Vector SVG Precision */}
-        <a href="#hero" className="flex items-center gap-2 shrink-0">
-          <AnkurLogo className="h-10 sm:h-12 w-auto" />
+        {/* Brand Logo - 100% Crisp Official Identity */}
+        <a href="#hero" className="flex items-center gap-2 shrink-0 py-1 group">
+          <Image
+            src="/branding/ankur_logo_clean.png"
+            alt="Ankur Paints and Inks Private Limited"
+            width={240}
+            height={76}
+            className="h-11 sm:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            priority
+          />
         </a>
 
         {/* Center Desktop Navigation Links */}

@@ -2,9 +2,17 @@ import React from "react";
 
 interface AnkurLogoProps {
   className?: string;
+  variant?: "dark" | "light";
 }
 
-export const AnkurLogo: React.FC<AnkurLogoProps> = ({ className = "h-11 w-auto" }) => {
+export const AnkurLogo: React.FC<AnkurLogoProps> = ({
+  className = "h-11 w-auto",
+  variant = "dark",
+}) => {
+  const isLight = variant === "light";
+  const ankurFill = isLight ? "#FFFFFF" : "#0A3E80";
+  const subtextFill = isLight ? "#94A3B8" : "#475569";
+
   return (
     <svg
       viewBox="0 0 340 85"
@@ -69,11 +77,11 @@ export const AnkurLogo: React.FC<AnkurLogoProps> = ({ className = "h-11 w-auto" 
         </linearGradient>
       </defs>
 
-      {/* Main Brand Typography: "Ankur" (Pure Crisp White) */}
+      {/* Main Brand Typography: "Ankur" */}
       <text
         x="20"
         y="58"
-        fill="#FFFFFF"
+        fill={ankurFill}
         fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
         fontWeight="800"
         fontSize="44"
@@ -102,7 +110,7 @@ export const AnkurLogo: React.FC<AnkurLogoProps> = ({ className = "h-11 w-auto" 
       <text
         x="22"
         y="75"
-        fill="#94A3B8"
+        fill={subtextFill}
         fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
         fontWeight="700"
         fontSize="9.5"

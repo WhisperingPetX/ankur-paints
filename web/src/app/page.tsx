@@ -28,10 +28,10 @@ export default function Home() {
         onLogout={() => setCurrentUser(null)}
       />
 
-      {/* 2. Master Hero: "Colour Your World" with Paint Explosion Living Room */}
+      {/* 2. Master Hero: Official Ankur Paints Master Lineup Banner */}
       <ColourHero />
 
-      {/* 3. Product Cans Lineup on Reflective Pedestal + 4 Trust Pillars */}
+      {/* 3. 4 Trust & Quality Pillars Strip */}
       <CansLineupStrip />
 
       {/* 4. "Why Ankur Paints? More Than Just Paint — It's a Feeling" + 4 Badges */}

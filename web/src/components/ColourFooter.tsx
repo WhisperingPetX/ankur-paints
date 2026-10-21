@@ -13,7 +13,7 @@ export const ColourFooter: React.FC = () => {
           
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <AnkurLogo className="h-10 w-auto" />
+            <AnkurLogo className="h-10 w-auto" variant="light" />
           </div>
 
           {/* Navigation Links */}
