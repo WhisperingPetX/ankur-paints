@@ -8,18 +8,18 @@ export const ColourHero: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-[600px] sm:min-h-[680px] lg:min-h-[760px] w-full flex items-center overflow-hidden bg-slate-900 text-white">
       
-      {/* 1. Full-Bleed Realistic Living Room with Paint Explosion Mural Background */}
+      {/* 1. Full-Bleed Realistic High-Ceiling Room with Abstract Splash Mural Background */}
       <div className="absolute inset-0">
         <Image
-          src="/branding/hero_splash_living_room.jpg"
+          src="/branding/high_ceiling_abstract_room.jpg"
           alt="Ankur Paints Colour Your World Living Room"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center lg:object-[center_35%]"
           priority
         />
         {/* Cinematic Gradient Vignette for Text Legibility on Left */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full z-10">

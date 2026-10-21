@@ -9,7 +9,7 @@ export const PaintRangeSection: React.FC = () => {
     {
       title: "Interior Emulsion",
       desc: "Smooth finish, vibrant colours, lasting beauty.",
-      img: "/branding/high_ceiling_abstract_room.jpg",
+      img: "/branding/hero_splash_living_room.jpg",
       href: "#spaces",
     },
     {
