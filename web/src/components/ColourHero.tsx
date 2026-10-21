@@ -9,13 +9,14 @@ export const ColourHero: React.FC = () => {
       <div className="w-full max-w-[1920px] mx-auto">
         <div className="relative w-full aspect-[1024/521] overflow-hidden bg-white shadow-sm">
           <Image
-            src="/branding/ankur_master_lineup_banner.jpg"
+            src="/branding/ankur_master_lineup_4k.jpg"
             alt="Ankur Paints and Inks Private Limited - Colours for a Better Tomorrow"
             fill
             priority
             quality={100}
-            className="object-cover sm:object-contain object-center"
-            sizes="(max-width: 1920px) 100vw, 1920px"
+            unoptimized={true}
+            className="object-contain object-center [image-rendering:-webkit-optimize-contrast]"
+            sizes="100vw"
           />
         </div>
       </div>

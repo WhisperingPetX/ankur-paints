@@ -38,8 +38,9 @@ export const ColourNavbar: React.FC<ColourNavbarProps> = ({
             alt="Ankur Paints and Inks Private Limited"
             width={240}
             height={76}
-            className="h-11 sm:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            className="h-11 sm:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-105 [image-rendering:-webkit-optimize-contrast]"
             priority
+            unoptimized={true}
           />
         </a>
 

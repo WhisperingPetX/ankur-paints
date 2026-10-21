@@ -44,7 +44,9 @@ export const WhyAnkurSection: React.FC = () => {
                 src="/branding/vibrant_colourful_dining_room.jpg"
                 alt="More Than Just Paint - Ankur Paints"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                quality={100}
+                unoptimized={true}
+                className="object-cover group-hover:scale-105 transition-transform duration-700 [image-rendering:-webkit-optimize-contrast]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
             </div>
