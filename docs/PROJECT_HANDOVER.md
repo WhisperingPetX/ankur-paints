@@ -39,26 +39,26 @@ The documentation has been consolidated into **3 lean, authoritative files**:
 ---
 
 ## 4. Current Phase and Exact Next Action
-- **Current Phase:** Super-Minimalist Apple-Style Landing Page Live on `http://localhost:3000`.
+- **Current Phase:** Bespoke Apple-Style Royale Platform with Custom 4K Generated Assets Live on `http://localhost:3000`.
 - **Verified State:**
-  - Complete minimalist pivot executed as explicitly requested by user:
-    1. **Zero Clutter Architecture:** Removed all generic category cards, extensive blog lists, and cluttered grids.
-    2. **Apple Navbar (`AppleNavbar.tsx`):** Ultra-clean glassmorphic header with mathematical vector SVG Ankur Paints logo, minimal navigation links (`Overview`, `Specifications`, `German Science`, `Retailer Portal`), and prominent `Sign in with Google` action.
-    3. **Hero Stage:**
-       - Majestic display typography: *"Epic Coat. Defies every season."*
-       - 4 Apple color dots (Royal Peacock Indigo, Velvet Magenta, Mediterranean Teal, Imperial Ochre) that smoothly morph the active bucket packaging, ambient backlight halo, and printed MRP.
-       - Floating 3D centerpiece paint bucket with authentic soft drop-shadow and obsidian mirror floor reflection.
-       - Primary CTA: Sleek `Sign in with Google` button with official multi-colored Google 'G' icon.
-    4. **Google Sign-In Modal (`GoogleAuthModal.tsx`):** Interactive Google OAuth account selector (Dealer, Architect, Homeowner) with one-click sign in, state persistence in navbar, and celebratory confetti.
-    5. **Apple Keynote Specifications Strip:** 4 bold typography metric highlights (`10-Yr` Weather Defense, `2.2mm` Crack Bridging, `5°C` Surface Cooling, `Zero` VOC).
-    6. **German Chemistry Spotlight:** 3 focused minimalist cards highlighting crosslinked polymers, solar heat reflectance, and zero-VOC health safety.
-    7. **Minimal Apple Footer:** Clean hairline divider, corporate contact info, and toll-free helpline `1800-266-1999`.
-  - Production build (`next build`) compiled successfully in **3.9 seconds** with zero errors.
+  - Zero user-provided/old picture dependency: All imagery was generated fresh via the `image-generator` specialist:
+    1. **Bespoke 3D Commercial Can:** `web/public/branding/generated/ankur_3d_royale_bucket.jpg` (Sleek 20L metallic paint bucket in royal cobalt blue with embossed gold foil typography reading *Ankur Paints Royale Luxury Emulsion* on a polished obsidian pedestal).
+    2. **Penthouse Living Room:** `web/public/branding/generated/ankur_luxury_penthouse_interior.jpg` (Velvety Royal Indigo accent wall, Italian furniture, warm recessed LED lighting).
+    3. **Contemporary Luxury Villa Facade:** `web/public/branding/generated/ankur_contemporary_villa_facade.jpg` (Two-story modern villa with textured weatherproof exterior paint at twilight).
+  - Apple-Style Component Structure:
+    1. **AppleNavbar (`AppleNavbar.tsx`):** Mathematical vector SVG logo, clean navigation (`Overview`, `Specifications`, `Living Spaces`, `Shades`, `Retailer Portal`), and official multi-colored Google 'G' button.
+    2. **HeroRoyale (`HeroRoyale.tsx`):** Centerpiece 3D bucket floating with floor reflection, bold Apple typography (*"Unrivaled Splendor. Engineered for timeless living."*), Google Sign-In, and specs.
+    3. **KeynoteMetrics (`KeynoteMetrics.tsx`):** 4 massive typography callouts (`10-Yr`, `2.2mm`, `5°C`, `Zero VOC`).
+    4. **ArchitecturalShowcase (`ArchitecturalShowcase.tsx`):** Cinematic dual showcases for Penthouse Interior and Contemporary Villa Facade.
+    5. **MinimalShadeStudio (`MinimalShadeStudio.tsx`):** Curated architectural swatches with live lighting shift.
+    6. **RetailerHubMinimal (`RetailerHubMinimal.tsx`):** QR camera simulator, price ceiling guard ($\text{Selling Price} \le \text{MRP}$), Diwali Dhamaka meter, and verified invoice with confetti.
+    7. **GoogleAuthModal (`GoogleAuthModal.tsx`):** Google OAuth dialog with 1-click login and state persistence.
+    8. **AppleFooter (`AppleFooter.tsx`):** Hairline rule, corporate info, and toll-free helpline `1800-266-1999`.
+  - Production build (`next build`) compiled in **4.5 seconds** with zero errors.
   - Next.js 15 production server running in daemon mode on `http://localhost:3000` (HTTP 200 verified).
-  - All changes committed and pushed to GitHub `origin/main`.
+  - Pushed to GitHub repository `origin/main`.
 - **Exact Next Action:**
-  > **Review with user, gather feedback on Apple-style minimalism, and proceed based on user guidance.**
-  > **Review with user, gather feedback on visual aesthetics and user flows, and proceed to Supabase live data hooks and Capacitor Android build.**
+  > **Review with user on http://localhost:3000, gather feedback on the bespoke generated visuals, and proceed to Supabase live data integrations.**
 
 ---
 
