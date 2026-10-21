@@ -32,8 +32,11 @@ export const AppleNavbar: React.FC<AppleNavbarProps> = ({
           <a href="#specifications" className="hover:text-white transition-colors">
             Specifications
           </a>
-          <a href="#technology" className="hover:text-white transition-colors">
-            German Science
+          <a href="#spaces" className="hover:text-white transition-colors">
+            Living Spaces
+          </a>
+          <a href="#shades" className="hover:text-white transition-colors">
+            Shades
           </a>
           <a href="#dealers" className="hover:text-white transition-colors">
             Retailer Portal
