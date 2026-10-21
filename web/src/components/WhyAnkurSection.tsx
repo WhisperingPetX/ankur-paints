@@ -1,10 +1,54 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Palette, ShieldCheck, Heart, Award } from "lucide-react";
 
 export const WhyAnkurSection: React.FC = () => {
+  const rotatingPhotos = [
+    {
+      src: "/branding/vibrant_colourful_dining_room.jpg",
+      title: "Vibrant Contemporary Dining Room",
+      palette: "Warm Amber & Royal Teal",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/kitchen_crimson_marble.png",
+      title: "Crimson Marble Chef's Kitchen",
+      palette: "Deep Carmine & Obsidian",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/regal_emerald_palace_lounge.jpg",
+      title: "Regal Emerald Palace Lounge",
+      palette: "Heritage Green & Warm Gold",
+      objectPosition: "object-[center_40%]",
+    },
+    {
+      src: "/branding/tropical_terracotta_courtyard.jpg",
+      title: "Tropical Terracotta Courtyard",
+      palette: "Sunset Ochre & Velvet Plum",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/artistic_creative_mural_studio.jpg",
+      title: "Creative Pop-Art Studio Lobby",
+      palette: "Electric Multicolour Mural",
+      objectPosition: "object-center",
+    },
+  ];
+
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  // Auto-rotate photos smoothly every ~1.4 seconds as requested
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % rotatingPhotos.length);
+    }, 1400);
+
+    return () => clearInterval(timer);
+  }, [rotatingPhotos.length]);
+
   const badges = [
     {
       icon: Palette,
@@ -37,18 +81,59 @@ export const WhyAnkurSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Stylized Room Photo */}
+          {/* Left Column: Auto-Rotating 1-Sec Room Photos with Smooth Crossfade */}
           <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-100 group">
-              <Image
-                src="/branding/vibrant_colourful_dining_room.jpg"
-                alt="More Than Just Paint - Ankur Paints"
-                fill
-                quality={100}
-                unoptimized={true}
-                className="object-cover group-hover:scale-105 transition-transform duration-700 [image-rendering:-webkit-optimize-contrast]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+            <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-900 group">
+              
+              {rotatingPhotos.map((photo, idx) => {
+                const isActive = idx === currentIdx;
+                return (
+                  <div
+                    key={photo.src}
+                    className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                      isActive
+                        ? "opacity-100 z-10 scale-100"
+                        : "opacity-0 z-0 scale-105 pointer-events-none"
+                    }`}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.title}
+                      fill
+                      quality={100}
+                      unoptimized={true}
+                      priority={idx <= 1}
+                      className={`object-cover ${photo.objectPosition} [image-rendering:-webkit-optimize-contrast]`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
+                  </div>
+                );
+              })}
+
+              {/* Dynamic Floating Photo Badge */}
+              <div className="absolute bottom-5 left-5 z-20 bg-black/75 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-xs text-slate-200 shadow-xl transition-all duration-500">
+                <span className="font-extrabold text-white block text-sm">
+                  {rotatingPhotos[currentIdx].title}
+                </span>
+                <span className="text-[11px] text-[#FFD100] font-semibold">
+                  {rotatingPhotos[currentIdx].palette}
+                </span>
+              </div>
+
+              {/* Interactive Dot Indicators */}
+              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+                {rotatingPhotos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentIdx(i)}
+                    aria-label={`Show photo ${i + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === currentIdx ? "w-6 bg-[#FFD100]" : "w-2 bg-white/50 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+
             </div>
 
             {/* Decorative Corner Glow */}
@@ -58,7 +143,7 @@ export const WhyAnkurSection: React.FC = () => {
           {/* Right Column: Editorial Copy & 4 Badges */}
           <div className="lg:col-span-6 space-y-6 text-left">
             
-            {/* Header + Rainbow Brush Row (Matching User Reference) */}
+            {/* Header + Rainbow Brush Row */}
             <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 {/* Section Tag */}
@@ -74,7 +159,7 @@ export const WhyAnkurSection: React.FC = () => {
                 </h2>
               </div>
 
-              {/* Rainbow Paintbrush Graphic (From Reference) */}
+              {/* Rainbow Paintbrush Graphic */}
               <div className="relative w-40 sm:w-48 lg:w-56 aspect-[971/560] shrink-0 sm:-mt-6">
                 <Image
                   src="/branding/rainbow_brush_stroke.png"
