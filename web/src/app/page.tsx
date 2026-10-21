@@ -44,7 +44,7 @@ export default function Home() {
       <ApprovedSpacesShowcase />
 
       {/* 7. Full-Color Rainbow Splash Wave Banner: "LET'S COLOUR YOUR WORLD" */}
-      <ColourfulSplashBanner />
+      <ColourfulSplashBanner onOpenGoogleAuth={() => setGoogleAuthOpen(true)} />
 
       {/* 8. Dark Luxury Footer */}
       <ColourFooter />
