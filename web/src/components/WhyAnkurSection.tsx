@@ -25,9 +25,33 @@ export const WhyAnkurSection: React.FC = () => {
       objectPosition: "object-[center_40%]",
     },
     {
+      src: "/branding/spanish_venetian_red_villa.jpg",
+      title: "Spanish Venetian Red Hacienda",
+      palette: "Rich Terracotta & Olive Greenery",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/burgundy_terrace_residence.jpg",
+      title: "Burgundy Modern Terrace Villa",
+      palette: "Deep Maroon & Contemporary Stone",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/contemporary_violet_pavilion.jpg",
+      title: "Contemporary Violet Plum Pavilion",
+      palette: "Imperial Purple & Botanical Garden",
+      objectPosition: "object-center",
+    },
+    {
       src: "/branding/tropical_terracotta_courtyard.jpg",
       title: "Tropical Terracotta Courtyard",
       palette: "Sunset Ochre & Velvet Plum",
+      objectPosition: "object-center",
+    },
+    {
+      src: "/branding/mediterranean_crimson_bougainvillea.png",
+      title: "Mediterranean Crimson Courtyard",
+      palette: "Rustic Tuscan Red & Bougainvillea",
       objectPosition: "object-center",
     },
     {
@@ -40,11 +64,11 @@ export const WhyAnkurSection: React.FC = () => {
 
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // Auto-rotate photos smoothly every ~1.4 seconds as requested
+  // Auto-rotate photos smoothly every ~1.3 seconds as requested
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIdx((prev) => (prev + 1) % rotatingPhotos.length);
-    }, 1400);
+    }, 1300);
 
     return () => clearInterval(timer);
   }, [rotatingPhotos.length]);
@@ -81,7 +105,7 @@ export const WhyAnkurSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Auto-Rotating 1-Sec Room Photos with Smooth Crossfade */}
+          {/* Left Column: Auto-Rotating Room Photos with Smooth Luxury Crossfade */}
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-900 group">
               
@@ -111,24 +135,24 @@ export const WhyAnkurSection: React.FC = () => {
               })}
 
               {/* Dynamic Floating Photo Badge */}
-              <div className="absolute bottom-5 left-5 z-20 bg-black/75 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-xs text-slate-200 shadow-xl transition-all duration-500">
-                <span className="font-extrabold text-white block text-sm">
+              <div className="absolute bottom-5 left-5 z-20 bg-black/75 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-xs text-slate-200 shadow-xl transition-all duration-500 max-w-[70%]">
+                <span className="font-extrabold text-white block text-sm truncate">
                   {rotatingPhotos[currentIdx].title}
                 </span>
-                <span className="text-[11px] text-[#FFD100] font-semibold">
+                <span className="text-[11px] text-[#FFD100] font-semibold block truncate">
                   {rotatingPhotos[currentIdx].palette}
                 </span>
               </div>
 
               {/* Interactive Dot Indicators */}
-              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15">
                 {rotatingPhotos.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentIdx(i)}
                     aria-label={`Show photo ${i + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      i === currentIdx ? "w-6 bg-[#FFD100]" : "w-2 bg-white/50 hover:bg-white"
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === currentIdx ? "w-4 sm:w-5 bg-[#FFD100]" : "w-1.5 bg-white/50 hover:bg-white"
                     }`}
                   />
                 ))}
