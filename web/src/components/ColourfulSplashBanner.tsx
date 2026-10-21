@@ -33,13 +33,6 @@ export const ColourfulSplashBanner: React.FC<ColourfulSplashBannerProps> = ({
       {/* 2. Seamless Floating Center Content — Inspiring, Patriotic & Colour-Centric */}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 flex flex-col items-center space-y-6">
         
-        {/* Patriotic Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#FFD100] text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] shadow-lg">
-          <span className="text-[#FF9933]">★</span>
-          <span>PROUDLY CRAFTED FOR INDIA</span>
-          <span className="text-[#138808]">★</span>
-        </div>
-
         {/* Fascinating Patriotic Main Headline */}
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] max-w-3xl">
           Where Every Colour Echoes the <br className="hidden sm:inline" />
