@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { AppleNavbar } from "@/components/AppleNavbar";
-import { HeroRoyale } from "@/components/HeroRoyale";
-import { KeynoteMetrics } from "@/components/KeynoteMetrics";
-import { ArchitecturalShowcase } from "@/components/ArchitecturalShowcase";
-import { MinimalShadeStudio } from "@/components/MinimalShadeStudio";
-import { RetailerHubMinimal } from "@/components/RetailerHubMinimal";
-import { AppleFooter } from "@/components/AppleFooter";
+import { ColourNavbar } from "@/components/ColourNavbar";
+import { ColourHero } from "@/components/ColourHero";
+import { CansLineupStrip } from "@/components/CansLineupStrip";
+import { WhyAnkurSection } from "@/components/WhyAnkurSection";
+import { PaintRangeSection } from "@/components/PaintRangeSection";
+import { ApprovedSpacesShowcase } from "@/components/ApprovedSpacesShowcase";
+import { ColourfulSplashBanner } from "@/components/ColourfulSplashBanner";
+import { ColourFooter } from "@/components/ColourFooter";
 import { GoogleAuthModal } from "@/components/GoogleAuthModal";
 
 export default function Home() {
@@ -19,38 +20,36 @@ export default function Home() {
   } | null>(null);
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col selection:bg-[#E8501E] selection:text-white">
-      {/* 1. Minimal Apple-Style Glass Navbar with Vector SVG Logo & Google Login */}
-      <AppleNavbar
+    <main className="min-h-screen bg-white text-slate-800 flex flex-col selection:bg-[#E8501E] selection:text-white">
+      {/* 1. Header with Vector SVG Ankur Logo & Google Login */}
+      <ColourNavbar
         onOpenGoogleAuth={() => setGoogleAuthOpen(true)}
         currentUser={currentUser}
         onLogout={() => setCurrentUser(null)}
       />
 
-      {/* 2. Hero Stage — The Royale Masterpiece (Bespoke 3D Paint Bucket Packshot) */}
-      <HeroRoyale
-        onOpenGoogleAuth={() => setGoogleAuthOpen(true)}
-        currentUser={currentUser}
-      />
+      {/* 2. Master Hero: "Colour Your World" with Paint Explosion Living Room */}
+      <ColourHero />
 
-      {/* 3. Apple Keynote Technical Specs Strip (10-Yr, 2.2mm, 5°C, Zero VOC) */}
-      <KeynoteMetrics />
+      {/* 3. Product Cans Lineup on Reflective Pedestal + 4 Trust Pillars */}
+      <CansLineupStrip />
 
-      {/* 4. Architectural Living Spaces Showcase (Penthouse Interior & Villa Facade) */}
-      <ArchitecturalShowcase />
+      {/* 4. "Why Ankur Paints? More Than Just Paint — It's a Feeling" + 4 Badges */}
+      <WhyAnkurSection />
 
-      {/* 5. Minimal Interactive Shade Studio (Signature Pigments & Pairings) */}
-      <MinimalShadeStudio />
+      {/* 5. "Explore Our Paint Range" with 4 Category Visual Cards */}
+      <PaintRangeSection />
 
-      {/* 6. B2B Retailer Hub (Barcode QR Simulator, Price Guard, Diwali Dhamaka Meter) */}
-      <RetailerHubMinimal />
+      {/* 6. Approved Spaces Showcase: Penthouse Interior & Contemporary Villa */}
+      <ApprovedSpacesShowcase />
 
-      {/* 7. Minimalist Apple Dark Footer */}
-      <AppleFooter
-        onOpenGoogleAuth={() => setGoogleAuthOpen(true)}
-      />
+      {/* 7. Full-Color Rainbow Splash Wave Banner: "LET'S COLOUR YOUR WORLD" */}
+      <ColourfulSplashBanner />
 
-      {/* Google OAuth One-Tap Simulation Modal */}
+      {/* 8. Dark Luxury Footer */}
+      <ColourFooter />
+
+      {/* 9. Interactive Google OAuth Account Chooser Modal with Confetti */}
       <GoogleAuthModal
         isOpen={googleAuthOpen}
         onClose={() => setGoogleAuthOpen(false)}

@@ -2,27 +2,27 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck, Sparkles, Droplets, Sun } from "lucide-react";
 
-export const ArchitecturalShowcase: React.FC = () => {
+export const ApprovedSpacesShowcase: React.FC = () => {
   return (
-    <section id="spaces" className="py-24 bg-black text-white relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+    <section id="spaces" className="py-24 bg-[#05070D] text-white relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#00B2E3]">
             ARCHITECTURAL EXCELLENCE
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white font-sans">
             Designed for the world’s most refined spaces.
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
+          <p className="text-sm text-slate-400 leading-relaxed">
             From premier luxury penthouses to contemporary residential villas, Ankur Paints formulations deliver unmatched aesthetic richness and environmental endurance.
           </p>
         </div>
 
-        {/* Feature 1: The Penthouse Interior (Smooth Velvet Interior) */}
+        {/* Feature 1: The Penthouse Interior (Velvety Depth. Effortless Washability.) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           {/* Image */}
